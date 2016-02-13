@@ -31,8 +31,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(methodOverride('X-HTTP-Method-Override')); 
 
-// set the static files location /public/img will be /img for users
-app.use(express.static(__dirname + '/public')); 
+// set the static files location - /node_modules/angular will be /angular for users
+app.use('/static', express.static('node_modules')); 
+app.use('/', express.static('public')); 
 
 // routes ==================================================
 require('./app/routes')(app); // configure our routes

@@ -1,40 +1,36 @@
-angular.module('dreamApp')
-  .config(function($routeProvider, $locationProvider){
+angular.module('dreamApp').config(function($stateProvider, $urlRouterProvider){
 
-  $locationProvider.otherwise('/slider');
+  $urlRouterProvider.otherwise('/slider');
   
-  // should we be use .when('/', ... ) ?
-  $routeProvider
+  $stateProvider
     .state('slider',{
       url: '/slider',
-      templateUrl: 'homepage/slider.html',
+      templateUrl: 'components/homepage/slider.html',
       controller: 'HomepageController'
   })
     .state('profile',{
       url: '/profile',
-      templateUrl: 'profile/profile.html',
+      templateUrl: 'components/profile/profile.html',
       controller: 'ProfileController'
   })
     .state('relationships',{
       url: '/relationships',
-      templateUrl: 'relationships/relationships.html',
+      templateUrl: 'components/relationships/relationships.html',
       controller: 'RelationshipsController'
   })
     .state('journal',{
       url: '/journal',
-      templateUrl: 'journal/journals.html',
+      templateUrl: 'components/journal/journals.html',
       controller: 'JournalController'
   })
       .state('request_changes',{
       url: '/request_changes',
-      templateUrl: 'request_changes/request_changes.html',
+      templateUrl: 'components/request_changes/request_changes.html',
       controller: 'RequestChangesController'
   })
     .state('mentee_info',{
       url: '/mentee_info',
-      templateUrl: 'mentee_info/mentee_info.html',
+      templateUrl: 'components/mentee_info/mentee_info.html',
       controller: 'InfoController'
   });
-
-  $routeProvider.html5Mode(true)
 });

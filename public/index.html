@@ -1,11 +1,29 @@
  <!-- public/views/index.html -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
     <title>Starter Page - Welcome.</title>
+    
+     <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css"> <!-- custom styles -->
+
+    <!-- JS -->
+    <script src="/static/angular/angular.min.js"></script>
+    <script src="/static/ui-router/release/angular-ui-router.min.js"></script> 
+
+    <!-- ANGULAR CUSTOM -->
+    <!-- 
+    <script src="js/controllers/MainCtrl.js"></script>
+    <script src="js/controllers/NerdCtrl.js"></script>
+    <script src="js/services/NerdService.js"></script> 
+    -->
+    <script src="app.module.js"></script>
+    <script src="app.routes.js"></script>
 </head>
 <body>
-    We did it!
+    <p class="lead">We did it!</p>
 </body>
 </html>
