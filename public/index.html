@@ -4,26 +4,41 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
+    <base href="/" />
     <title>Starter Page - Welcome.</title>
     
      <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/style.css"> <!-- custom styles -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
 
     <!-- JS -->
     <script src="/static/angular/angular.min.js"></script>
     <script src="/static/ui-router/release/angular-ui-router.min.js"></script> 
 
     <!-- ANGULAR CUSTOM -->
-    <!-- 
-    <script src="js/controllers/MainCtrl.js"></script>
-    <script src="js/controllers/NerdCtrl.js"></script>
-    <script src="js/services/NerdService.js"></script> 
-    -->
     <script src="app.module.js"></script>
     <script src="app.routes.js"></script>
+
+    <!-- 
+    <script type="text/javascript" src="components/Homepage/HomepageController.js"></script>
+    <script type="text/javascript" src="components/Homepage/HomepageModule.js"></script>
+    <script type="text/javascript" src="components/Journal/JournalController.js"></script>
+    <script type="text/javascript" src="components/Journal/JournalModule.js"></script>
+    <script type="text/javascript" src="components/MenteeInfo/MenteeInfoController.js"></script>
+    <script type="text/javascript" src="components/MenteeInfo/MenteeInfoModule.js"></script>
+    <script type="text/javascript" src="components/Profile/ProfileController.js"></script>
+    <script type="text/javascript" src="components/Profile/ProfileModule.js"></script>
+    <script type="text/javascript" src="components/Relationships/RelationshipsController.js"></script>
+    <script type="text/javascript" src="components/Relationships/RelationshipsModule.js"></script>
+    <script type="text/javascript" src="components/RequestChanges/RequestChangesController.js"></script>
+    <script type="text/javascript" src="components/RequestChanges/RequestChangesModule.js"></script> 
+    -->
+    <script type="text/javascript" src="components/Test/TestModule.js"></script> 
+    <script type="text/javascript" src="components/Test/TestController.js"></script>
+
 </head>
-<body>
-    <p class="lead">We did it!</p>
+<body ng-app="dreamApp">
+    <!-- ANGULAR DYNAMIC CONTENT -->
+    <div ui-view="testing"></div>
 </body>
 </html>

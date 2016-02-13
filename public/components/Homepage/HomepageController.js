@@ -10,5 +10,5 @@ function HomepageController($scope) {
             lastRow : 'justify',
             margins : 10
         });
-    });                              
+    });
 }
