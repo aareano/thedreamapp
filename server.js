@@ -7,6 +7,9 @@ var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
 
 // configuration ===========================================
+
+// cheatsheet for package.json
+// http://browsenpm.org/package.json#main
     
 // config files
 var db = require('./config/db');
