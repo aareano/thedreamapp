@@ -22,10 +22,13 @@ angular.module('dreamApp').config(function($stateProvider, $urlRouterProvider){
         }
       }
     })
-    .state("profile", {
-      url: "/profile",
+    .state("root.profile", {
+      url: "profile",
       views: {
-
+        'content@': {
+          controller: "ProfileController",
+          templateUrl: "components/Profile/profile.html"
+        }
       }
     });
 });

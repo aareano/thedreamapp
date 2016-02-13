@@ -1,5 +1,2 @@
-angular.module('dreamApp.profile',[
-	
-	
-]);
+angular.module('dreamApp.profile', []);
 

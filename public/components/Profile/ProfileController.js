@@ -1,9 +1,10 @@
-angular.module('dreamApp.profile')
-	.controller('ProfileController',ProfileController);
+angular.module('dreamApp.profile').controller('ProfileController',ProfileController);
 
 ProfileController.$inject = ['$scope'/*,'ProfileService'*/];
 
 function ProfileController($scope) {
+	console.log("in ProfileController");
+
 	$scope.mentee = {
 		name: "Andrew Johnson",
 		dob: "12/1/2012"
