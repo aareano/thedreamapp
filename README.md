@@ -4,6 +4,10 @@
 
 * NAV_LEFT: toggle chevron icon orientation when dropdown is clicked
 
+* NAV_LEFT: add "active" class to the current page's list-group-item
+
+* UI: rewrite entire UI in React. Maybe? http://blog.andrewray.me/reactjs-for-stupid-people/
+
 ---
 
 ### This is the folder structure with some example files thrown in to help make sense of it.

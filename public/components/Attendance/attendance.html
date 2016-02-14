@@ -1,0 +1,78 @@
+<div class="card">
+  <h1 class="page-header">Journal</h1>
+  <div class="row">
+    <div class="col-md-11">
+      <h3><i class="fa fa-align-left" style="margin-right: 15px;"></i> New Attendance Entry </h3>
+    </div>
+    <div class="col-md-1">
+      <div class="btn btn-link" data-toggle="collapse" data-target="#newJournal" style="margin-top: 10px;"><i class="fa fa-chevron-up"></i></div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 20px;" id="newJournal">
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label for="newEvent" class="col-md-2 control-label">Event:</label>
+        <div class="col-md-8">
+          <select ng-model="newEvent" id="newEvent" class="form-control" required>
+              <option value="">Choose..</option>
+              <option value="Outing">Outing</option>
+              <option value="net">Weekly Meeting</option>
+              <option value="mouth">Field Trip</option>
+            </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="eventDate" class="col-md-2 control-label">Date:</label>
+        <div class="col-md-8">
+          <input type="date" id="eventDate" ng-model="newSummary" class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <div ng-repeat="mentee in menteesList" class="checkbox">
+          <div class="col-md-offset-2">
+            <label>
+              <input type="checkbox" id="{{mentee}}" value="{{mentee}}"/> {{mentee}}
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary" ng-click="save()">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div class="card">
+  <div class="row">
+    <div class="col-md-11">
+      <h3><i class="fa fa-align-left" style="margin-right: 15px;"></i>Previous Journal Entries</h3>
+    </div>
+    <div class="col-md-1">
+      <div class="btn btn-link" data-toggle="collapse" data-target="#previousJournals" style="margin-top: 10px;"><i class="fa fa-chevron-up"></i></div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 20px;" id="previousJournals">
+    
+    <!-- start accordion -->
+    <div class="accordion" role="tablist" aria-multiselectable="true" ng-repeat="post in journals">
+      <div class="panel">
+        <a class="panel-heading collapsed" role="tab" data-toggle="collapse" aria-expanded="false" aria-controls="collapseOne" data-target="#journal{{$index}}">
+          <h4 class="panel-title">Date: {{post.date}} <span style="padding:10px"></span> Event Name: {{post.summary}}</h4>
+        </a>
+        <div id="journal{{$index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            <p class="entry collapse" id="entry{{$index}}"> <span class="content">{{ post.entry }}</span> </p>
+            <button type="button" class="collapsed btn btn-default" data-toggle="collapse" data-target="#entry{{$index}}">View Entry &raquo;</button>
+            <button type="button" class="btn btn-default" ng-click="remove(this)">Delete</button>
+            <button type="button" class="btn btn-default" ng-click="edit(this)">Edit</button>
+          </div>
+        </div>
+        </div>
+      <!-- end of accordion -->
+
+  </div>
+</div>
