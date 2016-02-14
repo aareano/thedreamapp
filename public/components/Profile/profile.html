@@ -1,120 +1,116 @@
 
 <div class="col-md-12 card">
-  <div class="card_content">
-    <div class="col-md-6 col-sm-6 col-xs-6">
-      <img src="assets/img/samuel.jpg" alt="..." class="img-square img-responsive" style="max-height:250px">
-    </div>
-    <div class="col-md-6 col-sm-6 col-xs-6">
-      <h3> {{mentor.firstname}} {{mentor.lastname}}'s Profile</h3> 
-      <h2> Mentee: {{mentee.name}}</h2>
-      <h2> DOB: {{mentee.dob}} </h2>
-    </div>
+  <div class="col-md-6 col-sm-6 col-xs-6">
+    <img src="assets/img/samuel.jpg" alt="..." class="img-square img-responsive" style="max-height:250px">
+  </div>
+  <div class="col-md-6 col-sm-6 col-xs-6">
+    <h3> {{mentor.firstname}} {{mentor.lastname}}'s Profile</h3> 
+    <h2> Mentee: {{mentee.name}}</h2>
+    <h2> DOB: {{mentee.dob}} </h2>
   </div>
 </div>
 
 <!-- info input -->
 <div class="col-md-6 col-xs-12 card">
-    <div class="card_title">
-      <h2>Profile Info </h2>
-    </div>
-    <form name="profileForm">
-      <div class="row" style="margin-bottom: 10px;">
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user"></i></span>
-            <input type="text" class="form-control" name="mentorFirst" id="mentorFirst" placeholder="{{mentor.firstname}}" ng-model="newFirst" aria-describedby="basic-addon1">
-          </div>
-        </div>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <div class="input-group">
-            <span class="input-group-addon" id="basic-addon2"><i class="fa fa-user"></i></span>
-            <input type="text" class="form-control" name="mentorLast" id="mentorLast" placeholder="{{mentor.lastname}}" ng-model="newLast" aria-describedby="basic-addon2">
-          </div>
-        </div>
-      </div>
-
-      <div class="row" style="margin-bottom: 10px;">
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <div class="input-group">
-            <span class="input-group-addon" id="basic-addon3"><i class="fa fa-envelope"></i></span>
-            <input type="text" class="form-control" name="mentorEmail" placeholder="{{mentor.email}}" ng-model="newEmail" aria-describedby="basic-addon3">
-          </div>
-        </div>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <div class="input-group">
-            <span class="input-group-addon" id="basic-addon4"><i class="fa fa-phone"></i></span>
-            <input type="text" class="form-control" name="mentorPhone" placeholder="{{mentor.phone}}" ng-model="newPhone" aria-describedby="basic-addon4">
-          </div>
-        </div>
-      </div>
-
-      <div class="row" style="margin-bottom: 10px;">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-          <div class="input-group">
-            <span class="input-group-addon" id="basic-addon5"><i class="fa fa-home"></i></span>
-            <input type="text" class="form-control" name="mentorAddress" placeholder="{{mentor.address}}" ng-model="newAddress" aria-describedby="basic-addon5">
-          </div>
-        </div>
-      </div>
-    </form>
+  <div class="card_title">
+    <h2>Profile Info </h2>
   </div>
+  <form name="profileForm">
+    <div class="row" style="margin-bottom: 10px;">
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user"></i></span>
+          <input type="text" class="form-control" name="mentorFirst" id="mentorFirst" placeholder="{{mentor.firstname}}" ng-model="newFirst" aria-describedby="basic-addon1">
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon2"><i class="fa fa-user"></i></span>
+          <input type="text" class="form-control" name="mentorLast" id="mentorLast" placeholder="{{mentor.lastname}}" ng-model="newLast" aria-describedby="basic-addon2">
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-bottom: 10px;">
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon3"><i class="fa fa-envelope"></i></span>
+          <input type="text" class="form-control" name="mentorEmail" placeholder="{{mentor.email}}" ng-model="newEmail" aria-describedby="basic-addon3">
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon4"><i class="fa fa-phone"></i></span>
+          <input type="text" class="form-control" name="mentorPhone" placeholder="{{mentor.phone}}" ng-model="newPhone" aria-describedby="basic-addon4">
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-bottom: 10px;">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon5"><i class="fa fa-home"></i></span>
+          <input type="text" class="form-control" name="mentorAddress" placeholder="{{mentor.address}}" ng-model="newAddress" aria-describedby="basic-addon5">
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
 
 <!-- Emergency contact -->
-<div class="col-md-6 col-xs-12">
-  <div class="card">
-    <div class="card_title">
-      <h2>Emergency Contacts </h2>
-    </div>
-    <form name="emergency">
-      <div ng-repeat="contact in contacts">
-        <div class="row" style="margin-bottom: 10px;">
-          <div class="form-group input-group" >
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <select class="form-control" id="picker{{$index}}">
-                <option>{{contact.relationship}}</option>
-                <option>Mother</option>
-                <option>Father</option>
-                <option>Significant Other</option>
-                <option>Friend</option>
-              </select>
+<div class="col-md-6 col-xs-12 card">
+  <div class="card_title">
+    <h2>Emergency Contacts </h2>
+  </div>
+  <form name="emergency">
+    <div ng-repeat="contact in contacts">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group input-group">
+          <select class="form-control" id="picker{{$index}}">
+            <option>{{contact.relationship}}</option>
+            <option>Mother</option>
+            <option>Father</option>
+            <option>Significant Other</option>
+            <option>Friend</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 10px;">
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon5"><i class="fa fa-user"></i></span>
+          <input type="text" class="form-control" name="name{{$index}}" id="name{{$index}}" placeholder="{{contact.name}}" ng-model="newName[$index]" aria-describedby="basic-addon5">
+        </div>
+      </div>
+      <div ng-switch on="$last">
+        <div ng-switch-when="false">
+          <div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 2px solid #E6E9ED;">
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon5"><i class="fa fa-user"></i></span>
+              <input type="text" class="form-control" name="email{{$index}}" id="email{{$index}}" placeholder="{{contact.email}}" ng-model="emergEmail[$index]" aria-describedby="basic-addon5">
             </div>
           </div>
         </div>
-
-        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-          <input type="text" class="form-control has-feedback-left" id="name{{$index}}" placeholder="{{contact.name}}" ng-model="newName[$index]">
-          <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+        <div ng-switch-default>
+          <div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 10px; padding-bottom: 10px;">
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon5"><i class="fa fa-user"></i></span>
+            <input type="text" class="form-control" name="email{{$index}}" id="email{{$index}}" placeholder="{{contact.email}}" ng-model="emergEmail[$index]" aria-describedby="basic-addon5">
+          </div>
         </div>
-
-
-        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-          <input type="text" class="form-control has-feedback-left" id="email{{$index}}" placeholder="{{contact.email}}" ng-model="emergEmail[$index]">
-          <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
         </div>
       </div>
-    </form>
-  </div>
+    </div>
+  </form>
 </div>
 
 <!-- button submit info -->
-<div class="row">
-  <div class="col-md-12 col-xs-12">
-    <div class="card">
-
-      <div class="card_content">
-        <br />
-        <form class="form-horizontal form-label-left input_mask">
-
-          <div class="form-group">
-            <div class="text-center">
-              <button type="submit" class="btn btn-primary" >Cancel</button>
-              <button type="submit" class="btn btn-success" ng-click="submit()">Submit</button>
-            </div>
-          </div>
-
-        </form>
+<div class="col-md-12 col-sm-12 col-xs-12 card" style="margin-top: 15px;">
+  <div class="card_content">
+    <form class="form-horizontal">
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary" ng-click="submit()">Submit</button>
+        <button type="submit" class="btn btn-link" style="color: red;">Cancel</button>
       </div>
-    </div>
+    </form>
   </div>
 </div>

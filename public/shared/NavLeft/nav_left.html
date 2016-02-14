@@ -1,3 +1,6 @@
+<!-- to keep panel's position fixed:
+     http://stackoverflow.com/questions/28340054/bootstrap-keep-div-fixed-after-scrolling-to-it -->
+
 <div id="nav_left">
   <div class="clearfix"></div>
   <div class="profile_pic center-block">
@@ -6,7 +9,7 @@
 
   <div class="list-group" style="margin-top: 35px;">
     <div class="list-group-item" data-toggle="collapse" data-target="#mentees-collapsible">Mentees
-      <i class="fa fa-chevron-down"></i>
+      <i class="fa fa-chevron-down" style="float: right;"></i>
       <div id="mentees-collapsible" class="collapse">
         <ul style="list-style-type: none; margin-top: 10px;">
           <li>[MENTEES GO HERE]</li>
@@ -15,7 +18,7 @@
     </div>
     <a href="#" class="list-group-item active" ui-sref="attendance">Attendance </a>
     <div class="list-group-item" data-toggle="collapse" data-target="#dream-collapsible">Dream
-      <i class="fa fa-chevron-down"></i>
+      <i class="fa fa-chevron-down" style="float: right;"></i>
       <div id="dream-collapsible" class="collapse">
         <ul style="list-style-type: none; margin-top: 10px;">
           <li style="margin-bottom: 5px;"><a href="https://fs11.formsite.com/mfoote/receipts/index.html">Receipts</a></li>

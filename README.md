@@ -1,5 +1,11 @@
 # The Dream App by Tufts' JumboCode 
+
+### TODO
+
+* NAV_LEFT: toggle chevron icon orientation when dropdown is clicked
+
 ---
+
 ### This is the folder structure with some example files thrown in to help make sense of it.
 ```
 - app               <!-- all backend and Node or Express stuff -->

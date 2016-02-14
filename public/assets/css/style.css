@@ -16,14 +16,8 @@
 }
 
 .card {
-    margin: 10px;
+    background: #fff;   
     padding: 20px;
-    background: #fff;
-    border: 1px solid #E6E9ED;
-}
-
-.card_content {
-    
 }
 
 .card_title {
