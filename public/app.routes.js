@@ -48,6 +48,15 @@ angular.module('dreamApp').config(function($stateProvider, $urlRouterProvider){
           templateUrl: "components/MenteeInfo/mentee_info.html"
         }
       }
+    })
+    .state("root.request_changes", {
+      url: "request_changes",
+      views: {
+        'content@': {
+          controller: "RequestChangesController",
+          templateUrl: "components/RequestChanges/request_changes.html"
+        }
+      }
     });
 });
 

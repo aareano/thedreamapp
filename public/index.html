@@ -1,18 +1,19 @@
- <!-- public/views/index.html -->
- <!DOCTYPE html>
- <html lang="en">
- <head>
+<!-- public/views/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="UTF-8">
   <base href="/" />       <!-- Necessary for HTML5Mode(true) -->
-  <title>Starter Page - Welcome.</title>
+  <title>The Dream App</title>
 
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="/static/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/static/bootstrap/dist/css/bootstrap-theme.min.css">
   <link rel="stylesheet" type="text/css" href="/static/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="/components/Home/justified-gallary/dist/css/justifiedGallery.css" />
+
   <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="/components/Home/justified-gallary/dist/css/justifiedGallery.css" />
 
   <!-- JS -->
   <script type="text/javascript" src="/static/angular/angular.min.js"></script>
@@ -23,13 +24,6 @@
   <!-- ANGULAR CUSTOM -->
   <script type="text/javascript" src="app.module.js"></script>
   <script type="text/javascript" src="app.routes.js"></script>
-
-  <!-- 
-    <script type="text/javascript" src="components/Relationships/RelationshipsModule.js"></script>
-    <script type="text/javascript" src="components/Relationships/RelationshipsController.js"></script>
-    <script type="text/javascript" src="components/RequestChanges/RequestChangesModule.js"></script> 
-    <script type="text/javascript" src="components/RequestChanges/RequestChangesController.js"></script>
-  -->
 
   <script type="text/javascript" src="shared/NavTop/NavTopModule.js"></script> 
   <script type="text/javascript" src="shared/NavTop/NavTopController.js"></script>
@@ -50,9 +44,12 @@
   <script type="text/javascript" src="components/MenteeInfo/MenteeInfoModule.js"></script>
   <script type="text/javascript" src="components/MenteeInfo/MenteeInfoController.js"></script>
 
+  <script type="text/javascript" src="components/RequestChanges/RequestChangesModule.js"></script> 
+  <script type="text/javascript" src="components/RequestChanges/RequestChangesController.js"></script>
+
 </head>
 <body ng-app="dreamApp">
-  
+
   <!-- ANGULAR DYNAMIC CONTENT -->
   <div ui-view="navTop"></div>
   <div class="col-md-3 col-sm-6">

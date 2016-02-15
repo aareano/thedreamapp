@@ -1,31 +1,17 @@
-<body>
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>Request Changes</h2>
-                    <div class="clearfix"></div>
-                </div> 
-                <div class="x_content">
-                    <form class="form-horizontal form-label-left input_mask" name="changesForm">
-                        <div class="form-group">
-                        <div class="row"></div>
-                        <div class="form-group">
-                            <label class="control-label">Insert Changes Below:</label>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-6 form-group has-feedback">
-                            <textarea class="form-control" rows="4" cols="50" id="entry" ng-model="newEntry"></textarea>
-                        </div>
-                        <div class="row"></div>
-                        <div class="form-group" style="padding-top:15px>
-                            <div class="text-center">
-                                <button type="button" class="btn btn-primary">Cancel</button>
-                                <button type="submit" class="btn btn-success ng-click="submit()">Submit</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+<div class="card col-md-12">
+  <h3 class="page-header">Request Changes</h3>
+
+  <form class="form-horizontal" name="changes-form">
+    <div class="form-group">
+      <label for="entry" class="col-md-3 control-label">Request Changes Here:</label>
+      <div class="col-md-8">
+        <textarea type="text" class="form-control" rows="5" id="entry" ng-model="newEntry"></textarea>
+      </div>
     </div>
-</body>
+    <div class="form-group">
+      <div class="text-center">
+        <div type="submit" class="btn btn-primary" ng-click="submit()">Submit</div>
+        <div class="btn btn-link" style="color: red;">Cancel - this does nothing yet</div>
+      </div>
+    </form>
+  </div>

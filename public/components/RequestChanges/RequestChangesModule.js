@@ -1,3 +1,1 @@
-angular.module('dreamApp.request_changes',[
-	
-]);
+angular.module('dreamApp.request_changes', []);
