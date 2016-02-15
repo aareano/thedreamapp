@@ -1,2 +1,9 @@
-angular.module('dreamApp',
-  ['ui.router', 'dreamApp.nav_left', 'dreamApp.nav_top', 'dreamApp.home', 'dreamApp.profile', 'dreamApp.attendance']);
+angular.module('dreamApp', [
+  'ui.router', 
+  'dreamApp.nav_top', 
+  'dreamApp.nav_left', 
+  'dreamApp.home', 
+  'dreamApp.profile', 
+  'dreamApp.attendance', 
+  'dreamApp.mentee_info'
+]);

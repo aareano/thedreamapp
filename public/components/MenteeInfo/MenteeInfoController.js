@@ -1,9 +1,8 @@
-angular.module('dreamApp.mentee_info')
-  .controller('InfoController',InfoController);
+angular.module('dreamApp.mentee_info').controller('MenteeInfoController', MenteeInfoController);
 
-InfoController.$inject = ['$scope'/*,'ProfileService'*/];
+MenteeInfoController.$inject = ['$scope'/*,'ProfileService'*/];
 
-function InfoController($scope) {
+function MenteeInfoController($scope) {
 
   $scope.mentee = {
     name: "Andrew Johnson",

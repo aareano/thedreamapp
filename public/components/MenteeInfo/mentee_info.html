@@ -1,192 +1,153 @@
-
-  <div class="row">
-    <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2><i class="fa fa-align-left"></i> Mentee </h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapsed" data-toggle="collapse" data-target="#menteePanel"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content collapse in" id="menteePanel">
-                    <table class="table table-responsive">
-                       <tbody>
-                        <tr>
-                          <th scope="row">Name</th>
-                          <td>{{mentee.name}}</td>
-
-                        </tr>
-                        <tr>
-                          <th scope="row">Age</th>
-                          <td>{{mentee.age}}</td>
-
-                        </tr>
-                        <tr>
-                          <th scope="row">Gender</th>
-                          <td>{{mentee.gender}}</td>
-
-                        </tr>
-                      </tbody>
-                    </table>
-                    <div class="break">
-                    </div>
-                </div>
-                
-              </div>
+<div class="card col-md-12">
+  <div class="card col-md-6">
+    <div class="col-md-2">
+      <h3><i class="fa fa-align-left"></i></h3>
     </div>
-    
-    <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2><i class="fa fa-align-left"></i> Personal Info </h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapsed" data-toggle="collapse" data-target="#infoPanel"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content collapse in" id="infoPanel">
-                    <table class="table table-responsive">
-
-                      <tbody>
-                        <tr>
-                          <th scope="row">Household Language</th>
-                          <td>{{personal.houseLang}}</td>
-
-                        </tr>
-                        <tr>
-                          <th scope="row">Address</th>
-                          <td>{{personal.address}}</td>
-
-                        </tr>
-                        <tr>
-                          <th scope="row">Email</th>
-                          <td>{{personal.email}}</td>
-
-                        </tr>
-                        <tr>
-                          <th scope="row">Birthdate</th>
-                          <td>{{personal.birthDate}}</td>
-
-                        </tr>
-                      </tbody>
-                    </table>
-
-                    
-                </div>
-              </div>
+    <div class="col-md-8">
+      <h3>Mentee</h3>
     </div>
-    
+    <div class="col-md-2" style="margin-top: 13px;">
+      <div class="btn btn-link" data-toggle="collapse" data-target="#mentee-card" ><i class="fa fa-chevron-up"></i></div>
+    </div>
+    <div class="col-md-12" style="margin-top: 20px;" id="mentee-card">
+      <table class="table table-responsive">
+        <tbody>
+          <tr>
+            <th scope="row">Name</th>
+            <td>{{mentee.name}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Age</th>
+            <td>{{mentee.age}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Gender</th>
+            <td>{{mentee.gender}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-    
-  <div class="row">
-    
-    <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2><i class="fa fa-align-left"></i> Emergency Contacts </h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapsed" data-toggle="collapse" data-target="#emergencyPanel"><i class="fa fa-chevron-up"></i></a>
-                      </li>
 
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content collapse in" id="emergencyPanel">
-
-                    <!-- start accordion -->
-                    <div class="accordion" role="tablist" aria-multiselectable="true">
-                      <div class="panel" ng-repeat="contact in contacts">
-                         <a class="panel-heading collapsed" role="tab" data-toggle="collapse" aria-expanded="false" aria-controls="collapseOne" data-target="#collapse{{$index}}">
-                          <h4 class="panel-title">Contact {{$index + 1}}</h4>
-                        </a>
-                        <div id="collapse{{$index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                          <div class="panel-body">
-                            <table class="table table-responsive">
-
-                              <tbody>
-                                <tr>
-                                  <th scope="row">Name</th>
-                                  <td>{{contact.name}}</td>
-
-                                </tr>
-                                <tr>
-                                  <th scope="row">Phone</th>
-                                  <td>{{contact.phone}}</td>
-
-                                </tr>
-                                <tr>
-                                  <th scope="row">Relationship</th>
-                                  <td>{{contact.relationship}}</td>
-
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
-
-                    <!-- end of accordion -->
-
-
-                  </div>
-                    
-                </div>
-              </div>
+  <div class="card col-md-6">
+    <div class="col-md-2">
+      <h3><i class="fa fa-align-left"></i></h3>
     </div>
-    
-    <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2><i class="fa fa-align-left"></i> Health Info </h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapsed" data-toggle="collapse" data-target="#healthPanel"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content collapse in" id="healthPanel">
-                    <table class="table table-responsive">
-
-                      <tbody>
-                        <tr>
-                          <th scope="row">Physician Name</th>
-                          <td>{{health.physician}}</td>
-
-                        </tr>
-                        <tr>
-                          <th scope="row">Physician Phone</th>
-                          <td>{{health.physPhone}}</td>
-
-                        </tr>
-                        <tr>
-                          <th scope="row">Meds Being Taken</th>
-                          <td>{{health.meds}}</td>
-
-                        </tr>
-                        <tr>
-                          <th scope="row">Able To Swallow Pills</th>
-                          <td>{{health.swallowPills}}</td>
-
-                        </tr>
-                        <tr>
-                          <th scope="row">Medical Conditions</th>
-                          <td>{{health.medConditions}}</td>
-
-                        </tr>
-                        <tr>
-                          <th scope="row">Allergies</th>
-                          <td>{{health.allergies}}</td>
-
-                        </tr>
-                      </tbody>
-                    </table>
-                    
-                </div>
-              </div>
+    <div class="col-md-8">
+      <h3>Personal Info</h3>
     </div>
+    <div class="col-md-2" style="margin-top: 13px;">
+      <div class="btn btn-link" data-toggle="collapse" data-target="#personal-card" ><i class="fa fa-chevron-up"></i></div>
+    </div>
+    <div class="col-md-12" style="margin-top: 20px;" id="personal-card">
+      <table class="table table-responsive">
+        <tbody>
+          <tr>
+            <th scope="row">Household Language</th>
+            <td>{{personal.houseLang}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Address</th>
+            <td>{{personal.address}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Email</th>
+            <td>{{personal.email}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Birthdate</th>
+            <td>{{personal.birthDate}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="card col-md-12">
+  <div class="card col-md-6">
+    <div class="col-md-2">
+      <h3><i class="fa fa-align-left"></i></h3>
+    </div>
+    <div class="col-md-8">
+      <h3>Emergency Contacts</h3>
+    </div>
+    <div class="col-md-2" style="margin-top: 13px;">
+      <div class="btn btn-link" data-toggle="collapse" data-target="#emergency-card" ><i class="fa fa-chevron-up"></i></div>
+    </div>
+    <div id="emergency-card" class="col-md-12" style="margin-top: 20px;"> 
+      <div ng-repeat="contact in contacts">
+        <div class="panel panel-default">
+
+          <!-- Default panel contents -->
+          <div class="panel-heading ">{{contact.relationship}}</div>
+          <!-- 
+          <div class="panel-body col-md-12" id="contact-{{$index}}">
+            ...Nothing here yet...
+          </div>
+          -->
+
+          <!-- Table -->
+          <table class="table table-responsive">
+            <tbody>
+              <tr>
+                <th scope="row">Name</th>
+                <td>{{contact.name}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Phone</th>
+                <td>{{contact.phone}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Relationship</th>
+                <td>{{contact.relationship}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card col-md-6">
+    <div class="col-md-2">
+      <h3><i class="fa fa-align-left"></i></h3>
+    </div>
+    <div class="col-md-8">
+      <h3>Health Info</h3>
+    </div>
+    <div class="col-md-2" style="margin-top: 13px;">
+      <div class="btn btn-link" data-toggle="collapse" data-target="#health-card" ><i class="fa fa-chevron-up"></i></div>
+    </div>
+    <div class="col-md-12" style="margin-top: 20px;" id="health-card">
+      <table class="table table-responsive">
+        <tbody>
+          <tr>
+            <th scope="row">Physician Name</th>
+            <td>{{health.physician}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Physician Phone</th>
+            <td>{{health.physPhone}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Meds Being Taken</th>
+            <td>{{health.meds}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Able To Swallow Pills</th>
+            <td>{{health.swallowPills}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Medical Conditions</th>
+            <td>{{health.medConditions}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Allergies</th>
+            <td>{{health.allergies}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

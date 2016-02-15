@@ -1,1 +1,1 @@
-angular.module('dreamApp.mentee_info',[]);
+angular.module('dreamApp.mentee_info', []);
