@@ -1,6 +1,6 @@
 // app/auth.js
 
-module.exports = function(firebase) {
+module.exports = function(firebase, firebaseTokenGenerator) {
 
   this.authorize = function() {
     console.log("in authorize");
@@ -18,5 +18,11 @@ module.exports = function(firebase) {
         return authData;
       }
     });
-  }  
+
+    console.log(process.env.TOKEN);
+
+    var tokenGenerator = new firebaseTokenGenerator(process.env.TOKEN);
+    var token = tokenGenerator.createToken({ "uid": "1", "hasEmergencyTowel": true });
+    console.log("token: " + token);
+  }
 };

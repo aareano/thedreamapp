@@ -6,6 +6,7 @@ var app            = express();
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
 var firebase       = require('firebase');
+var firebaseTokenGenerator = require("firebase-token-generator");
 
 // configuration ===========================================
 
@@ -39,7 +40,7 @@ app.use('/static', express.static('node_modules'));
 app.use('/', express.static('public')); 
 
 // auth ==================================================
-require('./app/auth')(firebase); // auth logic
+require('./app/auth')(firebase, firebaseTokenGenerator); // auth logic
 
 // routes ==================================================
 require('./app/routes')(app); // configure our routes
