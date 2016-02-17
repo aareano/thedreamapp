@@ -5,6 +5,15 @@ angular.module('dreamApp').config(function($stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise('/');
   
   $stateProvider
+    .state("login", {
+      url: "/login",
+      views: {
+        "content": {
+          controller: "SessionController",
+          templateUrl: "shared/Session/login.html"
+        }
+      }
+    })
     .state("root", {
       url: "/",
       views: {

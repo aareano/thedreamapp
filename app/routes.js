@@ -1,29 +1,33 @@
- // app/routes.js
+// app/routes.js
 
 module.exports = function(app) {
 
-    // vvvvvvvvvvvvvvvvvvv  SERVER ROUTES  vvvvvvvvvvvvvvvvvvv //
+  // vvvvvvvvvvvvvvvvvvv  SERVER ROUTES  vvvvvvvvvvvvvvvvvvv //
 
-    // handle things like api calls and authentication routes
+  // handle things like api calls and authentication routes
 
-    // sample api route
-    app.get('/api/nerds', function(req, res) {
-        // do api stuff
+  // sample api route
+  app.get('/api/nerds', function(req, res) {
+      // do api stuff
     });
 
-    // route to handle creating goes here (app.post)
-    // route to handle delete goes here (app.delete)
+  // route to handle creating goes here (app.post)
+  // route to handle delete goes here (app.delete)
 
-    // ^^^^^^^^^^^^^^^^^^^  SERVER ROUTES  ^^^^^^^^^^^^^^^^^^^ //
+  // ^^^^^^^^^^^^^^^^^^^  SERVER ROUTES  ^^^^^^^^^^^^^^^^^^^ //
 
-    // --------------------------------------------------------------------------- //
+  // --------------------------------------------------------------------------- //
 
-    // vvvvvvvvvvvvvvvvvvv FRONTEND ROUTES vvvvvvvvvvvvvvvvvvv //
+  // vvvvvvvvvvvvvvvvvvv FRONTEND ROUTES vvvvvvvvvvvvvvvvvvv //
 
-    // route to handle all angular requests
-    app.get('*', function(req, res) {
-        res.sendFile('/public/index.html', { root: __dirname + '/..' }); // load our public/index.html file
-    });
-    
-    // ^^^^^^^^^^^^^^^^^^^ FRONTEND ROUTES ^^^^^^^^^^^^^^^^^^^ //
+  // route to handle all angular requests
+
+  app.get('*', function(req, res) {
+    console.log('got the request');
+    authorize();
+    console.log('after auth');
+    res.sendFile('/public/index.html', { root: __dirname + '/..' }); // load our public/index.html file    
+  });
+  
+  // ^^^^^^^^^^^^^^^^^^^ FRONTEND ROUTES ^^^^^^^^^^^^^^^^^^^ //
 };

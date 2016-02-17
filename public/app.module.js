@@ -1,5 +1,6 @@
 angular.module('dreamApp', [
   'ui.router', 
+  'dreamApp.session', 
   'dreamApp.nav_top', 
   'dreamApp.nav_left', 
   'dreamApp.home', 
