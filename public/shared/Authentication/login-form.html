@@ -12,12 +12,14 @@
     <label for="password">Password</label>
     <input type="password" class="form-control" id="password" placeholder="Password" name="password" ng-model="user.password" />
   </div>
-  <button type="submit" ng-click='login(user)' class="btn btn-default btn-block">Login</button>
+  <div class="col-md-offset-4 col-md-4">
+    <button type="submit" ng-click='login(user)' class="btn btn-primary btn-block">Login</button>
+  </div>
 </form>
 <!-- / LOGIN -->
 
 <!-- ALERT BOX -->
-<div id="alert" class="alert" role="alert">
+<div id="alert" class="col-md-12 alert alert-info" role="alert" style="margin-top: 30px;">
   <h4 id="alert-title">You are not logged in</h4>
   <p id="alert-detail"></p>
 </div>

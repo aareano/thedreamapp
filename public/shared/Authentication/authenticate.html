@@ -1,4 +1,4 @@
-<!-- public/Session/authenticate.html -->
+<!-- public/Authentication/authenticate.html -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,14 +49,14 @@
   <script type="text/javascript" src="components/RequestChanges/RequestChangesModule.js"></script> 
   <script type="text/javascript" src="components/RequestChanges/RequestChangesController.js"></script>
 
-  <script type="text/javascript" src="shared/Session/SessionModule.js"></script> 
-  <script type="text/javascript" src="shared/Session/SessionController.js"></script>
+  <script type="text/javascript" src="shared/Authentication/AuthenticationModule.js"></script> 
+  <script type="text/javascript" src="shared/Authentication/AuthenticationController.js"></script>
 
 </head>
 <body ng-app="dreamApp">
 
   <!-- ANGULAR DYNAMIC CONTENT -->
-  <div ui-view="login-form"></div>
+  <div ui-view="login-form" class="col-md-offset-2 col-md-8 text-center" style="margin-top: 50px;"></div>
   <div ui-view="footer"></div>
 
 </body>

@@ -7,9 +7,11 @@ module.exports = function(app) {
   // handle things like api calls and authentication routes
 
   // sample api route
-  app.get('/api/nerds', function(req, res) {
-      // do api stuff
+  app.post('/api/authenticate', function(req, res) {
+    authenticate(req.body.username, req.body.password, function(auth) {
+      res.send(auth);
     });
+  });
 
   // route to handle creating goes here (app.post)
   // route to handle delete goes here (app.delete)
@@ -22,7 +24,7 @@ module.exports = function(app) {
 
   // route to handle all angular requests
   app.get('/login', function(req, res) {
-    res.sendFile('/public/Session/authenticate.html', { root: __dirname + '/..' }); // load our public/index.html file    
+    res.sendFile('/public/shared/Authentication/authenticate.html', { root: __dirname + '/..' });
   });
 
 

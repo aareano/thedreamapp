@@ -2,8 +2,8 @@
 
 module.exports = function(firebase) {
 
-  this.authorize_user = function() {
-    console.log("in authorize_user");
+  this.authenticate = function(username, password, callback) {
+    console.log("in authenticate");
 
     // https://www.firebase.com/docs/web/guide/login/password.html
 
@@ -16,7 +16,7 @@ module.exports = function(firebase) {
         return {}; // return empty object
       } else {
         console.log("Authenticated successfully with payload:", authData);
-        return authData;
+        callback(authData);
       }
     });
   }

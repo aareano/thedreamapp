@@ -9,8 +9,8 @@ angular.module('dreamApp').config(function($stateProvider, $urlRouterProvider){
       url: "/login",
       views: {
         "login-form": {
-          controller: "SessionController",
-          templateUrl: "shared/Session/login.html"
+          controller: "AuthenticationController",
+          templateUrl: "shared/Authentication/login-form.html"
         }
       }
     })
