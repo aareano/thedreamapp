@@ -1,0 +1,63 @@
+<!-- public/Session/authenticate.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <base href="/" />       <!-- Necessary for HTML5Mode(true) -->
+  <title>The Dream App</title>
+
+  <!-- TODO: there must be a better way than to include everything in every file... -->
+
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="/static/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/static/bootstrap/dist/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" type="text/css" href="/static/font-awesome/css/font-awesome.min.css">
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+
+  <!-- JS -->
+  <script type="text/javascript" src="/static/angular/angular.min.js"></script>
+  <script type="text/javascript" src="/static/ui-router/release/angular-ui-router.min.js"></script> 
+  <script type="text/javascript" src="/static/jquery/dist/jquery.min.js"></script> 
+  <script type="text/javascript" src="/static/bootstrap/dist/js/bootstrap.min.js"></script> 
+
+  <!-- ANGULAR CUSTOM -->
+  <script type="text/javascript" src="app.module.js"></script>
+  <script type="text/javascript" src="app.routes.js"></script>
+
+  <script type="text/javascript" src="shared/NavTop/NavTopModule.js"></script> 
+  <script type="text/javascript" src="shared/NavTop/NavTopController.js"></script>
+
+  <script type="text/javascript" src="shared/NavLeft/NavLeftModule.js"></script> 
+  <script type="text/javascript" src="shared/NavLeft/NavLeftController.js"></script>
+
+  <script type="text/javascript" src="components/Home/HomeModule.js"></script>
+  <script type="text/javascript" src="components/Home/HomeController.js"></script>
+  <script type="text/javascript" src="components/Home/justified-gallary/dist/js/jquery.justifiedGallery.js"></script>
+
+  <script type="text/javascript" src="components/Profile/ProfileModule.js"></script>
+  <script type="text/javascript" src="components/Profile/ProfileController.js"></script>
+
+  <script type="text/javascript" src="components/Attendance/AttendanceModule.js"></script>
+  <script type="text/javascript" src="components/Attendance/AttendanceController.js"></script>
+
+  <script type="text/javascript" src="components/MenteeInfo/MenteeInfoModule.js"></script>
+  <script type="text/javascript" src="components/MenteeInfo/MenteeInfoController.js"></script>
+
+  <script type="text/javascript" src="components/RequestChanges/RequestChangesModule.js"></script> 
+  <script type="text/javascript" src="components/RequestChanges/RequestChangesController.js"></script>
+
+  <script type="text/javascript" src="shared/Session/SessionModule.js"></script> 
+  <script type="text/javascript" src="shared/Session/SessionController.js"></script>
+
+</head>
+<body ng-app="dreamApp">
+
+  <!-- ANGULAR DYNAMIC CONTENT -->
+  <div ui-view="login-form"></div>
+  <div ui-view="footer"></div>
+
+</body>
+</html>

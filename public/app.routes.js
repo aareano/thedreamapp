@@ -8,7 +8,7 @@ angular.module('dreamApp').config(function($stateProvider, $urlRouterProvider){
     .state("login", {
       url: "/login",
       views: {
-        "content": {
+        "login-form": {
           controller: "SessionController",
           templateUrl: "shared/Session/login.html"
         }

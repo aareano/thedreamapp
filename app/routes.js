@@ -21,11 +21,12 @@ module.exports = function(app) {
   // vvvvvvvvvvvvvvvvvvv FRONTEND ROUTES vvvvvvvvvvvvvvvvvvv //
 
   // route to handle all angular requests
+  app.get('/login', function(req, res) {
+    res.sendFile('/public/Session/authenticate.html', { root: __dirname + '/..' }); // load our public/index.html file    
+  });
+
 
   app.get('*', function(req, res) {
-    console.log('got the request');
-    authorize();
-    console.log('after auth');
     res.sendFile('/public/index.html', { root: __dirname + '/..' }); // load our public/index.html file    
   });
   
