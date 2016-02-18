@@ -1,9 +1,9 @@
 // app/auth.js
 
-module.exports = function(firebase, firebaseTokenGenerator) {
+module.exports = function(firebase) {
 
-  this.authorize = function() {
-    console.log("in authorize");
+  this.authorize_user = function() {
+    console.log("in authorize_user");
 
     // https://www.firebase.com/docs/web/guide/login/password.html
 
@@ -13,16 +13,11 @@ module.exports = function(firebase, firebaseTokenGenerator) {
     }, function(error, authData) {
       if (error) {
         console.log("Login Failed!", error);
+        return {}; // return empty object
       } else {
         console.log("Authenticated successfully with payload:", authData);
         return authData;
       }
     });
-
-    console.log(process.env.TOKEN);
-
-    var tokenGenerator = new firebaseTokenGenerator(process.env.TOKEN);
-    var token = tokenGenerator.createToken({ "uid": "1", "hasEmergencyTowel": true });
-    console.log("token: " + token);
   }
 };
