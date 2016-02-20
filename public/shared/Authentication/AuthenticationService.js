@@ -6,23 +6,18 @@ angular.module('dreamApp.nav_top').factory('AuthenticationService', ['$http', '$
 function AuthenticationService($http, $state, $window) {
   return {
     // call to authenticate the user with firebase
-    authenticate : function(user) {
-      $http.post('/api/authenticate', { username: user.email, password: user.password })
+    login : function(user) {
+      $http.post('/login', user)
+            // successCallback called asynchronously
+            // when the response is available
            .then(function successCallback(response) {
-              
-              // this callback will be called asynchronously
-              // when the response is available
-              
               console.log(response);
               $window.location.href = '/'   // should use $location?
-            
-            }, function errorCallback(response) {
-              
-              // called asynchronously if an error occurs
-              // or server returns response with an error status.
-              
-              console.log(response);
 
+              // errorCallback called asynchronously if an error occurs
+              // or server returns response with an error status.
+            }, function errorCallback(response) {
+              console.log(response);
               showAlert({
                 title: response.data.code,
                 detail: response.data.message,
@@ -32,7 +27,20 @@ function AuthenticationService($http, $state, $window) {
     },
     // call to log the user out of firebase
     logout: function() {
-      $http.post('/api/logout')
+      $http.post('/logout')
+           .then(function successCallback(response) {
+              
+              $window.location.href = '/login'   // should use $location?
+            
+            }, function errorCallback(response) {
+              
+              // TODO - deal with error
+              
+            });
+    },
+    // call to create a new user in firebase
+    register: function(user) {
+      $http.post('/register', user)
            .then(function successCallback(response) {
               
               $window.location.href = '/login'   // should use $location?
@@ -45,7 +53,7 @@ function AuthenticationService($http, $state, $window) {
     },
     // call to get the user authenticated with firebase
     getUser: function(callback) {
-      $http.get('/api/user')
+      $http.get('/user')
            .then(function successCallback(response) {
             
               console.log(response);

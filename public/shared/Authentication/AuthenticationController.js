@@ -8,7 +8,12 @@ angular.module('dreamApp.authentication').controller('AuthenticationController',
 
     $scope.login = function(user) {
       console.log(user);
-      AuthenticationService.authenticate(user);
+      AuthenticationService.login(user);
+    }
+
+    $scope.register = function(user) {
+      console.log(user);
+      AuthenticationService.register(user);
     }
   }
 ]);

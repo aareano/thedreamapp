@@ -5,20 +5,35 @@ angular.module('dreamApp').config(function($stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise('/');
   
   $stateProvider
-    .state("login", {
-      url: "/login",
+    .state("authentication", {
+      url: "login",
       views: {
-        "login-form": {
+        "content": {
           controller: "AuthenticationController",
-          templateUrl: "shared/Authentication/login-form.html"
+          templateUrl: "shared/Authentication/login.html"
         }
       }
     })
-    .state("logout", {
-      url: "/logout",
+    .state("authentication.logout", {
+      url: "logout",
       controller: "AuthenticationController",
-      templateUrl: "shared/Authentication/logout.html"
+      views: {
+        "content": {
+          controller: "AuthenticationController",
+          templateUrl: "shared/Authentication/logout.html"
+        }
+      }
     })
+    .state("authentication.register", {
+      url: "register",
+      views: {
+        "content": {
+          controller: "AuthenticationController",
+          templateUrl: "shared/Authentication/register.html"
+        }
+      }
+    })
+    
     .state("root", {
       url: "/",
       views: {

@@ -26,12 +26,25 @@ module.exports = function(app) {
   // - order MATTERS when declaring middleware (everything here is middleware)
 
   // not sure what to do about this one yet...
-  app.get('/', function(req, res) {
-    res.sendFile('/public/shared/Authentication/authentication.html', { root: __dirname + '/..' });
-  });
+  // app.get('/', function(req, res) {
+  //   // TODO
+  //   // res.sendFile('/public/component/Welcome/welcome.html', { root: __dirname + '/..' });
+  // });
   
+  app.use('*', function(req, res, next) {
+    console.log("---------------------------------");
+    if (req) {
+      console.log(req.originalUrl, req.originalMethod);
+    } else {
+      console.log(req);
+    }
+    console.log("---------------------------------");
+    next();
+  })
+
   // display the page to the user
   app.get('/login', function(req, res) {
+    console.log('get /login');
     res.sendFile('/public/shared/Authentication/authentication.html', { root: __dirname + '/..' });
   });
   // log the user into firebase
@@ -54,11 +67,12 @@ module.exports = function(app) {
     });
   });
 
-  app.get('/new_user', function(req, res) {
+  app.get('/register', function(req, res) {
     res.sendFile('/public/shared/Authentication/authentication.html', { root: __dirname + '/..' });
   });
-  app.post('/new_user', function(req, res) {
-    res.sendFile('/public/shared/Authentication/authentication.html', { root: __dirname + '/..' });
+  app.post('/register', function(req, res) {
+    // Todo
+    res.send({nice: "You tried to register. That's so cute."});
   });
   
   // get the current user
@@ -67,13 +81,19 @@ module.exports = function(app) {
     res.send(authData);
   })
 
-  // require authentication for all other routes
+  // require authentication for all other routes - DOESN'T WORK...i don't know why
   app.use(function(req, res, next) {
     var authData = getUser();
     if (!authData) {
-      res.redirect(HttpStatusCodes.unauthorized.code, '/login');
+      console.log("unauthorized, redirecting to login");
+      if (req.xhr) { // if AJAX request
+        res.sendStatus(HttpStatusCodes.unauthorized.code);
+      } else {
+        res.redirect('/login');
+      }
+    } else {
+      next();
     }
-    next();
   })
 
   // main app page
@@ -83,7 +103,9 @@ module.exports = function(app) {
 
   // catch all other routes and display a Not Found page
   app.use('*', function(req, res) {
-    res.sendFile('/public/component/NotFound', { root: __dirname + '/..' });
+    console.log("NOTHING TO SEE HERE");
+    // TODO
+    // res.sendFile('/public/component/NotFound', { root: __dirname + '/..' });
   });
   
   // ^^^^^^^^^^^^^^^^^^^ FRONTEND ROUTES ^^^^^^^^^^^^^^^^^^^ //
