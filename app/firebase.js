@@ -2,7 +2,7 @@
 
 module.exports = function(firebase) {
 
-  this.authenticate = function(username, password, callback) {
+  this.login = function(username, password, callback) {
     console.log("in authenticate");
 
     // https://www.firebase.com/docs/web/guide/login/password.html
