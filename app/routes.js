@@ -20,6 +20,11 @@ module.exports = function(app) {
     });
   });
 
+  app.get('/api/user', function(req, res) {
+    var authData = getAuth();
+    res.send(authData);
+  })
+
   // route to handle creating goes here (app.post)
   // route to handle delete goes here (app.delete)
 

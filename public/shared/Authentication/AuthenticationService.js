@@ -42,6 +42,20 @@ function AuthenticationService($http, $state, $window) {
               // TODO - deal with error
               
             });
+    },
+    // call to get the user authenticated with firebase
+    getUser: function(callback) {
+      $http.get('/api/user')
+           .then(function successCallback(response) {
+            
+              console.log(response);
+              callback(response.data);
+            
+            }, function errorCallback(response) {
+              
+              // TODO - deal with error
+              
+            });
     }
   }
 };

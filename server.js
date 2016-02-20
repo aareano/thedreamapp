@@ -39,7 +39,7 @@ app.use('/static', express.static('node_modules'));
 app.use('/', express.static('public')); 
 
 // auth ==================================================
-require('./app/auth')(firebase); // auth logic
+require('./app/firebase')(firebase); // auth logic
 
 // routes ==================================================
 require('./app/routes')(app); // configure our routes
