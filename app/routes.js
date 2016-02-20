@@ -49,7 +49,7 @@ module.exports = function(app) {
   });
   // log the user out of firebase
   app.post('/logout', function(req, res) {
-    unauth(function() {
+    logout(function() {
       res.end();
     });
   });
@@ -63,13 +63,13 @@ module.exports = function(app) {
   
   // get the current user
   app.get('/user', function(req, res) {
-    var authData = getAuth();
+    var authData = getUser();
     res.send(authData);
   })
 
   // require authentication for all other routes
   app.use(function(req, res, next) {
-    var authData = getAuth();
+    var authData = getUser();
     if (!authData) {
       res.redirect(HttpStatusCodes.unauthorized.code, '/login');
     }

@@ -27,7 +27,7 @@ module.exports = function(firebase) {
   };
 
   // this is also a wrapper
-  this.unauth = function(callback) {
+  this.logout = function(callback) {
     var un = firebase.unauth();
     console.log("unauth: ", un);
     callback();
@@ -36,7 +36,7 @@ module.exports = function(firebase) {
   // This is called a wrapper function, it allows for good seperation
   // of responsibility and information hiding (in this case, this
   // function helps to relegate all firebase code to this file)
-  this.getAuth = function() {
+  this.getUser = function() {
     var authData =  firebase.getAuth();
     console.log("getAuth: ", authData);
     return authData;
