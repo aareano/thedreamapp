@@ -14,6 +14,11 @@ angular.module('dreamApp').config(function($stateProvider, $urlRouterProvider){
         }
       }
     })
+    .state("logout", {
+      url: "/logout",
+      controller: "AuthenticationController",
+      templateUrl: "shared/Authentication/logout.html"
+    })
     .state("root", {
       url: "/",
       views: {

@@ -1,26 +1,30 @@
 <!-- public/Session/login-form.html -->
 
 <!-- LOGIN -->
-<form id="formLogin" role="form">
-  <h2>Login</h2>
+<div class="row">
+  <form id="formLogin" role="form">
+    <h2>Login</h2>
 
-  <div class="form-group">
-    <label for="email">Email address</label>
-    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" ng-model="user.email"/>
-  </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" class="form-control" id="password" placeholder="Password" name="password" ng-model="user.password" />
-  </div>
-  <div class="col-md-offset-4 col-md-4">
-    <button type="submit" ng-click='login(user)' class="btn btn-primary btn-block">Login</button>
-  </div>
-</form>
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" ng-model="user.email"/>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" placeholder="Password" name="password" ng-model="user.password" />
+    </div>
+    <div class="col-md-offset-4 col-md-4">
+      <button type="submit" ng-click='login(user)' class="btn btn-primary btn-block">Login</button>
+    </div>
+  </form>
+</div>
 <!-- / LOGIN -->
 
 <!-- ALERT BOX -->
-<div id="alert" class="col-md-12 alert alert-info" role="alert" style="margin-top: 30px;">
-  <h4 id="alert-title">You are not logged in</h4>
-  <p id="alert-detail"></p>
+<div class="row" style="margin-top: 30px;">
+  <div id="alert" class="alert alert-info" role="alert">
+    <h4 id="alert-title">You are not logged in</h4>
+    <p id="alert-detail"></p>
+  </div>
 </div>
 <!-- / ALERT BOX -->

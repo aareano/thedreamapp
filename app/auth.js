@@ -13,11 +13,20 @@ module.exports = function(firebase) {
     }, function(error, authData) {
       if (error) {
         console.log("Login Failed!", error);
-        return {}; // return empty object
+        
+        status = 401;
+        callback(status, error);
       } else {
-        console.log("Authenticated successfully with payload:", authData);
-        callback(authData);
+        console.log("Authenticated successfully with payload!", authData);
+        
+        status = 200;
+        callback(status, authData);
       }
     });
+  }
+
+  this.unauth = function(callback) {
+    var un = firebase.unauth();
+    callback();
   }
 };
