@@ -1,15 +1,10 @@
 <div class="col-md-12">
-  <div class="card col-md-6">
-    <div class="col-md-2">
-      <h3><i class="fa fa-align-left"></i></h3>
+  <div class="card col-md-6 panel panel-default">
+    <div class="col-md-12" class="btn btn-link" data-toggle="collapse" data-target="#mentee-card">
+      <h3><i class="fa fa-align-left"></i> Mentee</h3>
     </div>
-    <div class="col-md-8">
-      <h3>Mentee</h3>
-    </div>
-    <div class="col-md-2" style="margin-top: 13px;">
-      <div class="btn btn-link" data-toggle="collapse" data-target="#mentee-card" ><i class="fa fa-chevron-up"></i></div>
-    </div>
-    <div class="col-md-12" style="margin-top: 20px;" id="mentee-card">
+    
+    <div class="col-md-12 collapse in" style="margin-top: 20px;" id="mentee-card">
       <table class="table table-responsive">
         <tbody>
           <tr>
@@ -29,17 +24,11 @@
     </div>
   </div>
 
-  <div class="card col-md-6">
-    <div class="col-md-2">
-      <h3><i class="fa fa-align-left"></i></h3>
+  <div class="card col-md-6 panel panel-default">
+    <div class="col-md-12" class="btn btn-link" data-toggle="collapse" data-target="#personal-card">
+      <h3><i class="fa fa-align-left"></i> Personal Info</h3>
     </div>
-    <div class="col-md-8">
-      <h3>Personal Info</h3>
-    </div>
-    <div class="col-md-2" style="margin-top: 13px;">
-      <div class="btn btn-link" data-toggle="collapse" data-target="#personal-card" ><i class="fa fa-chevron-up"></i></div>
-    </div>
-    <div class="col-md-12" style="margin-top: 20px;" id="personal-card">
+    <div class="col-md-12 collapse in" style="margin-top: 20px;" id="personal-card">
       <table class="table table-responsive">
         <tbody>
           <tr>
@@ -65,69 +54,12 @@
 </div>
 
 <div class="col-md-12">
-  <div class="card col-md-6">
-    <div class="col-md-2">
-      <h3><i class="fa fa-align-left"></i></h3>
-    </div>
-    <div class="col-md-8">
-      <h3>Emergency Contacts</h3>
-    </div>
-    <div class="col-md-2" style="margin-top: 13px;">
-      <div class="btn btn-link" data-toggle="collapse" data-target="#emergency-card" ><i class="fa fa-chevron-up"></i></div>
-    </div>
-    <div id="emergency-card" class="col-md-12" style="margin-top: 20px;"> 
-      <div ng-repeat="contact in emergency_contacts">
-        <div class="panel panel-default">
 
-          <!-- Default panel contents -->
-          <div class="panel-heading ">{{contact.relationship}}</div>
-          <!-- 
-          <div class="panel-body col-md-12" id="contact-{{$index}}">
-            ...Nothing here yet...
-          </div>
-          -->
-
-          <!-- Table -->
-          <table class="table table-responsive">
-            <tbody>
-              <tr>
-                <th scope="row">Name</th>
-                <td>{{contact.name}}</td>
-              </tr>
-              <tr>
-                <th scope="row">Phone</th>
-                <td>{{contact.phone}}</td>
-              </tr>
-              <tr>
-                <th scope="row">Relationship</th>
-                <td>{{contact.relationship}}</td>
-              </tr>
-              <tr>
-                <th scope="row">Address</th>
-                <td>{{contact.address}}</td>
-              </tr>
-              <tr>
-                <th scope="row">Email</th>
-                <td>{{contact.email}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+  <div class="card col-md-6 panel panel-default">
+    <div class="col-md-12" class="btn btn-link" data-toggle="collapse" data-target="#health-card">
+      <h3><i class="fa fa-align-left"></i> Health Info</h3>
     </div>
-  </div>
-
-  <div class="card col-md-6">
-    <div class="col-md-2">
-      <h3><i class="fa fa-align-left"></i></h3>
-    </div>
-    <div class="col-md-8">
-      <h3>Health Info</h3>
-    </div>
-    <div class="col-md-2" style="margin-top: 13px;">
-      <div class="btn btn-link" data-toggle="collapse" data-target="#health-card" ><i class="fa fa-chevron-up"></i></div>
-    </div>
-    <div class="col-md-12" style="margin-top: 20px;" id="health-card">
+    <div class="col-md-12 collapse in" style="margin-top: 20px;" id="health-card">
       <table class="table table-responsive">
         <tbody>
           <tr>
@@ -156,60 +88,6 @@
           </tr>
         </tbody>
       </table>
-    </div>
-  </div>
-</div>
-
-<div class="col-md-12">
-  <div class="card col-md-6">
-    <div class="col-md-2">
-      <h3><i class="fa fa-align-left"></i></h3>
-    </div>
-    <div class="col-md-8">
-      <h3>Family Contacts</h3>
-    </div>
-    <div class="col-md-2" style="margin-top: 13px;">
-      <div class="btn btn-link" data-toggle="collapse" data-target="#family-card" ><i class="fa fa-chevron-up"></i></div>
-    </div>
-    <div id="family-card" class="col-md-12" style="margin-top: 20px;"> 
-      <div ng-repeat="contact in family_contacts">
-        <div class="panel panel-default">
-
-          <!-- Default panel contents -->
-          <div class="panel-heading ">{{contact.relationship}}</div>
-          <!-- 
-          <div class="panel-body col-md-12" id="contact-{{$index}}">
-            ...Nothing here yet...
-          </div>
-          -->
-
-          <!-- Table -->
-          <table class="table table-responsive">
-            <tbody>
-              <tr>
-                <th scope="row">Name</th>
-                <td>{{contact.name}}</td>
-              </tr>
-              <tr>
-                <th scope="row">Phone</th>
-                <td>{{contact.phone}}</td>
-              </tr>
-              <tr>
-                <th scope="row">Relationship</th>
-                <td>{{contact.relationship}}</td>
-              </tr>
-              <tr>
-                <th scope="row">Address</th>
-                <td>{{contact.address}}</td>
-              </tr>
-              <tr>
-                <th scope="row">Email</th>
-                <td>{{contact.email}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
     </div>
   </div>
 </div>

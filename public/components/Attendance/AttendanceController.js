@@ -18,7 +18,7 @@ function AttendanceController($scope) {
     var jEntry = $scope.newEntry;
     var jSumm = $scope.newEvent;
     var entry = {'entry': jEntry, 'summary': jSumm,
-    'date': document.getElementById('datepicker').value};
+    'date': document.getElementById('eventDate').value};
     for (i = 0 ; i<$scope.menteesList.length ; i++){
       var mentee = document.getElementById($scope.menteesList[i]);
       if (mentee.checked){
