@@ -15,10 +15,8 @@ function AttendanceController($scope) {
   edit_index = -1;
 
   $scope.save = function() {
-    var jEntry = $scope.newEntry;
     var jSumm = $scope.newEvent;
-    var entry = {'entry': jEntry, 'summary': jSumm,
-    'date': document.getElementById('eventDate').value};
+    var entry = {};
     for (i = 0 ; i<$scope.menteesList.length ; i++){
       var mentee = document.getElementById($scope.menteesList[i]);
       if (mentee.checked){
@@ -31,10 +29,12 @@ function AttendanceController($scope) {
         if (i != 'entry' && i != 'summary' && i != 'data')
           console.log( i + ': ' + entry[i] + '<br />');
       }
+
+      var atten_entry = {'entry':entry,'summary':jSumm,'date':document.getElementById('eventDate').value};
       if (edit_index != -1) {
-        $scope.journals[edit_index] = entry;
+        $scope.journals[edit_index] = atten_entry;
       } else {
-        $scope.journals.unshift(entry);
+        $scope.journals.unshift(atten_entry);
       }
       $scope.journals.sort(compare);
       localStorage.setItem('journals', angular.toJson($scope.journals));

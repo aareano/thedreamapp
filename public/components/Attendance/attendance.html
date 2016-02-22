@@ -35,7 +35,7 @@
       </div>
       <div class="form-group">
         <div class="text-center">
-          <button type="submit" class="btn btn-primary" ng-click="save()">Save</button>
+          <button type="submit" class="btn btn-default" ng-click="save()">Save</button>
         </div>
       </div>
     </form>
@@ -58,7 +58,18 @@
         </div>
         <div id="journal{{$index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
           <div class="panel-body">
-            <p class="entry collapse" id="entry{{$index}}"> <span class="content">{{ post.entry }}</span> </p>
+            <div class="entry collapse" id="entry{{$index}}">
+              <div ng-repeat="(key,value) in post.entry">
+                <div ng-if="value">
+                  <span class="label label-success">Here</span> {{key}} 
+                </div>
+                <div ng-if="!value">
+                  <span class="label label-danger">Absent</span> {{key}} 
+                </div>
+              </div>
+
+            </div>
+            <br/>
             <button type="button" class="collapsed btn btn-default" data-toggle="collapse" data-target="#entry{{$index}}">View Entry &raquo;</button>
             <button type="button" class="btn btn-default" ng-click="remove(this)">Delete</button>
             <button type="button" class="btn btn-default" ng-click="edit(this)">Edit</button>
