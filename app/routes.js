@@ -85,10 +85,13 @@ module.exports = function(app) {
   app.use(function(req, res, next) {
     var authData = getUser();
     if (!authData) {
-      console.log("unauthorized, redirecting to login");
+      
       if (req.xhr) { // if AJAX request
+        console.log("unauthorized, ajax request");
         res.sendStatus(HttpStatusCodes.unauthorized.code);
       } else {
+        console.log("unauthorized, redirecting to login");
+        // TODO: this not working ("express redirect not working")
         res.redirect('/login');
       }
     } else {

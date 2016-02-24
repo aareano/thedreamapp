@@ -57,6 +57,7 @@ function AuthenticationService($http, $state, $window) {
            .then(function successCallback(response) {
             
               console.log(response);
+              console.log("called get user :)")
               callback(response.data);
             
             }, function errorCallback(response) {
