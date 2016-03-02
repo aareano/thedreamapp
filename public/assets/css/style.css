@@ -66,6 +66,52 @@
     font-weight: 500;
 }
 
-#nav_left {
-    /*width: 250px;*/
+.x_panel {
+    position: relative;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px 17px;
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #E6E9ED;
+    -webkit-column-break-inside: avoid;
+    -moz-column-break-inside: avoid;
+    column-break-inside: avoid;
+    opacity: 1;
+    -moz-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    -webkit-transition: all .2s ease;
+    -ms-transition: all .2s ease;
+    transition: all .2s ease;
+}
+
+.glyphicon-menu-hamburger {
+    padding-right: 10px;
+    font-size: 1.3em;
+    vertical-align: -5px;
+}
+
+.navbar-toggle {
+    float: left;
+    margin-left: 15px;
+}
+
+#dreamshirt {
+    padding-left: 5px;
+    height: 40px;
+    width: auto;
+    vertical-align: middle;
+}
+
+#nav-drop-home {
+    padding-top: 10px;
+}
+
+#nav-drop-logout {
+    padding-bottom: 8px;
+}
+
+#dream-nav {
+    font-size: 20px;
+    vertical-align: -4px;
 }
