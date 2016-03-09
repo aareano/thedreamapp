@@ -8,8 +8,8 @@ function HomeController($scope) {
     $(document).ready(function(){
         $('#mygallery').justifiedGallery({
             rowHeight : 160,
-            lastRow : 'justify',
-            margins : 10
+            lastRow : 'hide',
+            margins : 15
         });
     });
 }
