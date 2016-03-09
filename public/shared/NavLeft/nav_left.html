@@ -9,7 +9,7 @@
   <!-- alternatively, use pills - http://getbootstrap.com/components/#nav-pills -->
   <div class="list-group" style="margin-top: 35px;">
     <a class="list-group-item active" ui-sref="root">Home</a>
-    <div class="list-group-item" data-toggle="collapse" data-target="#mentees-collapsible">Mentees
+    <div class="list-group-item" data-toggle="collapse" data-target="#mentees-collapsible">Mentee
       <i class="fa fa-chevron-down" style="float: right;"></i>
       <div id="mentees-collapsible" class="collapse">
         <ul style="list-style-type: none; margin-top: 10px;">
@@ -17,6 +17,8 @@
         </ul>
       </div>
     </div>
+    <a class='list-group-item' ui-sref="root.relationships"> Relationships </a>
+    <a class='list-group-item' ui-sref="root.journal"> Journal </a>
     <a class="list-group-item" ui-sref="root.attendance">Attendance</a>
     <a class="list-group-item" ui-sref="root.profile">Profile</a>
     <div class="list-group-item" data-toggle="collapse" data-target="#dream-collapsible">Dream

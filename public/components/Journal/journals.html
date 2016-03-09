@@ -1,108 +1,65 @@
-    <script>
-        $(function() { // makes the datepicker input box into a proper datepicker
-            $( "#datepicker" ).datepicker();
-          });
-
-        </script>
-<div>
-  
-    <h1>Journal</h1>
-    
-  
+<div class="card x_panel">
+  <h1 class="page-header">Journal</h1>
+  <div class="x_content">
   <div class="row">
-
-    <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2><i class="fa fa-align-left"></i> New Journal Entry </h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapsed" data-toggle="collapse" data-target="#newJournal"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content collapse in" id="newJournal">
-                    <div class="row">
-                    <div class="form-group">
-                                            <label class="control-label col-md-2 col-sm-2 col-xs-12" >Date: 
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" id="datepicker" class="form-control col-md-7 col-xs-12">
-                                            </div>
-                                        </div>  
-                    </div>
-                    <br />
-                    <div class="row">
-                    <div class="form-group">
-                                            <label class="control-label col-md-2 col-sm-2 col-xs-12" >One-Line Summary: 
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" id="summary" ng-model="newSummary" class="form-control col-md-7 col-xs-12">
-                                            </div>
-                                        </div>  
-                    </div>
-                    <br />
-                    <div class="row">
-                    <div class="form-group">
-                                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">Entry: 
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                        <textarea class="form-control" rows="4" cols="50" id="entry" ng-model="newEntry"></textarea>
-                      </div>
-                                        </div>
-                    </div>
-                    <br />
-                    
-                    <button type="button" class="btn btn-default" ng-click="save()">Save</button>
-
-                  </div>
-
-                </div>
-              </div>
+    <div class="col-md-12" class="btn btn-link" data-toggle="collapse" data-target="#newJournal" >
+      <h3><i class="fa fa-plus" style="margin-right:15px;"></i> New Journal Entry </h3>
     </div>
+  </div> 
+  <div class="row collapse in" id="newJournal">
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label for="journalDate" class="col-md-2 control-label"> Date: </label>
+        <div class="col-md-8">
+          <input type="date" id="datepicker" class="form-control">
+        </div>
+      </div>  
+      
+      <div class="form-group">
+        <label for="summary" class="control-label col-md-2" >One-Line Summary: </label>
+        <div class="col-md-8">
+          <input type="text" id="summary" ng-model="newSummary" class="form-control">
+        </div>
+      </div>  
+      
+      <div class="form-group"> 
+        <label for="entry" class="control-label col-md-2">Entry: </label>
+        <div class="col-md-8">
+          <textarea class="form-control" rows="4" cols="50" id="entry" ng-model="newEntry"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="text-center">                    
+            <button type="save" class="btn btn-default" ng-click="save()">Save</button>
+        </div>
+      </div>
+    </form>    
   </div>
-  
-  <div class="row">
-
-    <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2><i class="fa fa-align-left"></i> Previous Journal Entries </h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapsed" data-toggle="collapse" data-target="#previousJournals"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content collapse in" id="previousJournals">
-
-                    <!-- start accordion -->
-                    <div class="accordion" role="tablist" aria-multiselectable="true" ng-repeat="post in journals">
-                      <div class="panel">
-                         <a class="panel-heading collapsed" role="tab" data-toggle="collapse" aria-expanded="false" aria-controls="collapseOne" data-target="#journal{{$index}}">
-                          <h4 class="panel-title">Date: {{post.date}} <span style="padding:10px"></span> Summary: {{post.summary}}</h4>
-                        </a>
-                        <div id="journal{{$index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                          <div class="panel-body">
-                            <p class="entry collapse" id="entry{{$index}}"> <span class="content">{{ post.entry }}</span> </p>
-                            <button type="button" class="collapsed btn btn-default" data-toggle="collapse" data-target="#entry{{$index}}">View Entry &raquo;</button>
-                            <button type="button" class="btn btn-default" ng-click="remove(this)">Delete</button>
-                            <button type="button" class="btn btn-default" ng-click="edit(this)">Edit</button>
-                          </div>
-                        </div>
-                      </div>
-
-                    <!-- end of accordion -->
-
-
-                  </div>
-
-                </div>
-              </div>
-    </div>
   </div>
-
 </div>
-
+  
+<div class="card">
+  <div class="row">
+    <div class="col-md-12" class="btn btn-link" data-toggle="collapse" data-target="#previousJournals">
+      <h3><i class="fa fa-align-left" style="margin-right: 15px;"></i>Previous Journal Entries</h3>
+    </div>
+  </div>
+  <div class="row collapse in" id="previousJournals">
+      <!-- start accordion -->
+      <div class="accordion" role="tablist" aria-multiselectable="true" ng-repeat="post in journals">
+          <div class="panel-heading collapsed" role="tab" data-toggle="collapse" aria-expanded="false" aria-controls="collapseOne" data-target="#journal{{$index}}">
+            <h4 class="panel-title">Date: {{post.date}} <span style="padding:10px"></span> Summary: {{post.summary}}</h4>
+          </div>
+          <div id="journal{{$index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              <p class="entry collapse" id="entry{{$index}}"> <span class="content">{{ post.entry }}</span> </p>
+                <button type="button" class="collapsed btn btn-default" data-toggle="collapse" data-target="#entry{{$index}}">View Entry &raquo;</button>
+                <button type="button" class="btn btn-default" ng-click="remove(this)">Delete</button>
+                <button type="button" class="btn btn-default" ng-click="edit(this)">Edit</button>
+            </div>
+          </div>
+        <!-- end of accordion -->
+      </div>
+  </div>
+</div>

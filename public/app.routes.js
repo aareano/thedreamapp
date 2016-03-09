@@ -49,6 +49,24 @@ angular.module('dreamApp').config(function($stateProvider, $urlRouterProvider){
         }
       }
     })
+    .state("root.relationships", {
+      url: "relationships",
+      views: {
+        'content@': {
+          controller: "RelationshipsController",
+          templateUrl: "components/Relationships/relationships.html"
+        }
+      }
+    })
+    .state("root.journal", {
+      url: "journal",
+      views: {
+        'content@': {
+          controller: "JournalController",
+          templateUrl: "components/Journal/journals.html"
+        }
+      }
+    })
     .state("root.request_changes", {
       url: "request_changes",
       views: {
