@@ -32,18 +32,17 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(bodyParser.urlencoded({ extended: true })); 
 
 // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
-app.use(methodOverride('X-HTTP-Method-Override')); 
+app.use(methodOverride('X-HTTP-Method-Override'));
 
 // set the static files location - /node_modules/angular will be /angular for front end
 app.use('/static', express.static('node_modules')); 
+app.use('/', express.static('public')); 
 
 // auth ==================================================
 require('./app/firebase')(firebase); // auth logic
 
 // routes ==================================================
 require('./app/routes')(app); // configure our routes
-
-app.use(express.static('public')); 
 
 // start app ===============================================
 // startup our app at http://localhost:8080

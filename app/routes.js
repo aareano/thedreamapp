@@ -100,7 +100,7 @@ module.exports = function(app) {
 
   // main app page
   app.get('/', function(req, res) {
-    res.sendFile('/public/index.html', { root: __dirname + '/..' });
+    res.sendFile('/public/root.html', { root: __dirname + '/..' });
   });
 
   // catch all other routes and display a Not Found page
