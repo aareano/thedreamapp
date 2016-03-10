@@ -1,5 +1,4 @@
-angular.module('dreamApp.relationships')
-    .controller('RelationshipsController',RelationshipsController);
+angular.module('dreamApp.relationships').controller('RelationshipsController', RelationshipsController);
 
 RelationshipsController.$inject = ['$scope'/*, 'Relationships'*/];
 
