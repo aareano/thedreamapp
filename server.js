@@ -5,6 +5,7 @@ var express        = require('express');
 var app            = express();
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
+var firebase       = require('firebase');
 
 // configuration ===========================================
 
@@ -18,8 +19,7 @@ var db = require('./config/db');
 var port = process.env.PORT || 8080; 
 
 // connect to our firebase database 
-// (uncomment after you enter in your own credentials in config/db.js)
-// var myFirebaseRef = new Firebase(db.url);
+var firebase = new Firebase(db.url);
 
 // get all data/stuff of the body (POST) parameters
 // parse application/json 
@@ -32,11 +32,14 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(bodyParser.urlencoded({ extended: true })); 
 
 // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
-app.use(methodOverride('X-HTTP-Method-Override')); 
+app.use(methodOverride('X-HTTP-Method-Override'));
 
-// set the static files location - /node_modules/angular will be /angular for users
+// set the static files location - /node_modules/angular will be /angular for front end
 app.use('/static', express.static('node_modules')); 
 app.use('/', express.static('public')); 
+
+// auth ==================================================
+require('./app/firebase')(firebase); // auth logic
 
 // routes ==================================================
 require('./app/routes')(app); // configure our routes
@@ -50,3 +53,4 @@ console.log('Magic happens on port ' + port);
 
 // expose app           
 exports = module.exports = app;
+exports = module.exports = firebase;

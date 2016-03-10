@@ -1,10 +1,50 @@
 angular.module('dreamApp').config(function($stateProvider, $urlRouterProvider){
 
-  // ui-router - http://www.funnyant.com/angularjs-ui-router/
+  // ui-router:
+  //  - http://www.funnyant.com/angularjs-ui-router/
+  
+  // absolute vs relative view names:
+  //  - http://plnkr.co/edit/60RjoT?p=preview
+  //  - https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views#view-names---relative-vs-absolute-names
 
   $urlRouterProvider.otherwise('/');
   
   $stateProvider
+    .state("authentication", {
+      abstract: true,
+      templateUrl: "shared/Authentication/authentication.html",
+      onEnter: function() {
+        console.log("enter authentication");
+      }
+    })
+    .state("authentication.login", {
+      url: "^/login",
+      views: {
+        "content@": {
+          controller: "AuthenticationController",
+          templateUrl: "shared/Authentication/login.html"
+        }
+      }
+    })
+    .state("authentication.logout", {
+      url: "^/logout",
+      views: {
+        "content@": {
+          controller: "AuthenticationController",
+          templateUrl: "shared/Authentication/logout.html"
+        }
+      }
+    })
+    .state("authentication.register", {
+      url: "^/register",
+      views: {
+        "content@": {
+          controller: "TempAuthenticationController",
+          templateUrl: "shared/Authentication/register.html"
+        }
+      }
+    })
+    
     .state("root", {
       url: "/",
       views: {
@@ -23,7 +63,7 @@ angular.module('dreamApp').config(function($stateProvider, $urlRouterProvider){
       }
     })
     .state("root.profile", {
-      url: "profile",
+      url: "^/profile",
       views: {
         'content@': {
           controller: "ProfileController",
@@ -32,7 +72,7 @@ angular.module('dreamApp').config(function($stateProvider, $urlRouterProvider){
       }
     })
     .state("root.attendance", {
-      url: "attendance",
+      url: "^/attendance",
       views: {
         'content@': {
           controller: "AttendanceController",
@@ -41,7 +81,7 @@ angular.module('dreamApp').config(function($stateProvider, $urlRouterProvider){
       }
     })
     .state("root.mentee_info", {
-      url: "mentee_info",
+      url: "^/mentee_info",
       views: {
         'content@': {
           controller: "MenteeInfoController",
@@ -68,7 +108,7 @@ angular.module('dreamApp').config(function($stateProvider, $urlRouterProvider){
       }
     })
     .state("root.request_changes", {
-      url: "request_changes",
+      url: "^/request_changes",
       views: {
         'content@': {
           controller: "RequestChangesController",

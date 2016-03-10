@@ -1,7 +1,14 @@
-angular.module('dreamApp.nav_top').controller('NavTopController', NavTopController);
+angular.module('dreamApp.nav_top').controller('NavTopController', ['$scope', 'AuthenticationService', 
+  function ($scope, AuthenticationService) {
+    console.log('in NavTopController');
 
-NavTopController.$inject = ['$scope'];
+    $scope.user;
+    AuthenticationService.getUser(function(data) {
+      $scope.user = data;
+    });    
 
-function NavTopController($scope) {
-  console.log('in NavTopController');
-}
+    $('#logout').on('click', function() {
+      AuthenticationService.logout();
+    });
+  }
+]);
