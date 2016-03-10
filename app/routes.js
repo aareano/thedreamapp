@@ -91,8 +91,7 @@ module.exports = function(app) {
         res.sendStatus(HttpStatusCodes.unauthorized.code);
       } else {
         console.log("unauthorized, redirecting to login");
-        // TODO: this not working ("express redirect not working")
-        res.redirect('/login');
+        res.redirect("/login");
       }
     } else {
       next();
