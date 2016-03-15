@@ -1,49 +1,65 @@
 # The Dream App by Tufts' JumboCode 
 
-### TODO
+### Task List
 
-* NAV_LEFT: toggle chevron icon orientation when dropdown is clicked
+#### Client-Side (Front end)
 
-* NAV_LEFT: add "active" class to the current page's list-group-item
+- [x] Port front end to new angular/express app
+- [ ] Update UI (in progress...?)
+- [ ] Beautify the login/register/logout pages
+- [ ] Move justified-gallary to libs folder
+- [ ] Fill out front end part of folder hierarchy
+- [ ] ...
 
-* UI: rewrite entire UI in React. Maybe? http://blog.andrewray.me/reactjs-for-stupid-people/
+#### Server-Side (Back end)
 
----
+- [x] Set up user authentication with firebase
+- [x] Make user data available on front end
+- [ ] Make data from salesforce queries available to front end
+- [ ] Fill out back end part of folder hierarchy
+- [ ] ...
 
-### This is the folder structure with some example files thrown in to help make sense of it.
+#### Salesforce
+
+- [x] Authenticate with salesforce
+- [ ] Make some successful test queries
+- [ ] Make queries to return useful, relevent data
+- [ ] ...
+
+### The app's folder structure
+
 ```
 - app               <!-- all backend and Node or Express stuff -->
------ models/
----------- user.js  <!-- the user model to handle CRUD -->
 ----- routes.js
+----- firebase.js
+----- salesforce.js
 - config
 ----- db.js 
 - node_modules      <!-- created by npm install -->
 - public/           <!-- all frontend and angular stuff -->
------ shared/             <!-- acts as reusable components or partials of our site -->
----------- sidebar/
---------------- sidebarDirective.js 
---------------- sidebarView.html
----------- article/
---------------- articleDirective.js
---------------- articleView.html
------ components/         <!-- each component is treated as a mini Angular app -->
----------- home/
---------------- homeController.js
---------------- homeService.js
---------------- homeView.html
----------- blog/
---------------- blogController.js
---------------- blogService.js
---------------- blogView.html
 ----- assets/
----------- img/      <!-- Images and icons for your app -->
+---------- img/      <!-- Images and icons for the app -->
 ---------- css/      <!-- All styles and style related files (SCSS or LESS files) -->
----------- js/       <!-- JavaScript files written for your app that are not for angular -->
----------- libs/     <!-- Third-party libraries such as jQuery, Moment, Underscore, etc. -->
------ app.module.js
------ app.routes.js
------ index.html
+---------- js/       <!-- JavaScript files written for your app that are not for angular (e.g. utility functions) -->
+---------- libs/     <!-- Third-party libraries not belonging to npm -->
+----- components/         <!-- each component is treated as a mini Angular app -->
+---------- Attendance/    <!-- this component is a page for... -->
+--------------- attendance.html
+--------------- attendanceController.js
+--------------- attendanceModule.js
+---------- Home/          <!-- this component is a page for... -->
+--------------- justified-gallary/
+--------------- HomeController.js
+--------------- HomeModule.js
+--------------- slider.html
+---------- ...
+----- shared/             <!-- acts as reusable components or partials of our site -->
+---------- Authentication/    <!-- this a set of pages for authenticating users (login/logout/register) -->
+--------------- ...
+---------- ...
+----- app.module.js     <!-- angular modules -->
+----- app.routes.js     <!-- angular routes -->
+----- root.html         <!-- the main page of the app -->
 - package.json    <!-- tells npm which packages we need -->
 - server.js       <!-- set up our node application -->
 - README.md
