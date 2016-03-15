@@ -4,10 +4,10 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div>
       <ul class="nav navbar-nav navbar-left">
-        <li class="dropdown">
+        <li class="dropdown pull-left">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
             <span class="glyphicon glyphicon glyphicon-menu-hamburger"></span> 
-            <span id="dream-nav"> DREAM PROGRAM </span> 
+            <span id="dream-nav"> DREAM PROGRAM </span>
             <img id="dreamshirt" src="/assets/img/dream.png" alt="dream_logo"></a>
             <ul class="dropdown-menu">
               <li><a id="nav-drop-home" ui-sref="root">Home</a></li>
@@ -26,10 +26,12 @@
               <li role="separator" class="divider"></li>
               <li><a ui-sref="root.request_changes">Request Changes</a></li>
               <li role="separator" class="divider"></li>
-              <li><a id="nav-drop-logout" href="#">Log Out</a></li>
+              <li><a id="nav-drop-logout" ng-click="logout()">Log Out</a></li>
             </ul>
           </li>
+          
         </ul>
       </div><!-- /.navbar-collapse -->
+      <div class="userinfo pull-right">{{ email }}</div>
     </div><!-- /.container-fluid -->
   </nav>

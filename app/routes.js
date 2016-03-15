@@ -61,7 +61,7 @@ module.exports = function(app) {
     res.sendFile('/public/shared/Authentication/authentication.html', { root: __dirname + '/..' });
   });
   // log the user out of firebase
-  app.post('/logout', function(req, res) {
+  app.post('/logout', function(req, res) { // TODO: figure this out
     logout(function() {
       res.end();
     });
