@@ -18,11 +18,6 @@ function AuthenticationService($http, $state, $window) {
               // or server returns response with an error status.
             }, function errorCallback(response) {
               console.log(response);
-              showAlert({
-                title: response.data.code,
-                detail: response.data.message,
-                className: 'alert-danger'
-              });
             });
     },
     // call to log the user out of firebase
@@ -68,15 +63,3 @@ function AuthenticationService($http, $state, $window) {
     }
   }
 };
-
-// options for showing the alert box
-function showAlert(opts) {
-    var title = opts.title;
-    var detail = opts.detail;
-    var className = 'alert ' + opts.className;
-
-    var alertBox = $('#alert');
-    alertBox.removeClass().addClass(className);
-    alertBox.children('#alert-title').text(title);
-    alertBox.children('#alert-detail').text(detail);
-}
