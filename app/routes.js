@@ -161,6 +161,32 @@ module.exports = function(app) {
     // TODO
     // res.sendFile('/public/component/NotFound', { root: __dirname + '/..' });
   });
+
+  /****** SALESFORCE *******/
+  // Spencer's working auth function//
+app.get('/oauth2/auth', function(req, res) {
+    console.log(req.body);
+  res.redirect(oauth2.getAuthorizationUrl({ scope : 'api id web' }));
+  
+});
+//Trying to get access token, having troubles passing in the code gotten from auth function 
+app.get('/oauth2/callback', function(req, res) {
+  var conn = new jsforce.Connection({ oauth2 : oauth2 });
+  //var code = req.body.code;
+  console.log(req);
+  conn.authorize(code, function(err, userInfo) {
+    if (err) { return console.error(err); }
+    // Now you can get the access token, refresh token, and instance URL information.
+    // Save them to establish connection next time.
+    console.log(conn.accessToken);
+    console.log(conn.refreshToken);
+    console.log(conn.instanceUrl);
+    console.log("User ID: " + userInfo.id);
+    console.log("Org ID: " + userInfo.organizationId);
+    // ...
+  });
+});
+
   
   // ^^^^^^^^^^^^^^^^^^^ FRONTEND ROUTES ^^^^^^^^^^^^^^^^^^^ //
 };

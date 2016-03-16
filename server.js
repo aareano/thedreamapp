@@ -5,6 +5,7 @@ var express        = require('express');
 var app            = express();
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
+var firebase       = require('firebase');
 var jsforce        = require('jsforce');
 
 // configuration ===========================================
@@ -20,7 +21,7 @@ var port = process.env.PORT || 8080;
 
 // connect to our firebase database 
 var firebase = new Firebase(db.url);
-
+/*
 //*************************************
 var oauth2 = new jsforce.OAuth2({
 
@@ -54,7 +55,7 @@ app.get('/oauth2/callback', function(req, res) {
 });
 
 //******************************************
-
+*/
 // get all data/stuff of the body (POST) parameters
 // parse application/json 
 app.use(bodyParser.json()); 
@@ -74,6 +75,7 @@ app.use('/', express.static('public'));
 
 // auth ==================================================
 require('./app/firebase')(firebase); // auth logic
+require('./app/salesforce')(salesforce);
 
 // routes ==================================================
 require('./app/routes')(app); // configure our routes
@@ -88,6 +90,7 @@ console.log('Magic happens on port ' + port);
 // expose app           
 exports = module.exports = app;
 exports = module.exports = firebase;
+exports = module.exports = salesforce;
 
 console.log("TEST ", process.env.TEST);
 console.log("USER_SECRET ", process.env.USER_SECRET);
