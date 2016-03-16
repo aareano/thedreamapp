@@ -54,3 +54,6 @@ console.log('Magic happens on port ' + port);
 // expose app           
 exports = module.exports = app;
 exports = module.exports = firebase;
+
+console.log("TEST ", process.env.TEST);
+console.log("USER_SECRET ", process.env.USER_SECRET);
