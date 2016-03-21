@@ -71,8 +71,11 @@ module.exports = function(app) {
     res.sendFile('/public/shared/Authentication/authentication.html', { root: __dirname + '/..' });
   });
   app.post('/register', function(req, res) {
-    // Todo
-    res.send({nice: "You tried to register. That's so cute."});
+    console.log(req.body);
+    register(req.body.username, req.body.password, function(status, response) {
+      res.status(status);
+      res.send(response);
+    });
   });
   
   // get the current user
