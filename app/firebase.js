@@ -66,6 +66,8 @@ module.exports = function(firebase) {
         console.log("Successfully created user account with uid:", userData.uid);
       }
     });
+
+    callback();
   };
 
   this.deleteuser = function(username, password, callback) {
@@ -90,6 +92,8 @@ module.exports = function(firebase) {
         console.log("User account deleted successfully!");
       }
     });
+
+    callback();
   }
 
 };
