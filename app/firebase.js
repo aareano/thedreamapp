@@ -42,31 +42,33 @@ module.exports = function(firebase) {
     return authData;
   };
 
-  this.register = function(username, password, callback) {
+  this.register = function(username, password, password2, callback) {
     console.log("in register");
-    console.log(username, password);
-
-    // https://www.firebase.com/docs/web/api/firebase/createuser.html
-    firebase.createUser({
-      email: username,
-      password: password
-    }, function(error, userData) {
-      if (error) {
-        switch (error.code) {
-          case "EMAIL_TAKEN":
-            console.log("The new user account cannot be created because the email is already in use.");
-            break;
-          case "INVALID_EMAIL":
-            console.log("The specified email is not a valid email.");
-            break;
-          default:
-            console.log("Error creating user:", error);
+    console.log(username, password, password2);
+    if (password != password2) {
+      console.log("Error: the two passwords entered do not match");
+    } else {
+      // https://www.firebase.com/docs/web/api/firebase/createuser.html
+      firebase.createUser({
+        email: username,
+        password: password
+      }, function(error, userData) {
+        if (error) {
+          switch (error.code) {
+            case "EMAIL_TAKEN":
+              console.log("The new user account cannot be created because the email is already in use.");
+              break;
+            case "INVALID_EMAIL":
+              console.log("The specified email is not a valid email.");
+              break;
+            default:
+              console.log("Error creating user:", error);
+          }
+        } else {
+          console.log("Successfully created user account with uid:", userData.uid);
         }
-      } else {
-        console.log("Successfully created user account with uid:", userData.uid);
-      }
-    });
-
+      });
+    }
     callback();
   };
 
