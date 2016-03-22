@@ -1,20 +1,14 @@
 <!-- public/Authentication/register.html -->
 
-<div class="row">
-  <form id="register-form" role="form">
-    <h2>Register</h2>
-
-    <div class="form-group">
-      <label for="username">Email address</label>
-      <input type="username" class="form-control" id="username" placeholder="Enter email" name="username" ng-model="user.username"/>
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" placeholder="Password" name="password" ng-model="user.password" />
-    </div>
-    <div class="col-md-offset-4 col-md-4">
+<div class="register-page">
+    <h1>DREAM</h1>
+  <div class="form">
+    <form id="register-form" role="form">
+      <input type="email" class="form-control" id="username" placeholder="email" name="username" ng-model="user.username"/>
+      <input type="password" class="form-control" id="password" placeholder="password" name="password" ng-model="user.password"/>
+      <input type="password" class="form-control" id="password2" placeholder="repeat password" name="password2" ng-model="user.password2"/>
       <button type="submit" ng-click='register(user)' class="btn btn-primary btn-block">Register</button>
-    </div>
-  </form>
-  <p>Already have an account?<span ui-sref='authentication.login' class="btn btn-link">Log in</span>
+      <div class="message">Already have an account?<a ui-sref='authentication.login' class="btn btn-link">Log in</a></div>
+    </form>
+  </div>
 </div>

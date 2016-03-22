@@ -67,14 +67,25 @@ module.exports = function(app) {
     });
   });
 
+  // display the page to the user
   app.get('/register', function(req, res) {
     res.sendFile('/public/shared/Authentication/authentication.html', { root: __dirname + '/..' });
   });
+  // register the user with firebase
   app.post('/register', function(req, res) {
-    console.log(req.body);
-    register(req.body.username, req.body.password, function(status, response) {
-      res.status(status);
-      res.send(response);
+    register(req.body.username, req.body.password, function() {
+      res.end();
+    });
+  });
+
+  // display the page to the user
+  app.get('/deleteuser', function(req, res) {
+    res.sendFile('/public/shared/Authentication/authentication.html', { root: __dirname + '/..' });
+  });
+  // delete the user from firebase
+  app.post('/deleteuser', function(req, res) {
+    deleteuser(req.body.username, req.body.password, function() {
+      res.end();
     });
   });
   
