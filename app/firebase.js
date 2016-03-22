@@ -7,7 +7,6 @@ module.exports = function(firebase) {
     console.log(username, password);
 
     // https://www.firebase.com/docs/web/guide/login/password.html
-
     firebase.authWithPassword({
       email    : username,//"jacks@maniquin.com",
       password : password //"welldone"
@@ -46,6 +45,7 @@ module.exports = function(firebase) {
   this.register = function(username, password, callback) {
     console.log("in register");
     console.log(username, password);
+
     // https://www.firebase.com/docs/web/api/firebase/createuser.html
     firebase.createUser({
       email: username,
@@ -66,11 +66,15 @@ module.exports = function(firebase) {
         console.log("Successfully created user account with uid:", userData.uid);
       }
     });
+
+    callback();
   };
 
   this.deleteuser = function(username, password, callback) {
     console.log("in delete");
     console.log(username, password);
+
+    // https://www.firebase.com/docs/web/api/firebase/removeuser.html
     firebase.removeUser({
       email: username,
       password: password
@@ -90,6 +94,90 @@ module.exports = function(firebase) {
         console.log("User account deleted successfully!");
       }
     });
-  }
+
+    callback();
+  };
+
+  this.changePassword = function(username, oldpassword, newpassword, callback) {
+    console.log("in change password");
+    console.log(username, oldpassword, newpassword);
+
+    // https://www.firebase.com/docs/web/api/firebase/changepassword.html
+    firebase.changePassword({
+      email: username,
+      oldPassword: oldpassword,
+      newPassword: newpassword
+    }, function(error) {
+      if (error) {
+        switch (error.code) {
+          case "INVALID_PASSWORD":
+            console.log("The specified user account password is incorrect.");
+            break;
+          case "INVALID_USER":
+            console.log("The specified user account does not exist.");
+            break;
+          default:
+            console.log("Error changing password:", error);
+        }
+      } else {
+        console.log("User password changed successfully!");
+      }
+    });
+
+    callback();
+  };
+
+  this.changeEmail = function(oldusername, newusername, password, callback) {
+    console.log("in change email");
+    console.log(oldusername, newusername, password);
+
+    //https://www.firebase.com/docs/web/api/firebase/changeemail.html
+    firebase.changeEmail({
+      oldEmail: oldusername,
+      newEmail: newusername,
+      password: password
+    }, function(error) {
+      if (error) {
+        switch (error.code) {
+          case "INVALID_PASSWORD":
+            console.log("The specified user account password is incorrect.");
+            break;
+          case "INVALID_USER":
+            console.log("The specified user account does not exist.");
+            break;
+          default:
+            console.log("Error creating user:", error);
+        }
+      } else {
+        console.log("User email changed successfully!");
+      }
+    });
+
+    callback();
+  };
+
+  this.resetPassword = function(username, callback) {
+    console.log("in reset password");
+    console.log(username);
+
+    // https://www.firebase.com/docs/web/api/firebase/resetpassword.html
+    firebase.resetPassword({
+      email: username
+    }, function(error) {
+      if (error) {
+        switch (error.code) {
+          case "INVALID_USER":
+            console.log("The specified user account does not exist.");
+            break;
+          default:
+            console.log("Error resetting password:", error);
+        }
+      } else {
+        console.log("Password reset email sent successfully!");
+      }
+    });
+
+    callback();
+  };
 
 };
