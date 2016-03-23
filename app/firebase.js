@@ -46,6 +46,8 @@ module.exports = function(firebase) {
     console.log(username, password, password2);
     if (password != password2) {
       console.log("Error: the two passwords entered do not match");
+      status = 400;
+      callback(status, "Error: the two passwords entered do not match");
     } else {
       // https://www.firebase.com/docs/web/api/firebase/createuser.html
       firebase.createUser({
@@ -63,7 +65,7 @@ module.exports = function(firebase) {
             default:
               console.log("Error creating user:", error);
           }
-          status = error.code;
+          status = 400;
           callback(status, error);
         } else {
           console.log("Successfully created user account with uid:", userData.uid);
@@ -94,7 +96,7 @@ module.exports = function(firebase) {
           default:
             console.log("Error removing user:", error);
         }
-        status = error.code;
+        status = 400;
         callback(status, error);
       } else {
         console.log("User account deleted successfully!");
@@ -125,7 +127,7 @@ module.exports = function(firebase) {
           default:
             console.log("Error changing password:", error);
         }
-        status = error.code;
+        status = 400;
         callback(status, error);
       } else {
         console.log("User password changed successfully!");
@@ -156,7 +158,7 @@ module.exports = function(firebase) {
           default:
             console.log("Error creating user:", error);
         }
-        status = error.code;
+        status = 400;
         callback(status, error);
       } else {
         console.log("User email changed successfully!");
@@ -182,7 +184,7 @@ module.exports = function(firebase) {
           default:
             console.log("Error resetting password:", error);
         }
-        status = error.code;
+        status = 400;
         callback(status, error);
       } else {
         console.log("Password reset email sent successfully!");
