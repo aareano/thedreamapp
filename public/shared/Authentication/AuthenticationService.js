@@ -24,7 +24,8 @@ function AuthenticationService($http, $state, $window) {
     logout: function() {
       $http.post('/logout')
            .then(function successCallback(response) {
-              $window.location.href = '/login'   // should use $location?
+              console.log(response);
+              $window.location.href = '/login';
             
               // errorCallback called asynchronously if an error occurs
               // or server returns response with an error status.
@@ -34,10 +35,10 @@ function AuthenticationService($http, $state, $window) {
     },
     // call to create a new user in firebase
     register: function(user) {
-      console.log(user);
       $http.post('/register', user)
            .then(function successCallback(response) {
-              $window.location.href = '/login'   // should use $location?
+              console.log(response);
+              $window.location.href = '/login';
             
               // errorCallback called asynchronously if an error occurs
               // or server returns response with an error status.
@@ -68,6 +69,7 @@ function AuthenticationService($http, $state, $window) {
     deleteuser: function(user) {
       $http.post('/deleteuser', user)
            .then(function successCallback(response) {
+              console.log(response);
               $window.location.href = '/login'
             
               // errorCallback called asynchronously if an error occurs
@@ -84,6 +86,7 @@ function AuthenticationService($http, $state, $window) {
     changePassword: function(user) {
       $http.post('/changePassword', user)
            .then(function successCallback(response) {
+              console.log(response);
               $window.location.href = '/login'
             
               // errorCallback called asynchronously if an error occurs
@@ -100,6 +103,7 @@ function AuthenticationService($http, $state, $window) {
     changeEmail: function(user) {
       $http.post('/changeEmail', user)
            .then(function successCallback(response) {
+              console.log(response);
               $window.location.href = '/login'
             
               // errorCallback called asynchronously if an error occurs
@@ -116,6 +120,7 @@ function AuthenticationService($http, $state, $window) {
     resetPassword: function(user) {
       $http.post('/resetPassword', user)
            .then(function successCallback(response) {
+              console.log(response);
               $window.location.href = '/login'
             
               // errorCallback called asynchronously if an error occurs

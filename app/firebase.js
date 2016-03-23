@@ -29,8 +29,7 @@ module.exports = function(firebase) {
   // this is also a wrapper
   this.logout = function(callback) {
     var un = firebase.unauth();
-    console.log("unauth: ", un);
-    callback();
+    callback(un);
   };
 
   // This is called a wrapper function, it allows for good seperation
@@ -64,12 +63,15 @@ module.exports = function(firebase) {
             default:
               console.log("Error creating user:", error);
           }
+          status = error.code;
+          callback(status, error);
         } else {
           console.log("Successfully created user account with uid:", userData.uid);
+          status = 200;
+          callback(status, userData);
         }
       });
     }
-    callback();
   };
 
   this.deleteuser = function(username, password, callback) {
@@ -92,12 +94,14 @@ module.exports = function(firebase) {
           default:
             console.log("Error removing user:", error);
         }
+        status = error.code;
+        callback(status, error);
       } else {
         console.log("User account deleted successfully!");
+        status = 200;
+        callback(status, "User account deleted successfully!");
       }
     });
-
-    callback();
   };
 
   this.changePassword = function(username, oldpassword, newpassword, callback) {
@@ -121,12 +125,14 @@ module.exports = function(firebase) {
           default:
             console.log("Error changing password:", error);
         }
+        status = error.code;
+        callback(status, error);
       } else {
         console.log("User password changed successfully!");
+        status = 200;
+        callback(status, "User password changed successfully!");
       }
     });
-
-    callback();
   };
 
   this.changeEmail = function(oldusername, newusername, password, callback) {
@@ -150,12 +156,14 @@ module.exports = function(firebase) {
           default:
             console.log("Error creating user:", error);
         }
+        status = error.code;
+        callback(status, error);
       } else {
         console.log("User email changed successfully!");
+        status = 200;
+        callback(status, "User email changed successfully!");
       }
     });
-
-    callback();
   };
 
   this.resetPassword = function(username, callback) {
@@ -174,12 +182,14 @@ module.exports = function(firebase) {
           default:
             console.log("Error resetting password:", error);
         }
+        status = error.code;
+        callback(status, error);
       } else {
         console.log("Password reset email sent successfully!");
+        status = 200;
+        callback(status, "Password reset email sent successfully!");
       }
     });
-
-    callback();
   };
 
 };
