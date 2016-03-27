@@ -7,7 +7,7 @@
 - [x] Port front end to new angular/express app
 - [ ] Update UI (in progress...?)
 - [ ] Beautify the login/register/logout pages
-- [ ] Move justified-gallary to libs folder
+- [x] Move justified-gallary to libs folder
 - [ ] Fill out front end part of folder hierarchy
 - [ ] ...
 
