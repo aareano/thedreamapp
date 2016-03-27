@@ -7,10 +7,10 @@ function AttendanceController($scope) {
 
   $scope.menteesList = ["Fred", "Ben", "Flora", "Nick", "Ginetta"];
   
-  if (localStorage.getItem('journals') == null) {
-    $scope.journals = [];
+  if (localStorage.getItem('attendance_entries') == null) {
+    $scope.attendance_entries = [];
   } else {
-    $scope.journals = JSON.parse(localStorage['journals']);
+    $scope.attendance_entries = JSON.parse(localStorage['attendance_entries']);
   }
   edit_index = -1;
 
@@ -24,40 +24,50 @@ function AttendanceController($scope) {
       }
       else {
         entry[mentee.value] = false;            }
-      }
-      for (i in entry){
-        if (i != 'entry' && i != 'summary' && i != 'data')
-          console.log( i + ': ' + entry[i] + '<br />');
-      }
+    }
 
-      var atten_entry = {'entry':entry,'summary':jSumm,'date':document.getElementById('eventDate').value};
-      if (edit_index != -1) {
-        $scope.journals[edit_index] = atten_entry;
-      } else {
-        $scope.journals.unshift(atten_entry);
-      }
-      $scope.journals.sort(compare);
-      localStorage.setItem('journals', angular.toJson($scope.journals));
-      edit_index = -1;
-    };
+    for (i in entry){
+      if (i != 'entry' && i != 'summary' && i != 'data')
+        console.log( i + ': ' + entry[i] + '<br />');
+    }
+
+    var atten_entry = {'entry':entry,'summary':jSumm,'date':document.getElementById('eventDate').value};
+    if (edit_index != -1) {
+      $scope.attendance_entries[edit_index] = atten_entry;
+    } else {
+      $scope.attendance_entries.unshift(atten_entry);
+    }
+    $scope.attendance_entries.sort(compare);
+    localStorage.setItem('attendance_entries', angular.toJson($scope.attendance_entries));
+    edit_index = -1;
+  };
 
     $scope.remove = function(item) {
-      for (var i = item.$index; i < $scope.journals.length-1; i++) {
-        $scope.journals[i] = $scope.journals[i + 1];
+      for (var i = item.$index; i < $scope.attendance_entries.length-1; i++) {
+        $scope.attendance_entries[i] = $scope.attendance_entries[i + 1];
       }
-      $scope.journals.pop();
-      localStorage.setItem('journals', angular.toJson($scope.journals));
+      $scope.attendance_entries.pop();
+      localStorage.setItem('attendance_entries', angular.toJson($scope.attendance_entries));
     };
 
     $scope.edit = function(item) {
-      document.getElementById('datepicker').value = $scope.journals[item.$index]['date'];
-      document.getElementById('summary').value = $scope.journals[item.$index]['summary'];
-      document.getElementById('entry').value = $scope.journals[item.$index]['entry'];
-      $scope.newEntry = $scope.journals[item.$index]['entry'];
-      $scope.newSummary = $scope.journals[item.$index]['summary'];
+      document.getElementById('eventDate').value = $scope.attendance_entries[item.$index]['date'];
+      document.getElementById('summary').value = $scope.attendance_entries[item.$index]['summary'];
+      document.getElementById('entry').value = $scope.attendance_entries[item.$index]['entry'];
+      
+      for (i = 0 ; i<$scope.menteesList.length ; i++){
+        var mentee = document.getElementById($scope.menteesList[i]);
+        //console.log($scope.attendance_entries[item.$index]['entry'][$scope.menteesList[i]]);          }
+      }
+
+      $scope.newEntry = $scope.attendance_entries[item.$index]['entry'];
+      $scope.newSummary = $scope.attendance_entries[item.$index]['summary'];
       edit_index = item.$index;
     };
-
+/*
+  This function is no longer needed
+ */
+/*
     $scope.view = function(item) {
       var journalid = "#journal" + item.$index;
       var viewid = "#view" + item.$index;
@@ -68,7 +78,7 @@ function AttendanceController($scope) {
         $(viewid).html("View Entry &raquo;");
       }
     }
-
+*/
     function compare(a,b) {
       a_date = a['date'].split('/');
       b_date = b['date'].split('/')

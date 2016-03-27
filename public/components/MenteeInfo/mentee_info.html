@@ -1,9 +1,10 @@
 <div class="col-md-6">
   <div class="card col-md-6 x_panel">
-    <div class="col-md-12" class="btn btn-link" data-toggle="collapse" data-target="#mentee-card">
-      <h3><i class="fa fa-align-left"></i> Mentee</h3>
-    </div>
-
+    <div class="col-md-12" id="mentee-header" class="btn" ng-click="update_expanded('mentee-header', 'mentee-card')">
+          <h3>
+          <i class="fa fa-chevron-up"></i>
+          Mentee</h3>
+    </div> 
     <div class="col-md-12 collapse in" style="margin-top: 20px;" id="mentee-card">
       <table class="table table-responsive">
         <tbody>
@@ -25,9 +26,11 @@
   </div>
 
   <div class="card col-md-6 x_panel">
-    <div class="col-md-12" class="btn btn-link" data-toggle="collapse" data-target="#personal-card">
-      <h3><i class="fa fa-align-left"></i> Personal Info</h3>
-    </div>
+    <div class="col-md-12" class="btn" id="personal-header"  ng-click="update_expanded('personal-header','personal-card')">
+          <h3>
+          <i class="fa fa-chevron-up"></i>
+          Personal Info</h3>
+    </div> 
     <div class="col-md-12 collapse in" style="margin-top: 20px;" id="personal-card">
       <table class="table table-responsive">
         <tbody>
@@ -55,8 +58,10 @@
 <div class="col-md-6">
 
   <div class="card col-md-6 x_panel">
-    <div class="col-md-12" class="btn btn-link" data-toggle="collapse" data-target="#health-card">
-      <h3><i class="fa fa-align-left"></i> Health Info</h3>
+    <div class="col-md-12" class="btn btn-link" id="health-header" ng-click="update_expanded('health-header','health-card')">
+      <h3>
+        <i class="fa fa-chevron-up"></i> 
+        Health Info</h3>
     </div>
     <div class="col-md-12 collapse in" style="margin-top: 20px;" id="health-card">
       <table class="table table-responsive">

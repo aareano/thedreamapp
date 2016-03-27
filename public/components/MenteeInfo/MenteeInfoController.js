@@ -3,7 +3,16 @@ angular.module('dreamApp.mentee_info').controller('MenteeInfoController', Mentee
 MenteeInfoController.$inject = ['$scope'/*,'ProfileService'*/];
 
 function MenteeInfoController($scope) {
-  console.log("in MenteeInfoController");
+  
+  $scope.update_expanded = function(id, target) {
+    $('#' + target).collapse("toggle");
+    var element = document.getElementById(id);
+    var target = document.getElementById(target);
+    var expanded = target.getAttribute("aria-expanded");
+    //expanded = $scope.expanded == "true" ? true:false;
+    element.children[0].children[0].className = expanded == "true" ? "fa fa-chevron-up":"fa fa-chevron-down";
+    //console.log($scope.expanded);
+  };
 
   $scope.mentee = {
     name: "Andrew Johnson",
