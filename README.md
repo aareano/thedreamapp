@@ -17,10 +17,13 @@
 - [x] Make user data available on front end
 - [ ] Make data from salesforce queries available to front end
 - [ ] Fill out back end part of folder hierarchy
-- [ ] Set up user creation with firebase
-- [ ] Set up user deletion with firebase
+- [x] Set up user creation with firebase
+- [x] Set up user deletion with firebase
+- [x] Set up user password change with firebase
+- [x] Set up user username change with firebase
+- [x] Set up user password reset with firebase
 - [ ] Make user roles (mentor, admin, mentee, etc.)
-- [ ] Make login page input 'matter'
+- [x] Make login page input 'matter'
 - [ ] ...
 
 #### Salesforce
