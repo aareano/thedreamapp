@@ -8,7 +8,7 @@
 - [ ] Update UI (in progress...?)
 - [ ] Beautify the login/register/logout pages
 - [x] Move justified-gallary to libs folder
-- [ ] Fill out front end part of folder hierarchy
+- [x] Fill out front end part of folder hierarchy
 - [ ] ...
 
 #### Server-Side (Back end)
@@ -54,11 +54,26 @@
 --------------- attendance.html
 --------------- attendanceController.js
 --------------- attendanceModule.js
----------- Home/          <!-- this component is a page for... -->
---------------- justified-gallary/
---------------- HomeController.js
+---------- Home/          <!-- this component is a page for the app's home page -->
+--------------- HomeController.js   <!-- the controller for the home page, initializes justified gallery -->
 --------------- HomeModule.js
---------------- slider.html
+--------------- slider.html         <!-- displays each image in assets/img/ using the justified gallery -->
+---------- Journal/       <!-- this component is a page for the mentor to write and view journal entries -->
+--------------- JournalController.js  <!-- Handles the storage and display of the jounral objects -->
+--------------- JournalModule.js
+--------------- journals.html         <!-- The html for the jounals view -->
+---------- MenteeInfo/    <!-- This compoment is a page for the mentor to view relevant information about their mentee -->
+--------------- MenteeInfoController.js <!-- populate the mentee info panels with data -->
+--------------- MenteeInfoModule.js
+--------------- mentee_info.html        <!-- HTML for the mentee info view -->
+---------- Relationships/   <!-- This component is a page for quickly viewing mentee contacts -->
+--------------- RelationshipsController.js  <!-- populate the relationships panels with data -->
+--------------- RelationshipsModule.js      
+--------------- relationships.html          <!-- HTML for the relationships page -->
+---------- RequestChanges/  <!-- This component is a form to request information changes -->
+--------------- RequestChangesController.js   <!-- Does nothing so far -->
+--------------- RequestChangesModule.js       
+--------------- request_changes.html          <!-- HTML for the request changes form -->
 ---------- ...
 ----- shared/             <!-- acts as reusable components or partials of our site -->
 ---------- Authentication/    <!-- this a set of pages for authenticating users (login/logout/register) -->
