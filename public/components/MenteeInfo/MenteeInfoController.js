@@ -4,21 +4,34 @@ MenteeInfoController.$inject = ['$scope'/*,'ProfileService'*/];
 
 function MenteeInfoController($scope) {
   console.log("in MenteeInfoController");
-
-  $scope.mentee = {
+    
+    MenteeInfoService.get_mentee_info (function(response) {
+        $scope.mentee_info = response.mentee_info
+    });                 
+   /*
+   $scope.mentee_info = {
     name: "Andrew Johnson",
     age: "13",
     gender: "Male"
   };
+  */
 
+    MenteeInfoService.get_personal_info (function(response) {
+        $scope.personal_info = response.get_personal_info
+    });
+ /*            
   $scope.personal = {
     houseLang: "Spanish",
     address: "52 East Wheelock St, Hanover NH",
     email: "aj2002@gmail.com",
-    birthDate: "12/1/2002"
-    
+    birthDate: "12/1/2002" 
   };
-  
+  */
+    
+    MenteeInfoService.get_health_info (function(response) {
+        $scope.health_info = response.health.info
+    });
+    /*
   $scope.health = {
     physician: "Lawrence Aldrich",
     physPhone: "603-643-1287",
@@ -26,55 +39,6 @@ function MenteeInfoController($scope) {
     swallowPills: "Yes",
     medConditions: "None",
     allergies: "Gluten"
-    
   };
-  
-  
-  $scope.emergency_contacts = [
-  {
-    name: "Andrea Johnson",
-    phone: "603-643-1287",
-    relationship: "Mother",
-    address: '52 East Wheelock St, Hanover NH',
-    email: 'andrea.johnson@gmail.com'
-  },
-  {
-    name: "Frank Johnson",
-    phone: "603-643-1287",
-    relationship: "Father",
-    address: '52 East Wheelock St, Hanover NH',
-    email: 'frank.johnson@gmail.com'
-  }
-  ];
-
-  $scope.family_contacts = [
-  {
-    name: "Andrea Johnson",
-    phone: "603-643-1287",
-    relationship: "Mother",
-    address: '52 East Wheelock St, Hanover NH',
-    email: 'andrea.johnson@gmail.com'
-  },
-  {
-    name: "Frank Johnson",
-    phone: "603-643-1287",
-    relationship: "Father",
-    address: '52 East Wheelock St, Hanover NH',
-    email: 'frank.johnson@gmail.com'
-  },
-  {
-    name:'Michael Johnson', 
-    relationship:'Brother', 
-    phone: '603-686-9753',
-    address: 'Cohen Hall Darthmouth University, Hanover NH',
-    email: 'michael.johnson@dartmouth.edu'
-  },
-  {
-    name:'Sarah Johnson', 
-    relationship:'Sister', 
-    phone: '603-686-9365',
-    address: 'Bissel Hall Dartmouth University, Hanover NH',
-    email: 'sarah.johnson@dartmouth.edu'
-  }
-  ];
+  */
 }

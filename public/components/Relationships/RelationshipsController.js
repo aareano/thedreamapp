@@ -3,50 +3,31 @@ angular.module('dreamApp.relationships').controller('RelationshipsController', R
 RelationshipsController.$inject = ['$scope'/*, 'Relationships'*/];
 
 function RelationshipsController($scope) {
-    $scope.emergency_contacts = [
+    console.log("in RelationshipsController");
+    
+    RelationshipsService.get_emergency_contacts (function(response) {
+        $scope.emergency_contacts = response.emergency_contacts
+    });
+    /*
 		{
 			name: "Andrea Johnson",
 			phone: "603-643-1287",
 			relationship: "Mother",
             address: '52 East Wheelock St, Hanover NH',
             email: 'andrea.johnson@gmail.com'
-		},
-		{
-			name: "Frank Johnson",
-			phone: "603-643-1287",
-			relationship: "Father",
-            address: '52 East Wheelock St, Hanover NH',
-            email: 'frank.johnson@gmail.com'
 		}
-    ];
-    $scope.family_contacts = [
+        */
+
+    RelationshipsService.get_family_contacts (function(response) {
+        $scope.family_contacts = response.family_contacts
+    });
+     /*
         {
 			name: "Andrea Johnson",
 			phone: "603-643-1287",
 			relationship: "Mother",
             address: '52 East Wheelock St, Hanover NH',
             email: 'andrea.johnson@gmail.com'
-		},
-		{
-			name: "Frank Johnson",
-			phone: "603-643-1287",
-			relationship: "Father",
-            address: '52 East Wheelock St, Hanover NH',
-            email: 'frank.johnson@gmail.com'
-		},
-        {
-            name:'Michael Johnson', 
-            relationship:'Brother', 
-            phone: '603-686-9753',
-            address: 'Cohen Hall Darthmouth University, Hanover NH',
-            email: 'michael.johnson@dartmouth.edu'
-        },
-        {
-            name:'Sarah Johnson', 
-            relationship:'Sister', 
-            phone: '603-686-9365',
-            address: 'Bissel Hall Dartmouth University, Hanover NH',
-            email: 'sarah.johnson@dartmouth.edu'
-        }
-    ];
+		}
+        */
 }
