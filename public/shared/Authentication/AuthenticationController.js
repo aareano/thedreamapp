@@ -13,6 +13,27 @@ angular.module('dreamApp.authentication').controller('AuthenticationController',
       console.log(user);
       AuthenticationService.register(user);
     }
+
+    $scope.deleteuser = function(user) {
+      console.log(user);
+      AuthenticationService.deleteuser(user);
+    }
+
+    $scope.changePassword = function(user) {
+      console.log(user);
+      AuthenticationService.changePassword(user);
+    }
+
+    $scope.changeEmail = function(user) {
+      console.log(user);
+      AuthenticationService.changeEmail(user);
+    }
+
+    $scope.resetPassword = function(user) {
+      console.log(user);
+      AuthenticationService.resetPassword(user);
+    }
+
   }
 ]);
 
@@ -31,5 +52,26 @@ angular.module('dreamApp.authentication').controller('TempAuthenticationControll
       console.log(user);
       AuthenticationService.register(user);
     }
+
+    $scope.deleteuser = function(user) {
+      console.log(user);
+      AuthenticationService.deleteuser(user);
+    }
+
+    $scope.changePassword = function(user) {
+      console.log(user);
+      AuthenticationService.changePassword(user);
+    }
+
+    $scope.changeEmail = function(user) {
+      console.log(user);
+      AuthenticationService.changeEmail(user);
+    }
+
+    $scope.resetPassword = function(user) {
+      console.log(user);
+      AuthenticationService.resetPassword(user);
+    }
+
   }
 ]);
