@@ -39,9 +39,15 @@ function ProfileController($scope) {
 		if (document.profileForm.mentorLast.value != ""){
 			$scope.mentor.lastname = $scope.newLast;
 		}
-		if (document.profileForm.mentorEmail.value != ""){
+
+		if (document.profileForm.mentorEmail.value != "" && document.profileForm.mentorPassword.value != ""){
 			$scope.mentor.email = $scope.newEmail;
+		} else if (document.profileForm.mentorEmail.value != "") {
+			alert("Must enter password in order to change email!");
+		} else if (document.profileForm.mentorPassword.value != "") {
+			$scope.mentor.password = $scope.newPassword;
 		}
+
 		if (document.profileForm.mentorPhone.value != ""){
 			$scope.mentor.phone = $scope.newPhone;
 		}

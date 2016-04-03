@@ -7,6 +7,9 @@
     <h3> {{mentor.firstname}} {{mentor.lastname}}'s Profile</h3> 
     <h2> Mentee: {{mentee.name}}</h2>
     <h2> DOB: {{mentee.dob}} </h2>
+    <a class="btn message" ui-sref='authentication.changep'>Change Password</a>
+    <br><a class="btn message" ui-sref='authentication.changee'>Change Email</a>
+    <br><a class="btn message" ui-sref='authentication.delete'>Delete User</a>
   </div>
 </div>
 
@@ -47,10 +50,16 @@
     </div>
 
     <div class="row" style="margin-bottom: 10px;">
-      <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="col-md-6 col-sm-6 col-xs-12">
         <div class="input-group">
-          <span class="input-group-addon" id="basic-addon5"><i class="fa fa-home"></i></span>
-          <input type="text" class="form-control" name="mentorAddress" placeholder="{{mentor.address}}" ng-model="newAddress" aria-describedby="basic-addon5">
+          <span class="input-group-addon" id="basic-addon5"><i class="fa fa-key"></i></span>
+          <input type="text" class="form-control" name="mentorPassword" ng-model="newPassword" aria-describedby="basic-addon5">
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon6"><i class="fa fa-home"></i></span>
+          <input type="text" class="form-control" name="mentorAddress" placeholder="{{mentor.address}}" ng-model="newAddress" aria-describedby="basic-addon6">
         </div>
       </div>
     </div>
