@@ -1,6 +1,6 @@
 angular.module('dreamApp.MenteeInfo').factory('RelationshipsService', ['$http', 'state', RelationshipsService]);        
 
-function Relationships($http, $state) {
+function RelationshipsService($http, $state) {
     return {
         // call to fill emergency contact box
         get_emergency_contacts : function (user, callback) {
