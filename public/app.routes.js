@@ -7,7 +7,7 @@ angular.module('dreamApp').config(function($stateProvider, $urlRouterProvider){
   //  - http://plnkr.co/edit/60RjoT?p=preview
   //  - https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views#view-names---relative-vs-absolute-names
 
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/404');
   
   $stateProvider
     .state("authentication", {
@@ -113,6 +113,22 @@ angular.module('dreamApp').config(function($stateProvider, $urlRouterProvider){
         'content@': {
           controller: "RequestChangesController",
           templateUrl: "components/RequestChanges/request_changes.html"
+        }
+      }
+    })
+    .state("root.404", {
+      url: "^/404",
+      views: {
+        'content@': {
+          templateUrl: "shared/Error/404.html"
+        }
+      }
+    })
+    .state("root.401", {
+      url: "^/401",
+      views: {
+        'content@': {
+          templateUrl: "shared/Error/401.html"
         }
       }
     });
