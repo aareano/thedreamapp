@@ -152,12 +152,14 @@ module.exports = function(app) {
 
   // main app page
   app.get('/', function(req, res) {
+    console.log('sending root')
     res.sendFile('/public/root.html', { root: __dirname + '/..' });
   });
 
   // catch all other routes and display a Not Found page
   app.use('*', function(req, res) {
-    console.log("NOTHING TO SEE HERE");
+    res.sendFile('/public/root.html', { root: __dirname + '/..' });
+    // console.log("NOTHING TO SEE HERE");
     // TODO
     // res.sendFile('/public/component/NotFound', { root: __dirname + '/..' });
   });
