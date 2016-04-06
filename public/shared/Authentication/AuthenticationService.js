@@ -6,7 +6,7 @@ angular.module('dreamApp.nav_top').factory('AuthenticationService', ['$http', '$
 function AuthenticationService($http, $state, $window) {
   return {
     // call to authenticate the user with firebase
-    login : function(user) {
+    login: function(user) {
       $http.post('/login', user)
             // successCallback called asynchronously
             // when the response is available

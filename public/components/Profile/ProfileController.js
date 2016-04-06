@@ -5,19 +5,23 @@ ProfileController.$inject = ['$scope'/*,'ProfileService'*/];
 function ProfileController($scope) {
 	console.log("in ProfileController");
 
-	$scope.mentee = {
-		name: "Andrew Johnson",
-		dob: "12/1/2012"
-	};
-	
-	$scope.mentor = {
+	ProfileService.get_mentor_info (function(response) {
+        $scope.mentor_info = response.mentor_info
+    });
+	/*
+	$scope.mentor_info = {
 		firstname: "Samuel",
 		lastname: "Rothchild",
 		email: "samuel.rothchild@gmail.com",
 		phone: "603-643-7426",
 		address: "Maxwell Hall Dartmouth University, Hanover, NH"
 	};
+    */
 	
+    ProfileService.get_mentor_contacts (function(response) {
+        $scope.mentor_contacts = response.mentor_contacts
+     });
+    /*
 	$scope.contacts = [
 		{
 			name: "Linda Rothchild",
@@ -31,22 +35,23 @@ function ProfileController($scope) {
 		}
 		
 	];
-	
+	*/
+    
 	$scope.submit = function(){
 		if(document.profileForm.mentorFirst.value != ""){
-			$scope.mentor.firstname = $scope.newFirst;
+			$scope.mentor_info.firstname = $scope.newFirst;
 		}
 		if (document.profileForm.mentorLast.value != ""){
-			$scope.mentor.lastname = $scope.newLast;
+			$scope.mentor_info.lastname = $scope.newLast;
 		}
 		if (document.profileForm.mentorEmail.value != ""){
-			$scope.mentor.email = $scope.newEmail;
+			$scope.mentor_info.email = $scope.newEmail;
 		}
 		if (document.profileForm.mentorPhone.value != ""){
-			$scope.mentor.phone = $scope.newPhone;
+			$scope.mentor_info.phone = $scope.newPhone;
 		}
 		if (document.profileForm.mentorAddress.value != ""){
-			$scope.mentor.address = $scope.newAddress;
+			$scope.mentor_info.address = $scope.newAddress;
 		}
 		
 		for (var i=0; i<$scope.contacts.length; i++){
