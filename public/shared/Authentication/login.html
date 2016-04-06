@@ -9,6 +9,9 @@
       <button type="submit" ng-click='login(user)' class="btn btn-primary">Log in</button>
       <div class="message"> <a ui-sref='authentication.register' class="btn btn-link">Create an account</a></div>
       <div class="message"><a ui-sref='authentication.reset' class="btn btn-link">Reset Password</a></div>
+       <div class="alert alert-danger" ng-show="reserror != '' ">
+        <strong>Error: </strong> {{reserror.data.code}}
+      </div>
     </form>
   </div>
 </div>
