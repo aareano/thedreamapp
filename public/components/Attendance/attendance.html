@@ -2,11 +2,11 @@
   <h1 class="page-header">Attendance</h1>
   <div class="x_content">
     <div class="row">
-      <div class="col-md-12" class="btn btn-link" data-toggle="collapse" data-target="#newJournal">
+      <div class="col-md-12" class="btn btn-link" data-toggle="collapse" data-target="#newAttendance">
         <h3><i class="fa fa-plus" style="margin-right: 15px;"></i> New Attendance Entry </h3>
       </div>
     </div>
-    <div class="row collapse in" id="newJournal">
+    <div class="row collapse in" id="newAttendance">
       <form class="form-horizontal">
         <div class="form-group">
           <label for="newEvent" class="col-md-2 control-label">Event:</label>
@@ -47,18 +47,18 @@
 
 <div class="card">
   <div class="row">
-    <div class="col-md-12" class="btn btn-link" data-toggle="collapse" data-target="#previousJournals">
+    <div class="col-md-12" class="btn btn-link" data-toggle="collapse" data-target="#previousEntries">
       <h3><i class="fa fa-align-left" style="margin-right: 15px;"></i>Previous Attendance Entries</h3>
     </div>
   </div>
-  <div class="row collapse in" style="margin-top: 20px;" id="previousJournals">
+  <div class="row collapse in" style="margin-top: 20px;" id="previousEntries">
     
     <!-- start accordion -->
-    <div class="accordion" role="tablist" aria-multiselectable="true" ng-repeat="post in journals">
-      <div class="panel-heading collapsed" role="tab" data-toggle="collapse" aria-expanded="false" aria-controls="collapseOne" data-target="#journal{{$index}}">
+    <div class="accordion" role="tablist" aria-multiselectable="true" ng-repeat="post in attendance_entries">
+      <div class="panel-heading collapsed" role="tab" data-toggle="collapse" aria-expanded="false" aria-controls="collapseOne" data-target="#attendance{{$index}}">
         <h4 class="panel-title">Date: {{post.date}} <span style="padding:10px"></span> Event Name: {{post.summary}}</h4>
       </div>
-      <div id="journal{{$index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div id="attendance{{$index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
         <div class="panel-body">
           <div class="entry collapse" id="entry{{$index}}">
             <div ng-repeat="(key,value) in post.entry">

@@ -3,6 +3,18 @@ angular.module('dreamApp.relationships').controller('RelationshipsController', R
 RelationshipsController.$inject = ['$scope'/*, 'Relationships'*/];
 
 function RelationshipsController($scope) {
+    
+    $scope.update_expanded = function(id, target) {
+        $('#' + target).collapse("toggle");
+        var element = document.getElementById(id);
+        var target = document.getElementById(target);
+        var expanded = target.getAttribute("aria-expanded");
+        //expanded = $scope.expanded == "true" ? true:false;
+        element.children[0].children[0].className = expanded == "true" ? "fa fa-chevron-up":"fa fa-chevron-down";
+        //console.log($scope.expanded);
+    };
+
+
     $scope.emergency_contacts = [
 		{
 			name: "Andrea Johnson",
