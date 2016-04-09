@@ -62,8 +62,8 @@ module.exports = function(app) {
   });
   // log the user out of firebase
   app.post('/logout', function(req, res) { // TODO: figure this out
-    logout(function() {
-      res.end();
+    logout(function(un) {
+      res.send(un);
     });
   });
 
@@ -73,8 +73,9 @@ module.exports = function(app) {
   });
   // register the user with firebase
   app.post('/register', function(req, res) {
-    register(req.body.username, req.body.password, function() {
-      res.end();
+    register(req.body.username, req.body.password, req.body.password2, function(status, info) {
+      res.status(status);
+      res.send(info);
     });
   });
 
@@ -84,8 +85,45 @@ module.exports = function(app) {
   });
   // delete the user from firebase
   app.post('/deleteuser', function(req, res) {
-    deleteuser(req.body.username, req.body.password, function() {
-      res.end();
+    deleteuser(req.body.username, req.body.password, function(status, info) {
+      res.status(status);
+      res.send(info);
+    });
+  });
+
+  // display the page to the user
+  app.get('/changePassword', function(req, res) {
+    res.sendFile('/public/shared/Authentication/authentication.html', { root: __dirname + '/..' });
+  });
+  // delete the user from firebase
+  app.post('/changePassword', function(req, res) {
+    changePassword(req.body.username, req.body.oldpassword, req.body.newpassword, function(status, info) {
+      res.status(status);
+      res.send(info);
+    });
+  });
+
+  // display the page to the user
+  app.get('/changeEmail', function(req, res) {
+    res.sendFile('/public/shared/Authentication/authentication.html', { root: __dirname + '/..' });
+  });
+  // delete the user from firebase
+  app.post('/changeEmail', function(req, res) {
+    changeEmail(req.body.oldusername, req.body.newusername, req.body.password, function(status, info) {
+      res.status(status);
+      res.send(info);
+    });
+  });
+
+  // display the page to the user
+  app.get('/resetPassword', function(req, res) {
+    res.sendFile('/public/shared/Authentication/authentication.html', { root: __dirname + '/..' });
+  });
+  // delete the user from firebase
+  app.post('/resetPassword', function(req, res) {
+    resetPassword(req.body.username, function(status, info) {
+      res.status(status);
+      res.send(info);
     });
   });
   
