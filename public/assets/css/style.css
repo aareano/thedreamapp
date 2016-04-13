@@ -24,6 +24,10 @@
     padding: 4px;
 }
 
+h1 {
+  text-align: center;
+}
+
 .card {
     background: #fff;   
     padding: 20px;

@@ -45,9 +45,9 @@ module.exports = function(firebase) {
     console.log("in register");
     console.log(username, password, password2);
     if (password != password2) {
-      console.log("Error: the two passwords entered do not match");
+      console.log("The two passwords entered do not match");
       status = 400;
-      callback(status, "Error: the two passwords entered do not match");
+      callback(status, {'code': "The two passwords entered do not match"});
     } else {
       // https://www.firebase.com/docs/web/api/firebase/createuser.html
       firebase.createUser({

@@ -39,9 +39,7 @@ function ProfileController($scope) {
 		if (document.profileForm.mentorLast.value != ""){
 			$scope.mentor.lastname = $scope.newLast;
 		}
-		if (document.profileForm.mentorEmail.value != ""){
-			$scope.mentor.email = $scope.newEmail;
-		}
+
 		if (document.profileForm.mentorPhone.value != ""){
 			$scope.mentor.phone = $scope.newPhone;
 		}

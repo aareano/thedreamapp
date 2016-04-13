@@ -39,8 +39,44 @@ angular.module('dreamApp').config(function($stateProvider, $urlRouterProvider){
       url: "^/register",
       views: {
         "content@": {
-          controller: "TempAuthenticationController",
+          controller: "AuthenticationController",
           templateUrl: "shared/Authentication/register.html"
+        }
+      }
+    })
+    .state("authentication.reset", {
+      url: "^/resetpassword",
+      views: {
+        "content@": {
+          controller: "AuthenticationController",
+          templateUrl: "shared/Authentication/resetpassword.html"
+        }
+      }
+    })
+    .state("authentication.changep", {
+      url: "^/changepassword",
+      views: {
+        "content@": {
+          controller: "AuthenticationController",
+          templateUrl: "shared/Authentication/changepassword.html"
+        }
+      }
+    })
+    .state("authentication.changee", {
+      url: "^/changeemail",
+      views: {
+        "content@": {
+          controller: "AuthenticationController",
+          templateUrl: "shared/Authentication/changeemail.html"
+        }
+      }
+    })
+    .state("authentication.delete", {
+      url: "^/deleteuser",
+      views: {
+        "content@": {
+          controller: "AuthenticationController",
+          templateUrl: "shared/Authentication/deleteuser.html"
         }
       }
     })
