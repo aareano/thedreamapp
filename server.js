@@ -15,49 +15,15 @@ var jsforce        = require('jsforce');
     
 // config files
 var db = require('./config/db');
-
 // set our port
 var port = process.env.PORT || 8080; 
-
 // connect to our firebase database 
 var firebase = new Firebase(db.url);
-/*
+
 //*************************************
-var oauth2 = new jsforce.OAuth2({
-
-  clientId : //client goes here 
-  clientSecret: //secret goes here 
-  redirectUri : 'https://thedreamapp.herokuapp.com/redirectUri'
-});
-
-// Spencer's working auth function//
-app.get('/oauth2/auth', function(req, res) {
-    console.log(req.body);
-  res.redirect(oauth2.getAuthorizationUrl({ scope : 'api id web' }));
-  
-});
-//Trying to get access token, having troubles passing in the code gotten from auth function 
-app.get('/oauth2/callback', function(req, res) {
-  var conn = new jsforce.Connection({ oauth2 : oauth2 });
-  //var code = req.body.code;
-  console.log(req);
-  conn.authorize(code, function(err, userInfo) {
-    if (err) { return console.error(err); }
-    // Now you can get the access token, refresh token, and instance URL information.
-    // Save them to establish connection next time.
-    console.log(conn.accessToken);
-    console.log(conn.refreshToken);
-    console.log(conn.instanceUrl);
-    console.log("User ID: " + userInfo.id);
-    console.log("Org ID: " + userInfo.organizationId);
-    // ...
-  });
-});
-
-//******************************************
-*/
 // get all data/stuff of the body (POST) parameters
 // parse application/json 
+
 app.use(bodyParser.json()); 
 
 // parse application/vnd.api+json as json
@@ -75,7 +41,7 @@ app.use('/', express.static('public'));
 
 // auth ==================================================
 require('./app/firebase')(firebase); // auth logic
-require('./app/salesforce')(salesforce);
+//require('./app/salesforce')(salesforce); commented out because of wrapper issues 
 
 // routes ==================================================
 require('./app/routes')(app); // configure our routes
@@ -89,8 +55,8 @@ console.log('Magic happens on port ' + port);
 
 // expose app           
 exports = module.exports = app;
-exports = module.exports = firebase;
-exports = module.exports = salesforce;
+exports = module.exports = firebase; 
+//exports = module.exports = salesforce; commmented out because of wrapper issues
 
 console.log("TEST ", process.env.TEST);
 console.log("USER_SECRET ", process.env.USER_SECRET);
