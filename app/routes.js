@@ -140,7 +140,6 @@ module.exports = function(app) {
  // was having issues auth on this version, so commented this out to allow salesforce stuff to work with firebase auth
   
   // require authentication for all other routes - DOESN'T WORK...i don't know why
-  /*
   app.use(function(req, res, next) {
     var authData = getUser();
     if (!authData) {
@@ -156,7 +155,7 @@ module.exports = function(app) {
       next();
     }
   })
-*/
+  
   // main app page
   app.get('/', function(req, res) {
     res.sendFile('/public/root.html', { root: __dirname + '/..' });
