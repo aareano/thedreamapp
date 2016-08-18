@@ -7,7 +7,10 @@
 // - http://stackoverflow.com/questions/27227650/difference-between-app-use-and-router-use-in-express
 // - http://stackoverflow.com/questions/29457008/whats-the-difference-between-application-and-router-level-middleware-when-rou
 
+var jsforce        = require('jsforce');
+
 module.exports = function(app) {
+	
 
   // NOTE, the following are equivalent:
   // - res.sendStatus(500);
@@ -133,7 +136,11 @@ module.exports = function(app) {
     res.send(authData);
   })
 
+  
+ // was having issues auth on this version, so commented this out to allow salesforce stuff to work with firebase auth
+  
   // require authentication for all other routes - DOESN'T WORK...i don't know why
+  /*
   app.use(function(req, res, next) {
     var authData = getUser();
     if (!authData) {
@@ -149,18 +156,80 @@ module.exports = function(app) {
       next();
     }
   })
-
+*/
   // main app page
   app.get('/', function(req, res) {
     res.sendFile('/public/root.html', { root: __dirname + '/..' });
   });
 
+//This is commented out to allow the routes, needed to do this to work. 
+/*	
   // catch all other routes and display a Not Found page
   app.use('*', function(req, res) {
     console.log("NOTHING TO SEE HERE");
     // TODO
     // res.sendFile('/public/component/NotFound', { root: __dirname + '/..' });
   });
+*/
+	
+	
+  /****** SALESFORCE *******/
+	
+// client ID and secret can be found after logging in by clicking on mike foote's name --> setup --> apps --> connected apps*** (dreamapp)
+// let me know if it's hard to find this page - didn't wanna commit credentials to github. 
+// make sure Id and secret are both in quotes.
+  var oauth2 = new jsforce.OAuth2({
+
+  clientId :  "",
+  clientSecret:"",
+  redirectUri : 'http://localhost:8080/oauth2/callback'
+});
+    
+//https://jsforce.github.io/ is where you can find info about jsforce  (javascript wrapper for salesforce) documentation might be a bit 
+//outdated. 
+	
+//authorizes salesforce credentials --- > they redirect's to callback --> so in order to properly authorize, this route or this function 
+//needs to be called first. 
+	
+app.get('/oauth2/auth', function(req, res) {
+  res.redirect(oauth2.getAuthorizationUrl({ scope : 'api id web' }));
+});
+	
+	
+//callback for salesforce, gives code that is exchanged for access token.
+//here are links to the web server auth flow that we are using. 
+	
+//https://developer.salesforce.com/page/Digging_Deeper_into_OAuth_2.0_on_Force.com#Obtaining_an_Access_Token_in_a_Web_Application_.28Web_Server_Flow.29
+	
+//https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_web_server_oauth_flow.htm
+	
+	
+app.get('/oauth2/callback', function(req, res) {
+  var conn = new jsforce.Connection({ oauth2 : oauth2 });
+
+  var code = req.query.code;
+  conn.authorize(code, function(err, userInfo) {
+    if (err) { return console.error(err); }
+      
+    // Now you can get the access token, refresh token, and instance URL information.
+    // Save them to establish connection next time.
+      
+    // console.log(conn.refreshToken);
+    console.log(conn.accessToken);
+    console.log(conn.instanceUrl);
+    console.log("User ID: " + userInfo.id);
+    console.log("Org ID: " + userInfo.organizationId);
+      
+    var records = [];
+      
+    conn.query("SELECT Name FROM Contact", function(err, result) {
+        if (err) { return console.error(err); }
+        console.log("total : " + result.totalSize);
+        console.log("fetched : " + result.records.length);
+    });  
+  });
+});
+
   
   // ^^^^^^^^^^^^^^^^^^^ FRONTEND ROUTES ^^^^^^^^^^^^^^^^^^^ //
 };

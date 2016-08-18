@@ -29,7 +29,7 @@
 #### Salesforce
 
 - [x] Authenticate with salesforce
-- [ ] Make some successful test queries
+- [x] Make some successful test queries
 - [ ] Make queries to return useful, relevent data
 - [ ] ...
 
