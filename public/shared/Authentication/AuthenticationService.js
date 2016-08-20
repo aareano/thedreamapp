@@ -12,8 +12,10 @@ function AuthenticationService($http, $state, $window) {
             // when the response is available
            .then(function successCallback(response) {
               callback(response);
-              $window.location.href = '/'   // should use $location?
-
+		  
+		      // Route to authentication on login
+              $window.location.href = '/oauth2/auth'   // should use $location?
+			  
               // errorCallback called asynchronously if an error occurs
               // or server returns response with an error status.
             }, function errorCallback(response) {
@@ -50,7 +52,9 @@ function AuthenticationService($http, $state, $window) {
     getUser: function(callback) {
       $http.get('/user')
            .then(function successCallback(response) {
-            
+              localStorage.userEmail = response.data.auth.token.email;
+			  console.log(localStorage.userEmail)
+			  
               console.log(response);
               console.log("called get user :)")
               callback(response.data);

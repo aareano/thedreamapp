@@ -177,12 +177,12 @@ module.exports = function(app) {
 // client ID and secret can be found after logging in by clicking on mike foote's name --> setup --> apps --> connected apps*** (dreamapp)
 // let me know if it's hard to find this page - didn't wanna commit credentials to github. 
 // make sure Id and secret are both in quotes.
-  var oauth2 = new jsforce.OAuth2({
-
-  clientId :  "",
-  clientSecret:"",
-  redirectUri : 'http://localhost:8080/oauth2/callback'
-});
+//  var oauth2 = new jsforce.OAuth2({
+//
+//  clientId :  "3MVG9y6x0357HlefAt8SYbvsMq_rdjhU_J3T32XYMqrNeI3QwxRLsDaG_kxcFw4_jfIqLsqkYvH.9RVABuxm5",
+//  clientSecret:"3745958959477854793",
+//  redirectUri : 'http://localhost:8080/oauth2/callback'
+//});
     
 //https://jsforce.github.io/ is where you can find info about jsforce  (javascript wrapper for salesforce) documentation might be a bit 
 //outdated. 
@@ -191,7 +191,7 @@ module.exports = function(app) {
 //needs to be called first. 
 	
 app.get('/oauth2/auth', function(req, res) {
-  res.redirect(oauth2.getAuthorizationUrl({ scope : 'api id web' }));
+  res.redirect(oauth2.getAuthorizationUrl({ scope : 'api id web refresh_token' }));
 });
 	
 	
@@ -209,7 +209,8 @@ app.get('/oauth2/callback', function(req, res) {
   var code = req.query.code;
   conn.authorize(code, function(err, userInfo) {
     if (err) { return console.error(err); }
-      
+    
+	res.redirect('/');
     // Now you can get the access token, refresh token, and instance URL information.
     // Save them to establish connection next time.
       
@@ -218,17 +219,36 @@ app.get('/oauth2/callback', function(req, res) {
     console.log(conn.instanceUrl);
     console.log("User ID: " + userInfo.id);
     console.log("Org ID: " + userInfo.organizationId);
-      
-    var records = [];
-      
-    conn.query("SELECT Name FROM Contact", function(err, result) {
+	  
+	// set environment vars for future connection
+    process.env.sfToken = conn.accessToken;
+	process.env.sfInstance = conn.instanceUrl;
+ 
+  });
+});
+  
+  // ^^^^^^^^^^^^^^^^^^^ FRONTEND ROUTES ^^^^^^^^^^^^^^^^^^^ //
+	
+  app.get('/testData', function(req, res) {
+	var conn = getConnection();
+	
+	conn.query("SELECT npe4__Contact__r.Name FROM npe4__Relationship__c WHERE npe4__RelatedContact__r.Name LIKE 'Meaghan Annet'", function(err, result) {
         if (err) { return console.error(err); }
         console.log("total : " + result.totalSize);
         console.log("fetched : " + result.records.length);
-    });  
+		res.send(result)
+    }); 
+	  
   });
-});
-
-  
-  // ^^^^^^^^^^^^^^^^^^^ FRONTEND ROUTES ^^^^^^^^^^^^^^^^^^^ //
+	
+  app.get('/testData', function(req, res) {
+	var conn = getConnection();
+	
+	conn.query("SELECT FirstName, LastName, Phone, npe01__Home_Address__c FROM Contact WHERE Contact.Email LIKE 'meaghan.annett@tufts.edu'", function(err, result) {
+        if (err) { return console.error(err); }
+		res.send(result)
+    }); 
+	  
+  });
+	
 };

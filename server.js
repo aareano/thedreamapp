@@ -39,9 +39,20 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 app.use('/static', express.static('node_modules')); 
 app.use('/', express.static('public')); 
 
+// Set default routes for mentee
+//app.use('/app.module.js',express.static('public/mentee/app.module.mentee.js'));
+//app.use('/app.routes.js',express.static('public/mentee/app.routes.mentee.js'));
+//app.use('/shared/NavTop',express.static('public/mentee/shared/NavTop'));
+// Routes for chair 
+app.use('/app.module.js',express.static('public/chair/app.module.chair.js'));
+app.use('/app.routes.js',express.static('public/chair/app.routes.chair.js'));
+app.use('/shared/NavTop',express.static('public/chair/shared/NavTop'));
+
+
+
 // auth ==================================================
 require('./app/firebase')(firebase); // auth logic
-//require('./app/salesforce')(salesforce); commented out because of wrapper issues 
+require('./app/salesforce')(jsforce); // commented out because of wrapper issues 
 
 // routes ==================================================
 require('./app/routes')(app); // configure our routes

@@ -1,48 +1,27 @@
+var bluebird = require('bluebird');
 
-module.exports = function(salesforce) {
+module.exports = function(jsforce) {
 	
-	var oauth2 = new jsforce.OAuth2({
-		clientId :   ,
-  		clientSecret: ,
+	this.oauth2 = new jsforce.OAuth2({
+		clientId :  "3MVG9y6x0357HlefAt8SYbvsMq_rdjhU_J3T32XYMqrNeI3QwxRLsDaG_kxcFw4_jfIqLsqkYvH.9RVABuxm5",
+		clientSecret:"3745958959477854793",
   		redirectUri : 'http://localhost:8080/oauth2/callback'
-	});
-    
-   // var mentee_records = [];
+	}); 
+	
+	this.getConnection = function(){
+		var conn;
+		if (!process.env.sfToken) {
+          conn = new jsforce.Connection({oauth2: oauth2});
+        } else {
+			console.log(process.env.sfToken)
+          conn = new jsforce.Connection({
+            oauth2 : oauth2,
+            instanceUrl : process.env.sfInstance,
+            accessToken : process.env.sfToken
+          });
+        }
+		console.log(conn)
 
-   // var oauth2 = new jsforce.OAuth2({
-    
-
-    this.oauth2 = function (){
-        return oauth2.getAuthorizationUrl({ scope : 'api id web' }));
-    };
-    
-    this.getToken () {
-        
-        var conn = new jsforce.Connection({ oauth2 : oauth2 });
-        //var code = req.query.code;
-        
-        conn.authorize(code, function(err, userInfo) {
-        if (err) { return console.error(err); }
-      
-        // Now you can get the access token, refresh token, and instance URL information.
-        // Save them to establish connection next time.
-      
-        console.log(conn.accessToken);
-        // console.log(conn.refreshToken);
-        console.log(conn.instanceUrl);
-        console.log("User ID: " + userInfo.id);
-        console.log("Org ID: " + userInfo.organizationId);
-        
-      
-        conn.query(, function(err, result) {
-        
-        if (err) { return console.error(err); }
-        console.log("total : " + result.totalSize);
-        console.log("fetched : " + result.records.length);
-        mentee_records = result;
-
-        });
-    });
-};
-                       
+		return conn;
+	};
 };

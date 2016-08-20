@@ -1,10 +1,16 @@
 angular.module('dreamApp.home').controller('HomeController', HomeController);
 
-HomeController.$inject = ['$scope'];
+HomeController.$inject = ['$scope','$http'];
 
-function HomeController($scope) {
+function HomeController($scope,$http) {
     //console.log("in HomeController");
+	
+	// Test query to check connection
+	$http.get('/testData').then(function(response){
+		console.log(response);
+	})
 
+	
     $(document).ready(function(){
         $('#mygallery').justifiedGallery({
             rowHeight : 160,
