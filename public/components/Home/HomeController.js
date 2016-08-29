@@ -6,9 +6,9 @@ function HomeController($scope,$http) {
     //console.log("in HomeController");
 	
 	// Test query to check connection
-	$http.get('/testData').then(function(response){
-		console.log(response);
-	})
+//	$http.get('/testData').then(function(response){
+//		console.log(response);
+//	})
 
 	
     $(document).ready(function(){

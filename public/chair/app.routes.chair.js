@@ -116,12 +116,39 @@ angular.module('dreamApp').config(function($stateProvider, $urlRouterProvider){
         }
       }
     })
+    .state("root.mentee_info", {
+      url: "^/mentee_info",
+      views: {
+        'content@': {
+          controller: "MenteeInfoController",
+          templateUrl: "components/MenteeInfo/mentee_info.html"
+        }
+      }
+    })
+    .state("root.relationships", {
+      url: "relationships",
+      views: {
+        'content@': {
+          controller: "RelationshipsController",
+          templateUrl: "components/Relationships/relationships.html"
+        }
+      }
+    })
     .state("root.journal", {
       url: "journal",
       views: {
         'content@': {
           controller: "JournalController",
           templateUrl: "components/Journal/journals.html"
+        }
+      }
+    })
+    .state("root.request_changes", {
+      url: "^/request_changes",
+      views: {
+        'content@': {
+          controller: "RequestChangesController",
+          templateUrl: "components/RequestChanges/request_changes.html"
         }
       }
     });

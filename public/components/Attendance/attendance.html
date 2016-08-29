@@ -13,23 +13,28 @@
           <div class="col-md-8">
             <select ng-model="newEvent" id="newEvent" class="form-control" required>
               <option value="">Choose..</option>
-              <option value="Outing">Outing</option>
-              <option value="net">Weekly Meeting</option>
-              <option value="mouth">Field Trip</option>
+              <option value="Camp">Camp</option>
+              <option value="Community Event">Community Event</option>
+              <option value="Culminating">Columinating</option>
+			  <option value="Friday">Friday</option>
+			  <option value="MiT Meeting">MiT Meeting</option>
+			  <option value="MiT / Mentor Meeting">MiT / Mentor Meeting</option>
+			  <option value="MiT Retreat">MiT Retreat</option>
+			  <option value="Other">Other</option>
             </select>
           </div>
         </div>
         <div class="form-group">
           <label for="eventDate" class="col-md-2 control-label">Date:</label>
           <div class="col-md-8">
-            <input type="date" id="eventDate" ng-model="newSummary" class="form-control">
+            <input type="date" id="eventDate" ng-model="newDate" class="form-control">
           </div>
         </div>
         <div class="form-group" style="padding-left:20px;">
           <div ng-repeat="mentee in menteesList" class="checkbox">
             <div class="col-md-offset-2">
               <label>
-                <input type="checkbox" id="{{mentee}}" value="{{mentee}}"/> {{mentee}}
+                <input type="checkbox" id="{{mentee.Id}}" value="{{mentee.Id}}"/> {{mentee.Name}}
               </label>
             </div>
           </div>
@@ -62,19 +67,23 @@
         <div class="panel-body">
           <div class="entry collapse" id="entry{{$index}}">
             <div ng-repeat="(key,value) in post.entry">
-              <div ng-if="value" style="padding-bottom:12px;">
-                <span class="label label-success" style="padding-left: 12px; padding-right:10px;">Here</span> {{key}} 
-              </div>
-              <div ng-if="!value" style="padding-bottom:10px;">
-                <span class="label label-danger" >Absent</span> {{key}} 
-              </div>
+			  <div ng-if="key != 'Id'">
+                <div ng-if="value.present" style="padding-bottom:12px;">
+                  <span class="label label-success" style="padding-left: 12px; padding-right:10px;">Here</span> {{value.Name}} 
+                </div>
+                <div ng-if="!value.present" style="padding-bottom:10px;">
+                  <span class="label label-danger" >Absent</span> {{value.Name}} 
+                </div>
+			  </div>
             </div>
 
           </div>
           <br/>
           <button type="button" class="collapsed btn btn-default" data-toggle="collapse" data-target="#entry{{$index}}">View Entry &raquo;</button>
+<!--
           <button type="button" class="btn btn-default" ng-click="remove(this)">Delete</button>
           <button type="button" class="btn btn-default" ng-click="edit(this)">Edit</button>
+-->
         </div>
       </div>
       <!-- end of accordion -->

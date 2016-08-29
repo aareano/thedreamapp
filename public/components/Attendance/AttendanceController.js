@@ -1,45 +1,108 @@
 angular.module('dreamApp.attendance').controller('AttendanceController', AttendanceController);
 
-AttendanceController.$inject = ['$scope'/*,'ProfileService'*/];
+AttendanceController.$inject = ['$scope','AttendanceService'];
 
-function AttendanceController($scope) {
-  console.log("in AttendanceController");
+function AttendanceController($scope,AttendanceService) {
+	var entryToSalesforceEntry = function(entry){
+		var sfEntries = [];
+		for (child in entry) {
+			var sfEntry = {};
+			sfEntry.Youth__c = entry[child].Id;
+			sfEntry.Present__c = entry[child].present;
+			sfEntries.push(sfEntry);
+		}
+		
+		return sfEntries;
+	}
+	
+	var saveEntries = function(atten_entry){
+		AttendanceService.post_attendance(localStorage.userEmail, {date:atten_entry.date,category:atten_entry.summary,entries:entryToSalesforceEntry(atten_entry.entry)},function(response){
+			console.log(response);
+		});	
+	}
+	
+	var extractNames = function(contacts){
+		list = [];
+		for (var i=0; i < contacts.length; i++){
+			list.push({Name:contacts[i].Name, Id:contacts[i].Id});
+		}
+		return list;
+	}
+	
+	var extractEntries = function(data){		
+		atten_entries = [];
+		
+		for (i=0; i<data.length; i++){
+			
+			entries = data[i].Attendance__r.records;
+			fridayId = data[i].Id;
+			category = data[i].Event_category__c;
+			date = data[i].Friday_Date__c;
+			
+			var attendance = {};
+			
+			for (j = 0; j < entries.length; j++){	
 
-  $scope.menteesList = ["Fred", "Ben", "Flora", "Nick", "Ginetta"];
-  
-  if (localStorage.getItem('attendance_entries') == null) {
-    $scope.attendance_entries = [];
-  } else {
-    $scope.attendance_entries = JSON.parse(localStorage['attendance_entries']);
-  }
-  edit_index = -1;
+
+				// Set Fields
+				attendance.Id = fridayId;
+
+				attendance[entries[j].Youth__r.Id] = {Name:entries[j].Youth__r.Name, Id:entries[j].Youth__r.Id, present:entries[j].Present__c};
+
+			}
+			
+			var atten_entry = {'entry':attendance, 'summary':category, 'date':date};
+
+			atten_entries.push(atten_entry);
+		}
+		
+		return atten_entries;
+	}
+	
+	AttendanceService.mentee_attendance_list(localStorage.userEmail,function(response){
+		$scope.menteesList = extractNames(response.data[0].Contacts.records);
+	});
+	
+	AttendanceService.attendance_list(localStorage.userEmail,function(response){
+		$scope.attendance_entries = extractEntries(response.data);
+		console.log(response)
+	});
+	  
+	if (localStorage.getItem('attendance_entries') == null) {
+		$scope.attendance_entries = [];
+	} else {
+		$scope.attendance_entries = JSON.parse(localStorage['attendance_entries']);
+	}
+	edit_index = -1;
 
   $scope.save = function() {
-    var jSumm = $scope.newEvent;
     var entry = {};
     for (i = 0 ; i<$scope.menteesList.length ; i++){
-      var mentee = document.getElementById($scope.menteesList[i]);
+      var mentee = document.getElementById($scope.menteesList[i].Id);
       if (mentee.checked){
-        entry[mentee.value] = true;
+		$scope.menteesList[i].present = true;
+		// IMPORTANT - Must stringify then parse (deep copy) for edit to work
+        entry[mentee.value] = JSON.parse(angular.toJson($scope.menteesList[i]));
       }
       else {
-        entry[mentee.value] = false;            }
+		$scope.menteesList[i].present = false;
+        entry[mentee.value] = JSON.parse(angular.toJson($scope.menteesList[i]));            
+	  }
     }
 
-    for (i in entry){
-      if (i != 'entry' && i != 'summary' && i != 'data')
-        console.log( i + ': ' + entry[i] + '<br />');
-    }
-
-    var atten_entry = {'entry':entry,'summary':jSumm,'date':document.getElementById('eventDate').value};
+	var atten_entry = {'entry':entry,'summary':$scope.newEvent,'date':$scope.newDate};
+	  
     if (edit_index != -1) {
       $scope.attendance_entries[edit_index] = atten_entry;
     } else {
       $scope.attendance_entries.unshift(atten_entry);
     }
-    $scope.attendance_entries.sort(compare);
-    localStorage.setItem('attendance_entries', angular.toJson($scope.attendance_entries));
+    $scope.attendance_entries.sort();
+
+	localStorage.setItem('attendance_entries', angular.toJson($scope.attendance_entries));
     edit_index = -1;
+	  
+	saveEntries(atten_entry);
   };
 
     $scope.remove = function(item) {
@@ -51,17 +114,18 @@ function AttendanceController($scope) {
     };
 
     $scope.edit = function(item) {
-      document.getElementById('eventDate').value = $scope.attendance_entries[item.$index]['date'];
-      document.getElementById('summary').value = $scope.attendance_entries[item.$index]['summary'];
-      document.getElementById('entry').value = $scope.attendance_entries[item.$index]['entry'];
+      //document.getElementById('eventDate').value = $scope.attendance_entries[item.$index]['date'];
+      //document.getElementById('summary').value = $scope.attendance_entries[item.$index]['summary'];
+      //document.getElementById('entry').value = $scope.attendance_entries[item.$index]['entry'];
       
       for (i = 0 ; i<$scope.menteesList.length ; i++){
-        var mentee = document.getElementById($scope.menteesList[i]);
+        var mentee = document.getElementById($scope.menteesList[i].Id);
+		//mentee.checked = $scope.menteesList[i].present;
         //console.log($scope.attendance_entries[item.$index]['entry'][$scope.menteesList[i]]);          }
       }
 
-      $scope.newEntry = $scope.attendance_entries[item.$index]['entry'];
-      $scope.newSummary = $scope.attendance_entries[item.$index]['summary'];
+      $scope.newDate = $scope.attendance_entries[item.$index]['date'];
+      $scope.newEvent = $scope.attendance_entries[item.$index]['summary'];
       edit_index = item.$index;
     };
 /*
@@ -80,6 +144,7 @@ function AttendanceController($scope) {
     }
 */
     function compare(a,b) {
+		console.log(a,b)
       a_date = a['date'].split('/');
       b_date = b['date'].split('/')
       if (a_date[2] < b_date[2]) {

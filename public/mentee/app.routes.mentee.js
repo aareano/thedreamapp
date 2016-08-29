@@ -107,15 +107,6 @@ angular.module('dreamApp').config(function($stateProvider, $urlRouterProvider){
         }
       }
     })
-    .state("root.attendance", {
-      url: "^/attendance",
-      views: {
-        'content@': {
-          controller: "AttendanceController",
-          templateUrl: "components/Attendance/attendance.html"
-        }
-      }
-    })
     .state("root.mentee_info", {
       url: "^/mentee_info",
       views: {

@@ -215,10 +215,10 @@ app.get('/oauth2/callback', function(req, res) {
     // Save them to establish connection next time.
       
     // console.log(conn.refreshToken);
-    console.log(conn.accessToken);
-    console.log(conn.instanceUrl);
-    console.log("User ID: " + userInfo.id);
-    console.log("Org ID: " + userInfo.organizationId);
+//    console.log(conn.accessToken);
+//    console.log(conn.instanceUrl);
+//    console.log("User ID: " + userInfo.id);
+//    console.log("Org ID: " + userInfo.organizationId);
 	  
 	// set environment vars for future connection
     process.env.sfToken = conn.accessToken;
@@ -241,14 +241,133 @@ app.get('/oauth2/callback', function(req, res) {
 	  
   });
 	
-  app.get('/testData', function(req, res) {
+ app.get('/get_mentor_info', function(req, res) {
+	 // req = {user: user_email }
+	 //console.log(req.query);
+	 // SELECT Contact.*
+	 //		FROM Contact
+	 //		WHERE Contact.Email
+	 //			LIKE req.query.user
+	var conn = getConnection();
+	conn.sobject("Contact")
+	  .select('*')
+	  .where("Contact.Email LIKE '" + req.query.user + "'")
+	  .limit(1)
+	  .execute(function(err, records) {
+		if (err) { return console.error(err); }
+		//console.log(records)
+		res.json(records)
+	  });
+  });
+	
+ app.get('/mentee_attendance_list', function(req, res) {
+	 // req = {user: user_email }
+	 //console.log(req.query);
+	 //	 SELECT Account.Name, (SELECT Contact.Name FROM Account.Contacts) 
+	 //  	FROM Account 
+	 //		WHERE Account.Name 
+	 //			LIKE [user account id]
+	var conn = getConnection();
+	conn.sobject("Contact")
+	  .select('Community__r.Id')
+	  .where("Contact.Email LIKE '" + req.query.user + "'")
+	  .limit(1)
+	  .execute(function(err, records) {
+		if (err) { return console.error(err); }
+		//console.log(records);
+		conn.sobject("Account")
+	    .select('Name')
+		.include("Contacts") // Query Contacts for given account (only active mentors)
+			// after include() call, entering into the context of child query.
+			.select("Name,Id")
+			.where("Involvement_Status__c = 'Active' AND RecordTypeName__c = 'Participant'")
+			.end() // be sure to call end() to exit child query context
+		.where("Account.Id = '" + records[0].Community__r.Id + "'")
+		.limit(1)
+	  	.execute(function(err, contacts) {
+			if (err) { return console.error(err); }
+			//console.log(records)
+			res.json(contacts)
+		  });
+	  });
+  });
+	
+  app.get('/attendance_list', function(req, res) {
+	 // req = {user: user_email }
+	 //	 
+	 //  SELECT Id, (SELECT Youth__r.Name, Youth__r.Id , Present__c FROM Attendance__r) FROM Fridays__c WHERE Program_Name__r.Id = 'Account Id'
+	 //		
+	 //			
+	var conn = getConnection();
+	conn.sobject("Contact")
+	  .select('Community__r.Id')
+	  .where("Contact.Email LIKE '" + req.query.user + "'")
+	  .limit(1)
+	  .execute(function(err, records) {
+		if (err) { return console.error(err); }
+		//console.log(records);
+		conn.sobject("Fridays__c")
+	    .select('Id,Friday_Date__c,Event_category__c')
+		.include("Attendance__r") // Query Contacts for given account (only active mentors)
+			// after include() call, entering into the context of child query.
+			.select("Youth__r.Name,Youth__r.Id, Present__c, Id")
+			.end() // be sure to call end() to exit child query context
+		.where("Program_Name__r.Id = '" + records[0].Community__r.Id + "'")
+	  	.execute(function(err, contacts) {
+			if (err) { return console.error(err); }
+			//console.log(records)
+			res.json(contacts)
+		  });
+	  });
+  });
+	
+  app.get('/activity_list', function(req, res) {
+	 // req = {user: user_email }
+	 //	 
+	 //  SELECT Id, (SELECT Youth__r.Name, Youth__r.Id , Present__c FROM Attendance__r) FROM Fridays__c WHERE Program_Name__r.Id = 'Account Id'
+	 //		
+	 //			
 	var conn = getConnection();
 	
-	conn.query("SELECT FirstName, LastName, Phone, npe01__Home_Address__c FROM Contact WHERE Contact.Email LIKE 'meaghan.annett@tufts.edu'", function(err, result) {
-        if (err) { return console.error(err); }
-		res.send(result)
-    }); 
+	conn.describe("Event", function(err, meta) {
+		if (err) { return console.error(err); }
+		res.send(meta);
+	});
+  });
+	
+  var addFridayId = function(entries,fridayId){
+	  for (entry in entries){
+		  entries[entry].Friday__c = fridayId;
+	  }
+  }
+	
+  app.post('/post_attendance', function(req, res) {
+	// req.body = {params:{parameters...}, data:{data...}}
 	  
+	var conn = getConnection();
+
+	conn.sobject("Contact")
+	  .select('Community__r.Id')
+	  .where("Contact.Email LIKE '" + req.body.params.user + "'")
+	  .limit(1)
+	  .execute(function(err, records) {
+		if (err) { return console.error(err); }
+		// Create friday in db
+		conn.sobject("Fridays__c").create({ Program_Name__c : records[0].Community__r.Id, Friday_Date__c:req.body.data.date, Event_category__c:req.body.data.category }, function(err, ret) {
+	  		if (err || !ret.success) { return console.error(err, ret); }
+			
+			// Extract new friday id from return
+			var fridayId = ret.id
+			addFridayId(req.body.data.entries,fridayId);
+			
+			// Create attendance entries for friday record
+			conn.sobject("Attendance__c").insertBulk(req.body.data.entries, function(err,ret){
+				if (err) { return console.error(err, ret); }
+				res.send('success');
+			})
+		});
+	  });
+	
   });
 	
 };

@@ -1,36 +1,58 @@
 angular.module('dreamApp.profile').controller('ProfileController',ProfileController);
 
-ProfileController.$inject = ['$scope'/*,'ProfileService'*/];
+ProfileController.$inject = ['$scope','ProfileService'];
 
-function ProfileController($scope) {
-	console.log("in ProfileController");
-
-	$scope.mentee = {
-		name: "Andrew Johnson",
-		dob: "12/1/2012"
-	};
+function ProfileController($scope,ProfileService) {
+	$scope.contacts = [];
 	
 	$scope.mentor = {
-		firstname: "Samuel",
-		lastname: "Rothchild",
-		email: "samuel.rothchild@gmail.com",
-		phone: "603-643-7426",
-		address: "Maxwell Hall Dartmouth University, Hanover, NH"
 	};
 	
 	$scope.contacts = [
-		{
-			name: "Linda Rothchild",
-			relationship: "Mother",
-			email: "rothchildFam@gmail.com"
-		},
-		{
-			name: "Name",
-			relationship: "Relationship",
-			email: "Email"
-		}
-		
+//		{
+//			name: "Linda Rothchild",
+//			relationship: "Mother",
+//			email: "rothchildFam@gmail.com"
+//		},
+//		{
+//			name: "Name",
+//			relationship: "Relationship",
+//			email: "Email"
+//		}
+//		
 	];
+	
+	var removeNullContact = function(){
+		var i=0;
+		while( i<$scope.contacts.length ){
+			if ($scope.contacts[i].name == undefined && $scope.contacts[i].phone == undefined)
+				$scope.contacts.splice(i,1);
+			else
+				i++;
+		}
+	}
+	
+	ProfileService.get_mentor_info(localStorage.userEmail, function(response){
+		var data = response.data[0];
+		
+		$scope.mentor.firstname = data.FirstName;
+		$scope.mentor.lastname = data.LastName;
+		$scope.mentor.phone = data.Phone;
+		$scope.mentor.address = data.npe01__Home_Address__c;
+		
+		$scope.contacts[0] = {
+			name: $scope.mentor.Emergency_Contact_Name_1__c,
+			phone: $scope.mentor.Emergency_Contact_Phone_1__c
+		}
+				
+		$scope.contacts[1] = {
+			name: $scope.mentor.Emergency_Contact_Name_2__c,
+			phone: $scope.mentor.Emergency_Contact_Phone_2__c
+		}
+
+		removeNullContact();
+		
+	});
 	
 	$scope.submit = function(){
 		if(document.profileForm.mentorFirst.value != ""){

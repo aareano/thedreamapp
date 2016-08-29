@@ -1,0 +1,352 @@
+Magic happens on port 8080
+TEST  undefined
+USER_SECRET  undefined
+---------------------------------
+/attendance GET
+---------------------------------
+getAuth:  null
+unauthorized, redirecting to login
+---------------------------------
+/login GET
+---------------------------------
+get /login
+---------------------------------
+/components/Home/justified-gallary/dist/js/jquery.justifiedGallery.js GET
+---------------------------------
+getAuth:  null
+unauthorized, redirecting to login
+---------------------------------
+/login GET
+---------------------------------
+get /login
+---------------------------------
+/login POST
+---------------------------------
+in authenticate
+meaghan.annett@tufts.edu password
+Authenticated successfully with payload: { provider: 'password',
+  uid: '4ee9a879-06c3-40d8-91e1-ebf9fc4d441b',
+  token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im1lYWdoYW4uYW5uZXR0QHR1ZnRzLmVkdSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiaWF0IjoxNDcyNDMyMDQzLCJ2IjowLCJkIjp7InByb3ZpZGVyIjoicGFzc3dvcmQiLCJ1aWQiOiI0ZWU5YTg3OS0wNmMzLTQwZDgtOTFlMS1lYmY5ZmM0ZDQ0MWIifX0.p7GMPGRVISDWxZahsHxTh9xcDW0zcgyAI9OqZb7NpGg',
+  password: 
+   { email: 'meaghan.annett@tufts.edu',
+     isTemporaryPassword: false,
+     profileImageURL: 'https://secure.gravatar.com/avatar/0b4a0ef3071590b477b4b4da0635238a?d=retro' },
+  auth: 
+   { provider: 'password',
+     uid: '4ee9a879-06c3-40d8-91e1-ebf9fc4d441b',
+     token: 
+      { email_verified: false,
+        email: 'meaghan.annett@tufts.edu',
+        exp: 1472518443,
+        iat: 1472432043,
+        sub: '4ee9a879-06c3-40d8-91e1-ebf9fc4d441b',
+        auth_time: 1472432043,
+        firebase: [Object] } },
+  expires: 1472518443 }
+---------------------------------
+/oauth2/auth GET
+---------------------------------
+getAuth:  { provider: 'password',
+  uid: '4ee9a879-06c3-40d8-91e1-ebf9fc4d441b',
+  token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im1lYWdoYW4uYW5uZXR0QHR1ZnRzLmVkdSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiaWF0IjoxNDcyNDMyMDQzLCJ2IjowLCJkIjp7InByb3ZpZGVyIjoicGFzc3dvcmQiLCJ1aWQiOiI0ZWU5YTg3OS0wNmMzLTQwZDgtOTFlMS1lYmY5ZmM0ZDQ0MWIifX0.p7GMPGRVISDWxZahsHxTh9xcDW0zcgyAI9OqZb7NpGg',
+  password: 
+   { email: 'meaghan.annett@tufts.edu',
+     isTemporaryPassword: false,
+     profileImageURL: 'https://secure.gravatar.com/avatar/0b4a0ef3071590b477b4b4da0635238a?d=retro' },
+  auth: 
+   { provider: 'password',
+     uid: '4ee9a879-06c3-40d8-91e1-ebf9fc4d441b',
+     token: 
+      { email_verified: false,
+        email: 'meaghan.annett@tufts.edu',
+        exp: 1472518443,
+        iat: 1472432043,
+        sub: '4ee9a879-06c3-40d8-91e1-ebf9fc4d441b',
+        auth_time: 1472432043,
+        firebase: [Object] } },
+  expires: 1472518443 }
+---------------------------------
+/oauth2/callback?code=aPrxA6bDRmdSUjxxRByAGdPt9ZGb6CPUkfBd_62_yNmZ6MrvHTMlSz5BR_IcGxyVMOfQKM7BzA%3D%3D GET
+---------------------------------
+getAuth:  { provider: 'password',
+  uid: '4ee9a879-06c3-40d8-91e1-ebf9fc4d441b',
+  token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im1lYWdoYW4uYW5uZXR0QHR1ZnRzLmVkdSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiaWF0IjoxNDcyNDMyMDQzLCJ2IjowLCJkIjp7InByb3ZpZGVyIjoicGFzc3dvcmQiLCJ1aWQiOiI0ZWU5YTg3OS0wNmMzLTQwZDgtOTFlMS1lYmY5ZmM0ZDQ0MWIifX0.p7GMPGRVISDWxZahsHxTh9xcDW0zcgyAI9OqZb7NpGg',
+  password: 
+   { email: 'meaghan.annett@tufts.edu',
+     isTemporaryPassword: false,
+     profileImageURL: 'https://secure.gravatar.com/avatar/0b4a0ef3071590b477b4b4da0635238a?d=retro' },
+  auth: 
+   { provider: 'password',
+     uid: '4ee9a879-06c3-40d8-91e1-ebf9fc4d441b',
+     token: 
+      { email_verified: false,
+        email: 'meaghan.annett@tufts.edu',
+        exp: 1472518443,
+        iat: 1472432043,
+        sub: '4ee9a879-06c3-40d8-91e1-ebf9fc4d441b',
+        auth_time: 1472432043,
+        firebase: [Object] } },
+  expires: 1472518443 }
+00DE0000000dlvF!AQUAQH7u6ts7Sdmw7MPXt0Qc_.f8iQbkNqH9JwvWUKd7aXZ2lemB2xgo67fsb78S5mAi6rfCsX0GNSR87MF7vy1A3wqEs4Oj
+https://na9.salesforce.com
+User ID: 005E0000002xJvCIAU
+Org ID: 00DE0000000dlvFMAQ
+---------------------------------
+/ GET
+---------------------------------
+getAuth:  { provider: 'password',
+  uid: '4ee9a879-06c3-40d8-91e1-ebf9fc4d441b',
+  token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im1lYWdoYW4uYW5uZXR0QHR1ZnRzLmVkdSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiaWF0IjoxNDcyNDMyMDQzLCJ2IjowLCJkIjp7InByb3ZpZGVyIjoicGFzc3dvcmQiLCJ1aWQiOiI0ZWU5YTg3OS0wNmMzLTQwZDgtOTFlMS1lYmY5ZmM0ZDQ0MWIifX0.p7GMPGRVISDWxZahsHxTh9xcDW0zcgyAI9OqZb7NpGg',
+  password: 
+   { email: 'meaghan.annett@tufts.edu',
+     isTemporaryPassword: false,
+     profileImageURL: 'https://secure.gravatar.com/avatar/0b4a0ef3071590b477b4b4da0635238a?d=retro' },
+  auth: 
+   { provider: 'password',
+     uid: '4ee9a879-06c3-40d8-91e1-ebf9fc4d441b',
+     token: 
+      { email_verified: false,
+        email: 'meaghan.annett@tufts.edu',
+        exp: 1472518443,
+        iat: 1472432043,
+        sub: '4ee9a879-06c3-40d8-91e1-ebf9fc4d441b',
+        auth_time: 1472432043,
+        firebase: [Object] } },
+  expires: 1472518443 }
+---------------------------------
+/user GET
+---------------------------------
+getAuth:  { provider: 'password',
+  uid: '4ee9a879-06c3-40d8-91e1-ebf9fc4d441b',
+  token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im1lYWdoYW4uYW5uZXR0QHR1ZnRzLmVkdSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiaWF0IjoxNDcyNDMyMDQzLCJ2IjowLCJkIjp7InByb3ZpZGVyIjoicGFzc3dvcmQiLCJ1aWQiOiI0ZWU5YTg3OS0wNmMzLTQwZDgtOTFlMS1lYmY5ZmM0ZDQ0MWIifX0.p7GMPGRVISDWxZahsHxTh9xcDW0zcgyAI9OqZb7NpGg',
+  password: 
+   { email: 'meaghan.annett@tufts.edu',
+     isTemporaryPassword: false,
+     profileImageURL: 'https://secure.gravatar.com/avatar/0b4a0ef3071590b477b4b4da0635238a?d=retro' },
+  auth: 
+   { provider: 'password',
+     uid: '4ee9a879-06c3-40d8-91e1-ebf9fc4d441b',
+     token: 
+      { email_verified: false,
+        email: 'meaghan.annett@tufts.edu',
+        exp: 1472518443,
+        iat: 1472432043,
+        sub: '4ee9a879-06c3-40d8-91e1-ebf9fc4d441b',
+        auth_time: 1472432043,
+        firebase: [Object] } },
+  expires: 1472518443 }
+---------------------------------
+/post_attendance POST
+---------------------------------
+getAuth:  { provider: 'password',
+  uid: '4ee9a879-06c3-40d8-91e1-ebf9fc4d441b',
+  token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im1lYWdoYW4uYW5uZXR0QHR1ZnRzLmVkdSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiaWF0IjoxNDcyNDMyMDQzLCJ2IjowLCJkIjp7InByb3ZpZGVyIjoicGFzc3dvcmQiLCJ1aWQiOiI0ZWU5YTg3OS0wNmMzLTQwZDgtOTFlMS1lYmY5ZmM0ZDQ0MWIifX0.p7GMPGRVISDWxZahsHxTh9xcDW0zcgyAI9OqZb7NpGg',
+  password: 
+   { email: 'meaghan.annett@tufts.edu',
+     isTemporaryPassword: false,
+     profileImageURL: 'https://secure.gravatar.com/avatar/0b4a0ef3071590b477b4b4da0635238a?d=retro' },
+  auth: 
+   { provider: 'password',
+     uid: '4ee9a879-06c3-40d8-91e1-ebf9fc4d441b',
+     token: 
+      { email_verified: false,
+        email: 'meaghan.annett@tufts.edu',
+        exp: 1472518443,
+        iat: 1472432043,
+        sub: '4ee9a879-06c3-40d8-91e1-ebf9fc4d441b',
+        auth_time: 1472432043,
+        firebase: [Object] } },
+  expires: 1472518443 }
+{}
+---------------------------------
+/mentee_attendance_list?user=meaghan.annett@tufts.edu GET
+---------------------------------
+getAuth:  { provider: 'password',
+  uid: '4ee9a879-06c3-40d8-91e1-ebf9fc4d441b',
+  token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im1lYWdoYW4uYW5uZXR0QHR1ZnRzLmVkdSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiaWF0IjoxNDcyNDMyMDQzLCJ2IjowLCJkIjp7InByb3ZpZGVyIjoicGFzc3dvcmQiLCJ1aWQiOiI0ZWU5YTg3OS0wNmMzLTQwZDgtOTFlMS1lYmY5ZmM0ZDQ0MWIifX0.p7GMPGRVISDWxZahsHxTh9xcDW0zcgyAI9OqZb7NpGg',
+  password: 
+   { email: 'meaghan.annett@tufts.edu',
+     isTemporaryPassword: false,
+     profileImageURL: 'https://secure.gravatar.com/avatar/0b4a0ef3071590b477b4b4da0635238a?d=retro' },
+  auth: 
+   { provider: 'password',
+     uid: '4ee9a879-06c3-40d8-91e1-ebf9fc4d441b',
+     token: 
+      { email_verified: false,
+        email: 'meaghan.annett@tufts.edu',
+        exp: 1472518443,
+        iat: 1472432043,
+        sub: '4ee9a879-06c3-40d8-91e1-ebf9fc4d441b',
+        auth_time: 1472432043,
+        firebase: [Object] } },
+  expires: 1472518443 }
+00DE0000000dlvF!AQUAQH7u6ts7Sdmw7MPXt0Qc_.f8iQbkNqH9JwvWUKd7aXZ2lemB2xgo67fsb78S5mAi6rfCsX0GNSR87MF7vy1A3wqEs4Oj
+EventEmitter {
+  _logger: { _logLevel: 2 },
+  oauth2: 
+   { loginUrl: 'https://login.salesforce.com',
+     authzServiceUrl: 'https://login.salesforce.com/services/oauth2/authorize',
+     tokenServiceUrl: 'https://login.salesforce.com/services/oauth2/token',
+     revokeServiceUrl: 'https://login.salesforce.com/services/oauth2/revoke',
+     clientId: '3MVG9y6x0357HlefAt8SYbvsMq_rdjhU_J3T32XYMqrNeI3QwxRLsDaG_kxcFw4_jfIqLsqkYvH.9RVABuxm5',
+     clientSecret: '3745958959477854793',
+     redirectUri: 'http://localhost:8080/oauth2/callback',
+     _transport: {} },
+  loginUrl: 'https://login.salesforce.com',
+  version: '37.0',
+  maxRequest: 10,
+  _transport: {},
+  callOptions: undefined,
+  analytics: { _conn: [Circular] },
+  apex: { _conn: [Circular] },
+  bulk: { _conn: [Circular], _logger: { _logLevel: 2 } },
+  chatter: { _conn: [Circular] },
+  metadata: { _conn: [Circular] },
+  soap: { _conn: [Circular] },
+  streaming: EventEmitter { _conn: [Circular] },
+  tooling: 
+   { _conn: [Circular],
+     _logger: { _logLevel: 2 },
+     query: [Function],
+     queryMore: [Function],
+     create: [Function],
+     insert: [Function],
+     retrieve: [Function],
+     update: [Function],
+     upsert: [Function],
+     del: [Function],
+     delete: [Function],
+     destroy: [Function],
+     describe: [Function],
+     describeGlobal: [Function],
+     sobject: [Function],
+     cache: { _entries: [Object] },
+     'describe$': { [Function] clear: [Function] },
+     'describeSObject$': { [Function] clear: [Function] },
+     describeSObject: [Function],
+     'describeGlobal$': { [Function] clear: [Function] },
+     sobjects: {} },
+  process: { rule: { _conn: [Circular] }, approval: { _conn: [Circular] } },
+  cache: { _entries: { describeGlobal: [Object] } },
+  _refreshDelegate: 
+   EventEmitter {
+     _conn: [Circular],
+     _refreshFn: [Function: oauthRefreshFn],
+     _refreshing: false },
+  'describe$': { [Function] clear: [Function] },
+  describe: [Function],
+  'describeSObject$': { [Function] clear: [Function] },
+  describeSObject: [Function],
+  'describeGlobal$': { [Function] clear: [Function] },
+  describeGlobal: [Function],
+  instanceUrl: 'https://na9.salesforce.com',
+  accessToken: '00DE0000000dlvF!AQUAQH7u6ts7Sdmw7MPXt0Qc_.f8iQbkNqH9JwvWUKd7aXZ2lemB2xgo67fsb78S5mAi6rfCsX0GNSR87MF7vy1A3wqEs4Oj',
+  refreshToken: undefined,
+  signedRequest: undefined,
+  limitInfo: {},
+  sobjects: {},
+  _sessionType: 'oauth2' }
+---------------------------------
+/attendance_list?user=meaghan.annett@tufts.edu GET
+---------------------------------
+getAuth:  { provider: 'password',
+  uid: '4ee9a879-06c3-40d8-91e1-ebf9fc4d441b',
+  token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im1lYWdoYW4uYW5uZXR0QHR1ZnRzLmVkdSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiaWF0IjoxNDcyNDMyMDQzLCJ2IjowLCJkIjp7InByb3ZpZGVyIjoicGFzc3dvcmQiLCJ1aWQiOiI0ZWU5YTg3OS0wNmMzLTQwZDgtOTFlMS1lYmY5ZmM0ZDQ0MWIifX0.p7GMPGRVISDWxZahsHxTh9xcDW0zcgyAI9OqZb7NpGg',
+  password: 
+   { email: 'meaghan.annett@tufts.edu',
+     isTemporaryPassword: false,
+     profileImageURL: 'https://secure.gravatar.com/avatar/0b4a0ef3071590b477b4b4da0635238a?d=retro' },
+  auth: 
+   { provider: 'password',
+     uid: '4ee9a879-06c3-40d8-91e1-ebf9fc4d441b',
+     token: 
+      { email_verified: false,
+        email: 'meaghan.annett@tufts.edu',
+        exp: 1472518443,
+        iat: 1472432043,
+        sub: '4ee9a879-06c3-40d8-91e1-ebf9fc4d441b',
+        auth_time: 1472432043,
+        firebase: [Object] } },
+  expires: 1472518443 }
+00DE0000000dlvF!AQUAQH7u6ts7Sdmw7MPXt0Qc_.f8iQbkNqH9JwvWUKd7aXZ2lemB2xgo67fsb78S5mAi6rfCsX0GNSR87MF7vy1A3wqEs4Oj
+EventEmitter {
+  _logger: { _logLevel: 2 },
+  oauth2: 
+   { loginUrl: 'https://login.salesforce.com',
+     authzServiceUrl: 'https://login.salesforce.com/services/oauth2/authorize',
+     tokenServiceUrl: 'https://login.salesforce.com/services/oauth2/token',
+     revokeServiceUrl: 'https://login.salesforce.com/services/oauth2/revoke',
+     clientId: '3MVG9y6x0357HlefAt8SYbvsMq_rdjhU_J3T32XYMqrNeI3QwxRLsDaG_kxcFw4_jfIqLsqkYvH.9RVABuxm5',
+     clientSecret: '3745958959477854793',
+     redirectUri: 'http://localhost:8080/oauth2/callback',
+     _transport: {} },
+  loginUrl: 'https://login.salesforce.com',
+  version: '37.0',
+  maxRequest: 10,
+  _transport: {},
+  callOptions: undefined,
+  analytics: { _conn: [Circular] },
+  apex: { _conn: [Circular] },
+  bulk: { _conn: [Circular], _logger: { _logLevel: 2 } },
+  chatter: { _conn: [Circular] },
+  metadata: { _conn: [Circular] },
+  soap: { _conn: [Circular] },
+  streaming: EventEmitter { _conn: [Circular] },
+  tooling: 
+   { _conn: [Circular],
+     _logger: { _logLevel: 2 },
+     query: [Function],
+     queryMore: [Function],
+     create: [Function],
+     insert: [Function],
+     retrieve: [Function],
+     update: [Function],
+     upsert: [Function],
+     del: [Function],
+     delete: [Function],
+     destroy: [Function],
+     describe: [Function],
+     describeGlobal: [Function],
+     sobject: [Function],
+     cache: { _entries: [Object] },
+     'describe$': { [Function] clear: [Function] },
+     'describeSObject$': { [Function] clear: [Function] },
+     describeSObject: [Function],
+     'describeGlobal$': { [Function] clear: [Function] },
+     sobjects: {} },
+  process: { rule: { _conn: [Circular] }, approval: { _conn: [Circular] } },
+  cache: { _entries: { describeGlobal: [Object] } },
+  _refreshDelegate: 
+   EventEmitter {
+     _conn: [Circular],
+     _refreshFn: [Function: oauthRefreshFn],
+     _refreshing: false },
+  'describe$': { [Function] clear: [Function] },
+  describe: [Function],
+  'describeSObject$': { [Function] clear: [Function] },
+  describeSObject: [Function],
+  'describeGlobal$': { [Function] clear: [Function] },
+  describeGlobal: [Function],
+  instanceUrl: 'https://na9.salesforce.com',
+  accessToken: '00DE0000000dlvF!AQUAQH7u6ts7Sdmw7MPXt0Qc_.f8iQbkNqH9JwvWUKd7aXZ2lemB2xgo67fsb78S5mAi6rfCsX0GNSR87MF7vy1A3wqEs4Oj',
+  refreshToken: undefined,
+  signedRequest: undefined,
+  limitInfo: {},
+  sobjects: {},
+  _sessionType: 'oauth2' }
+[ { attributes: 
+     { type: 'Contact',
+       url: '/services/data/v37.0/sobjects/Contact/003E000000wzuNYIAY' },
+    Community__r: { attributes: [Object], Id: '001E000000UEjRHIA1' } } ]
+[ { attributes: 
+     { type: 'Contact',
+       url: '/services/data/v37.0/sobjects/Contact/003E000000wzuNYIAY' },
+    Community__r: { attributes: [Object], Id: '001E000000UEjRHIA1' } } ]
+[ { attributes: 
+     { type: 'Contact',
+       url: '/services/data/v37.0/sobjects/Contact/003E000000wzuNYIAY' },
+    Community__r: { attributes: [Object], Id: '001E000000UEjRHIA1' } } ]
+[ { attributes: 
+     { type: 'Contact',
+       url: '/services/data/v37.0/sobjects/Contact/003E000000wzuNYIAY' },
+    Community__r: { attributes: [Object], Id: '001E000000UEjRHIA1' } } ]

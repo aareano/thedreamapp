@@ -6,5 +6,8 @@ angular.module('dreamApp', [
   'dreamApp.home', 
   'dreamApp.profile', 
   'dreamApp.attendance', 
+  'dreamApp.mentee_info',
+  'dreamApp.request_changes',
+  'dreamApp.relationships',
   'dreamApp.journal'
 ]);
