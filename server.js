@@ -40,13 +40,13 @@ app.use('/static', express.static('node_modules'));
 app.use('/', express.static('public')); 
 
 // Set default routes for mentee
-//app.use('/app.module.js',express.static('public/mentee/app.module.mentee.js'));
-//app.use('/app.routes.js',express.static('public/mentee/app.routes.mentee.js'));
-//app.use('/shared/NavTop',express.static('public/mentee/shared/NavTop'));
+app.use('/app.module.js',express.static('public/app.module.js'));
+app.use('/app.routes.js',express.static('public/app.routes.js'));
+app.use('/shared/NavTop',express.static('public/shared/NavTop'));
 // Routes for chair 
-app.use('/app.module.js',express.static('public/chair/app.module.chair.js'));
-app.use('/app.routes.js',express.static('public/chair/app.routes.chair.js'));
-app.use('/shared/NavTop',express.static('public/chair/shared/NavTop'));
+//app.use('/app.module.js',express.static('public/chair/app.module.chair.js'));
+//app.use('/app.routes.js',express.static('public/chair/app.routes.chair.js'));
+//app.use('/shared/NavTop',express.static('public/chair/shared/NavTop'));
 
 
 
@@ -55,7 +55,7 @@ require('./app/firebase')(firebase); // auth logic
 require('./app/salesforce')(jsforce); // commented out because of wrapper issues 
 
 // routes ==================================================
-require('./app/routes')(app); // configure our routes
+require('./app/routes')(app,express); // configure our routes
 
 // start app ===============================================
 // startup our app at http://localhost:8080

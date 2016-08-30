@@ -1,1 +1,0 @@
-angular.module('dreamApp.nav_top', [])

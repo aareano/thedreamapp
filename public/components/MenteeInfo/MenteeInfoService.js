@@ -1,4 +1,4 @@
-angular.module('dreamApp.MenteeInfo').factory('MenteeInfoService', ['$http', '$state', MenteeInfoService]);
+angular.module('dreamApp.mentee_info').factory('MenteeInfoService', ['$http', '$state', MenteeInfoService]);
 
 function MenteeInfoService($http, $state) {
     return {
@@ -17,14 +17,14 @@ function MenteeInfoService($http, $state) {
              "guardian_2_email":"paul.smith@gmail.com"}
         */
         get_mentee_info: function(user, callback) {
-            $http.get('/get_mentee_info', user)
+            $http.get('/get_mentee_info', {params:{user:user}})
             .then(function successCallback(response) {
                 console.log(response);
                 callback(response);
             }, function errorCallback(repsonse) {
                 console.log(response);
             });     
-        },
+        }
         // call to fill the personal info box
         /*
             Sample mentee info:
@@ -32,15 +32,15 @@ function MenteeInfoService($http, $state) {
              "special needs": "no",
              "extra_notes": ""}
         */
-        get_personal_info: function(user, callback) {
-            $http.get('/get_personal_info', user)
-            .then(function successCallback(response) {
-                console.log(response);
-                callback(response);
-            }, function errorCallback(response) {
-                console.log(response);
-            });
-        },
+//        get_personal_info: function(user, callback) {
+//            $http.get('/get_personal_info', user)
+//            .then(function successCallback(response) {
+//                console.log(response);
+//                callback(response);
+//            }, function errorCallback(response) {
+//                console.log(response);
+//            });
+//        },
         // call to fill the health info box
         /*
             Sample mentee info:
@@ -49,14 +49,14 @@ function MenteeInfoService($http, $state) {
              "asthma": "no",
              "learning_disabilities": "none"}
         */
-        get_health_info: function(user, callback) {
-            $http.get('/get_health_info', user)
-            .then(function successCallback(response) {
-                console.log(response);
-                callback(response);
-            }, function errorCallback(response) {
-                console.log(response);
-            });
-        }
+//        get_health_info: function(user, callback) {
+//            $http.get('/get_health_info', user)
+//            .then(function successCallback(response) {
+//                console.log(response);
+//                callback(response);
+//            }, function errorCallback(response) {
+//                console.log(response);
+//            });
+//        }
     }
 };

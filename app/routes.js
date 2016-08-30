@@ -9,7 +9,7 @@
 
 var jsforce        = require('jsforce');
 
-module.exports = function(app) {
+module.exports = function(app,express) {
 	
 
   // NOTE, the following are equivalent:
@@ -194,6 +194,26 @@ app.get('/oauth2/auth', function(req, res) {
   res.redirect(oauth2.getAuthorizationUrl({ scope : 'api id web refresh_token' }));
 });
 	
+app.get('/isChair', function(req,res){
+		var conn = getConnection();
+		conn.sobject("Campaign")
+	    .select('Name')
+		.include("CampaignMembers") // Query Contacts for given account (only active mentors)
+			// after include() call, entering into the context of child query.
+			.select("Email")
+			.where("Email = '" + getUser().password.email + "'")
+			.end() // be sure to call end() to exit child query context
+		.where("Name = 'Chair'")
+	  	.execute(function(err, records) {
+			if (err) { return console.error(err); }
+			
+			if (records[0].CampaignMembers != null){
+				res.send(true);
+			}
+			else
+				res.send(false);
+		  });
+});
 	
 //callback for salesforce, gives code that is exchanged for access token.
 //here are links to the web server auth flow that we are using. 
@@ -201,16 +221,15 @@ app.get('/oauth2/auth', function(req, res) {
 //https://developer.salesforce.com/page/Digging_Deeper_into_OAuth_2.0_on_Force.com#Obtaining_an_Access_Token_in_a_Web_Application_.28Web_Server_Flow.29
 	
 //https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_web_server_oauth_flow.htm
-	
-	
 app.get('/oauth2/callback', function(req, res) {
   var conn = new jsforce.Connection({ oauth2 : oauth2 });
 
   var code = req.query.code;
   conn.authorize(code, function(err, userInfo) {
     if (err) { return console.error(err); }
-    
-	res.redirect('/');
+
+	res.redirect('/'); 
+	 
     // Now you can get the access token, refresh token, and instance URL information.
     // Save them to establish connection next time.
       
@@ -340,7 +359,17 @@ app.get('/oauth2/callback', function(req, res) {
 		  entries[entry].Friday__c = fridayId;
 	  }
   }
-	
+  
+  var postResponseObject = function(ret,entries,fridayId){
+	  var response = {}
+	  for (var i=0; i<entries.length; i++){
+		  response[entries[i].Youth__c] = ret[i].id;
+	  }
+	  response.Id = fridayId;
+	  response.newEntry = true;
+	  return response;
+  }
+  
   app.post('/post_attendance', function(req, res) {
 	// req.body = {params:{parameters...}, data:{data...}}
 	  
@@ -353,21 +382,65 @@ app.get('/oauth2/callback', function(req, res) {
 	  .execute(function(err, records) {
 		if (err) { return console.error(err); }
 		// Create friday in db
-		conn.sobject("Fridays__c").create({ Program_Name__c : records[0].Community__r.Id, Friday_Date__c:req.body.data.date, Event_category__c:req.body.data.category }, function(err, ret) {
-	  		if (err || !ret.success) { return console.error(err, ret); }
-			
-			// Extract new friday id from return
-			var fridayId = ret.id
-			addFridayId(req.body.data.entries,fridayId);
-			
-			// Create attendance entries for friday record
-			conn.sobject("Attendance__c").insertBulk(req.body.data.entries, function(err,ret){
-				if (err) { return console.error(err, ret); }
-				res.send('success');
-			})
-		});
+		//console.log(req.body.data.fridayId);
+		
+		if (req.body.data.fridayId == null){
+			console.log(req.body.data)
+			conn.sobject("Fridays__c").create({ Program_Name__c : records[0].Community__r.Id, Friday_Date__c:req.body.data.date, Event_category__c:req.body.data.category }, function(err, ret) {
+				if (err || !ret.success) { return console.error(err, ret); }
+
+				// Extract new friday id from return
+				var fridayId = ret.id
+				addFridayId(req.body.data.entries,fridayId);
+				
+				conn.sobject("Attendance__c").createBulk(req.body.data.entries, function(err,ret){
+					if (err) { return console.error(err, ret); }
+					console.log(ret);
+					res.send(postResponseObject(ret,req.body.data.entries,fridayId));
+				})
+			});
+		}
+		else {
+			conn.sobject("Fridays__c").update({Id:req.body.data.fridayId, Program_Name__c : records[0].Community__r.Id, Friday_Date__c:req.body.data.date, Event_category__c:req.body.data.category }, function(err, ret) {
+				if (err || !ret.success) { return console.error(err, ret); }
+				
+				for (entry in req.body.data.entries){
+		  			delete req.body.data.entries[entry].Youth__c;
+		  			req.body.data.entries[entry].Friday__c = req.body.data.fridayId;
+				}
+
+				conn.bulk.pollTimeout = 60000; // 60 sec
+				conn.sobject("Attendance__c").updateBulk(req.body.data.entries, function(err,ret){
+					if (err) { return console.error(err, ret); }
+					console.log(ret);
+					res.send('success');
+				})
+				
+//				res.send(updateAttendance(req.body.data.fridayId, req.body.data.entries, conn));
+			});
+		}
 	  });
 	
   });
 	
+  app.get('/get_mentee_info', function(req, res) {
+	 // req = {user: user_email }
+	 //console.log(req.query);
+	 // SELECT Contact.*
+	 //		FROM Contact
+	 //		WHERE Contact.Email
+	 //			LIKE req.query.user
+	  
+	var conn = getConnection();
+	conn.sobject("npe4__Relationship__c")
+	  .select('npe4__Contact__r.*')
+	  .where("npe4__RelatedContact__r.npe01__HomeEmail__c LIKE '" + req.query.user + "' AND npe4__Type__c LIKE 'Mentor/Mentee' AND npe4__Status__c = 'Current'")
+	  .limit(1)
+	  .execute(function(err, records) {
+		if (err) { return console.error(err); }
+		//console.log(records)
+		res.json(records)
+	  });
+  });
+
 };

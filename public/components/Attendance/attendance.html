@@ -7,11 +7,11 @@
       </div>
     </div>
     <div class="row collapse in" id="newAttendance">
-      <form class="form-horizontal">
+      <form name='attendance' class="form-horizontal">
         <div class="form-group">
           <label for="newEvent" class="col-md-2 control-label">Event:</label>
           <div class="col-md-8">
-            <select ng-model="newEvent" id="newEvent" class="form-control" required>
+            <select ng-model="newEvent" id="newEvent" class="form-control" ng-required="true">
               <option value="">Choose..</option>
               <option value="Camp">Camp</option>
               <option value="Community Event">Community Event</option>
@@ -27,7 +27,7 @@
         <div class="form-group">
           <label for="eventDate" class="col-md-2 control-label">Date:</label>
           <div class="col-md-8">
-            <input type="date" id="eventDate" ng-model="newDate" class="form-control">
+            <input type="date" id="eventDate" ng-model="newDate" ng-required="true" class="form-control">
           </div>
         </div>
         <div class="form-group" style="padding-left:20px;">
@@ -41,7 +41,7 @@
         </div>
         <div class="form-group">
           <div class="text-center">
-            <button type="submit" class="btn btn-default" ng-click="save()">Save</button>
+            <button type="submit" class="btn btn-default" ng-click="attendance.$valid && save()">Save</button>
           </div>
         </div>
       </form>
@@ -80,10 +80,8 @@
           </div>
           <br/>
           <button type="button" class="collapsed btn btn-default" data-toggle="collapse" data-target="#entry{{$index}}">View Entry &raquo;</button>
-<!--
           <button type="button" class="btn btn-default" ng-click="remove(this)">Delete</button>
           <button type="button" class="btn btn-default" ng-click="edit(this)">Edit</button>
--->
         </div>
       </div>
       <!-- end of accordion -->

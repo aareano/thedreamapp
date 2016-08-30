@@ -5,24 +5,45 @@ AttendanceController.$inject = ['$scope','AttendanceService'];
 function AttendanceController($scope,AttendanceService) {
 	var entryToSalesforceEntry = function(entry){
 		var sfEntries = [];
+		
+		if (entry == null)
+			return sfEntries;
+		
 		for (child in entry) {
 			var sfEntry = {};
 			sfEntry.Youth__c = entry[child].Id;
 			sfEntry.Present__c = entry[child].present;
+			sfEntry.Id = entry[child].attenId
 			sfEntries.push(sfEntry);
 		}
 		
 		return sfEntries;
 	}
 	
+	var extractIds = function(atten_entry, data){
+		for (key in data){
+			if (key == 'Id' || key == 'newEntry') continue;
+			atten_entry.entry[key].attenId = data[key];
+		}
+		atten_entry.entry.Id = data.Id;
+
+	}
+	
 	var saveEntries = function(atten_entry){
-		AttendanceService.post_attendance(localStorage.userEmail, {date:atten_entry.date,category:atten_entry.summary,entries:entryToSalesforceEntry(atten_entry.entry)},function(response){
-			console.log(response);
+		AttendanceService.post_attendance(localStorage.userEmail, {date:atten_entry.date,category:atten_entry.summary,entries:entryToSalesforceEntry(atten_entry.entry),fridayId:atten_entry.entry.Id},function(response){
+			if (response.data.newEntry){
+				extractIds(atten_entry, response.data);
+			}
+			console.log(atten_entry)
 		});	
 	}
 	
 	var extractNames = function(contacts){
 		list = [];
+		
+		if (contacts.length == 0)
+			return list;
+		
 		for (var i=0; i < contacts.length; i++){
 			list.push({Name:contacts[i].Name, Id:contacts[i].Id});
 		}
@@ -31,6 +52,9 @@ function AttendanceController($scope,AttendanceService) {
 	
 	var extractEntries = function(data){		
 		atten_entries = [];
+		
+		if (data == null)
+			return null;
 		
 		for (i=0; i<data.length; i++){
 			
@@ -47,7 +71,7 @@ function AttendanceController($scope,AttendanceService) {
 				// Set Fields
 				attendance.Id = fridayId;
 
-				attendance[entries[j].Youth__r.Id] = {Name:entries[j].Youth__r.Name, Id:entries[j].Youth__r.Id, present:entries[j].Present__c};
+				attendance[entries[j].Youth__r.Id] = {Name:entries[j].Youth__r.Name, Id:entries[j].Youth__r.Id, present:entries[j].Present__c, attenId: entries[j].Id};
 
 			}
 			
@@ -88,11 +112,16 @@ function AttendanceController($scope,AttendanceService) {
 		$scope.menteesList[i].present = false;
         entry[mentee.value] = JSON.parse(angular.toJson($scope.menteesList[i]));            
 	  }
+	  if (edit_index != -1){
+		  entry[mentee.value].attenId = $scope.attendance_entries[edit_index].entry[mentee.value].attenId;
+	  }
     }
 
 	var atten_entry = {'entry':entry,'summary':$scope.newEvent,'date':$scope.newDate};
 	  
     if (edit_index != -1) {
+	  var fridayId = $scope.attendance_entries[edit_index].entry.Id;
+	  atten_entry.entry.Id = fridayId;
       $scope.attendance_entries[edit_index] = atten_entry;
     } else {
       $scope.attendance_entries.unshift(atten_entry);
@@ -117,14 +146,15 @@ function AttendanceController($scope,AttendanceService) {
       //document.getElementById('eventDate').value = $scope.attendance_entries[item.$index]['date'];
       //document.getElementById('summary').value = $scope.attendance_entries[item.$index]['summary'];
       //document.getElementById('entry').value = $scope.attendance_entries[item.$index]['entry'];
-      
-      for (i = 0 ; i<$scope.menteesList.length ; i++){
-        var mentee = document.getElementById($scope.menteesList[i].Id);
-		//mentee.checked = $scope.menteesList[i].present;
+      for (id in $scope.attendance_entries[item.$index].entry){
+		var mentee = document.getElementById(id);
+		if (mentee == null) continue;
+
+		mentee.checked = $scope.attendance_entries[item.$index].entry[id].present;
         //console.log($scope.attendance_entries[item.$index]['entry'][$scope.menteesList[i]]);          }
       }
 
-      $scope.newDate = $scope.attendance_entries[item.$index]['date'];
+      $scope.newDate = new Date($scope.attendance_entries[item.$index]['date']);
       $scope.newEvent = $scope.attendance_entries[item.$index]['summary'];
       edit_index = item.$index;
     };

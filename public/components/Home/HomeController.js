@@ -9,7 +9,6 @@ function HomeController($scope,$http) {
 //	$http.get('/testData').then(function(response){
 //		console.log(response);
 //	})
-
 	
     $(document).ready(function(){
         $('#mygallery').justifiedGallery({
