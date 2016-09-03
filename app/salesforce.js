@@ -3,8 +3,8 @@ var bluebird = require('bluebird');
 module.exports = function(jsforce) {
 	
 	this.oauth2 = new jsforce.OAuth2({
-		clientId :  "3MVG9y6x0357HlefAt8SYbvsMq_rdjhU_J3T32XYMqrNeI3QwxRLsDaG_kxcFw4_jfIqLsqkYvH.9RVABuxm5",
-		clientSecret:"3745958959477854793",
+		clientId :  "",
+		clientSecret:"",
   		redirectUri : 'http://localhost:8080/oauth2/callback'
 	}); 
 	

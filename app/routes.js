@@ -189,9 +189,16 @@ module.exports = function(app,express) {
 	
 //authorizes salesforce credentials --- > they redirect's to callback --> so in order to properly authorize, this route or this function 
 //needs to be called first. 
-	
+// This used OAuth2 Resource Owner Password Credential flow.
 app.get('/oauth2/auth', function(req, res) {
-  res.redirect(oauth2.getAuthorizationUrl({ scope : 'api id web refresh_token' }));
+  //res.redirect(oauth2.getAuthorizationUrl({ scope : 'api id web refresh_token' }));
+    var conn = new jsforce.Connection({ oauth2 : oauth2 });
+	conn.login('', '', function(err, userInfo) {
+  		if (err) { return console.error(err); }
+  		process.env.sfToken = conn.accessToken;
+		process.env.sfInstance = conn.instanceUrl;
+		res.redirect('/');
+	});
 });
 	
 app.get('/isChair', function(req,res){
@@ -221,6 +228,7 @@ app.get('/isChair', function(req,res){
 //https://developer.salesforce.com/page/Digging_Deeper_into_OAuth_2.0_on_Force.com#Obtaining_an_Access_Token_in_a_Web_Application_.28Web_Server_Flow.29
 	
 //https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_web_server_oauth_flow.htm
+// Outdated! No longer required, sign in happens in route '/oauth2/auth'.
 app.get('/oauth2/callback', function(req, res) {
   var conn = new jsforce.Connection({ oauth2 : oauth2 });
 
